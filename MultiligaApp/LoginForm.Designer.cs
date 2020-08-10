@@ -37,6 +37,7 @@
             this.Password = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.LoginLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.LoginBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             // 
             // LoginBox
             // 
+            this.LoginBox.Controls.Add(this.label1);
             this.LoginBox.Controls.Add(this.ForgetPassword);
             this.LoginBox.Controls.Add(this.IncorrectLoginLabel);
             this.LoginBox.Controls.Add(this.label3);
@@ -70,7 +72,7 @@
             this.ForgetPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForgetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForgetPassword.ForeColor = System.Drawing.Color.Black;
-            this.ForgetPassword.Location = new System.Drawing.Point(100, 148);
+            this.ForgetPassword.Location = new System.Drawing.Point(44, 144);
             this.ForgetPassword.Name = "ForgetPassword";
             this.ForgetPassword.Size = new System.Drawing.Size(132, 17);
             this.ForgetPassword.TabIndex = 7;
@@ -133,6 +135,19 @@
             this.LoginLabel.TabIndex = 1;
             this.LoginLabel.Text = "Login";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(201, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 17);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Załóż konto";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -159,5 +174,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label IncorrectLoginLabel;
         private System.Windows.Forms.Label ForgetPassword;
+        private System.Windows.Forms.Label label1;
     }
 }

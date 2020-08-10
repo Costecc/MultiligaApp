@@ -70,6 +70,12 @@
     <Compile Include="CompetitionsTeamsForm.Designer.cs">
       <DependentUpon>CompetitionsTeamsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreateDeleteEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateDeleteEditForm.Designer.cs">
+      <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CompetitionsTeamsForm.resx">
       <DependentUpon>CompetitionsTeamsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreateDeleteEditForm.resx">
+      <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

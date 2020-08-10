@@ -34,7 +34,7 @@ namespace MultiligaApp
                 // 4 - zawodnik
                 // default - mozliwosc logowania
 
-                int user = 3;
+                int user = 1;
                 // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
                 mf.SetMenu(user);               
                 mf.Show();
@@ -56,6 +56,13 @@ namespace MultiligaApp
         private void LoginForm_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
+            createDeleteEditForm.SetCreateForm("Załóż konto", "", "Imię i nazwisko", "", "", "Email", "Hasło", "");
+            createDeleteEditForm.Show();
         }
     }
 }

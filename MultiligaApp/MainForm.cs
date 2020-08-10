@@ -73,16 +73,46 @@ namespace MultiligaApp
             competitionsTeamsForm.Show();
         }
 
-        private void zarzadzajZawodamiToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void mojeDrużynyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
             competitionsTeamsForm.SetWindow("druzyny");
             competitionsTeamsForm.Show();            
+        }
+
+        private void utwórzNoweToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateDeleteEditForm createForm = new CreateDeleteEditForm();
+            createForm.SetCreateForm("Utwórz nowe zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Harmonogram", "Rodzaj wyścigu");
+            createForm.Show();
+        }
+
+        private void usuńToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateDeleteEditForm createForm = new CreateDeleteEditForm();
+            createForm.SetCreateForm("Usuń zawody", "", "", "", "", "Nazwa", "", "");
+            createForm.Show();
+        }
+
+        private void edytujZawodyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateDeleteEditForm createForm = new CreateDeleteEditForm();
+            createForm.SetCreateForm("Edytuj zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Harmonogram", "Rodzaj wyścigu");
+            createForm.Show();
+        }
+
+        private void załóżNowaDrużynęToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreateDeleteEditForm createForm = new CreateDeleteEditForm();
+            createForm.SetCreateForm("Załóż drużynę zawody", "Nazwa", "", "", "", "", "", "");
+            createForm.Show();
+        }
+
+        private void wprowadźTrasęWyściguToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //CreateDeleteEditForm createForm = new CreateDeleteEditForm();
+            //createForm.SetCreateForm("Wprowadź trasę wyścigu", "Nazwa", "", "", "", "", "", "");
+            //createForm.Show();
         }
     }
 }

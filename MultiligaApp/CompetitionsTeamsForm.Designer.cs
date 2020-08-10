@@ -31,8 +31,12 @@
                 CompetitionBox.Text = "Lista drużyn";
             }
 
-            CompetitionView.Rows.Add("a", "b");
-            CompetitionView.Rows.Add("c", "d");
+            //TODO testowe dane zamienić na prawdziwe z bazy
+            CompetitionView.Rows.Add("Chess Club Poznan", "Akceptuj");
+            CompetitionView.Rows.Add("Klub tenisowy Olsztyn", "");
+
+            //CompetitionView.Rows.Add("Liga szachowa Puławy", "Akceptuj");
+            //CompetitionView.Rows.Add("Klub tenisowy Lublin", "");
         }
 
         #region Windows Form Designer generated code
@@ -49,7 +53,7 @@
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.ReturnButton = new System.Windows.Forms.Button();
             this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InviteColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InviteColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.CompetitionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompetitionView)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -73,6 +77,7 @@
             this.CompetitionView.AllowUserToResizeColumns = false;
             this.CompetitionView.AllowUserToResizeRows = false;
             this.CompetitionView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CompetitionView.ColumnHeadersVisible = false;
             this.CompetitionView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MatchColumn,
             this.InviteColumn});
@@ -115,16 +120,20 @@
             // 
             // MatchColumn
             // 
+            this.MatchColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.MatchColumn.HeaderText = "Mecze";
             this.MatchColumn.Name = "MatchColumn";
             this.MatchColumn.ReadOnly = true;
             this.MatchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MatchColumn.Width = 170;
+            this.MatchColumn.Width = 120;
             // 
             // InviteColumn
             // 
+            this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.InviteColumn.HeaderText = "Zaproszenia";
             this.InviteColumn.Name = "InviteColumn";
+            this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.InviteColumn.Width = 115;
             // 
             // CompetitionsTeamsForm
@@ -151,6 +160,6 @@
         private System.Windows.Forms.Button ReturnButton;
         private System.Windows.Forms.DataGridView CompetitionView;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatchColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InviteColumn;
+        private System.Windows.Forms.DataGridViewLinkColumn InviteColumn;
     }
 }
