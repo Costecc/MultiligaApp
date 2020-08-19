@@ -46,9 +46,9 @@
                 this.label3.Visible = false;
                 this.comboBox3.Visible = false;
             }
-            if (label1 == "")
+            if (label4 == "")
             {
-                this.label1.Visible = false;
+                this.label4.Visible = false;
                 this.comboBox4.Visible = false;
             }
             if (label5 == "")

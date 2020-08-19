@@ -41,7 +41,10 @@
             {
                 if(user == 2)   //tylko kapitan (user = 2) może dodać zawodnika do drużyny
                     InviteButton.Visible = true;
-            } 
+            }
+
+            MatchesView.Rows.Add("Motocross Lublin 1:0 Olsztyn");
+            MatchesView.Rows.Add("XYZ 0:1 Motocross Lublin");
         }
 
         public void FillProfileData(string label8, string label9, string label10, string label11, string label12, string label13, string label14)
@@ -78,18 +81,18 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.MatchesView = new System.Windows.Forms.DataGridView();
+            this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.InviteButton = new System.Windows.Forms.Button();
-            this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ProfileView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MatchesView)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ProfileView
@@ -242,17 +245,9 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 34);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.MatchesView);
             this.groupBox1.Location = new System.Drawing.Point(19, 237);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(250, 146);
@@ -260,23 +255,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rozegrane mecze";
             // 
-            // dataGridView1
+            // MatchesView
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.ColumnHeadersVisible = false;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MatchesView.AllowUserToAddRows = false;
+            this.MatchesView.AllowUserToDeleteRows = false;
+            this.MatchesView.AllowUserToOrderColumns = true;
+            this.MatchesView.AllowUserToResizeColumns = false;
+            this.MatchesView.AllowUserToResizeRows = false;
+            this.MatchesView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MatchesView.ColumnHeadersVisible = false;
+            this.MatchesView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MatchColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(7, 22);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(230, 118);
-            this.dataGridView1.TabIndex = 0;
+            this.MatchesView.Location = new System.Drawing.Point(7, 22);
+            this.MatchesView.Name = "MatchesView";
+            this.MatchesView.RowHeadersVisible = false;
+            this.MatchesView.RowTemplate.Height = 24;
+            this.MatchesView.Size = new System.Drawing.Size(230, 118);
+            this.MatchesView.TabIndex = 0;
+            // 
+            // MatchColumn
+            // 
+            this.MatchColumn.HeaderText = "Mecze";
+            this.MatchColumn.Name = "MatchColumn";
+            this.MatchColumn.Width = 220;
             // 
             // groupBox2
             // 
@@ -311,11 +312,15 @@
             this.InviteButton.Visible = false;
             this.InviteButton.Click += new System.EventHandler(this.InviteButton_Click);
             // 
-            // MatchColumn
+            // pictureBox1
             // 
-            this.MatchColumn.HeaderText = "Mecze";
-            this.MatchColumn.Name = "MatchColumn";
-            this.MatchColumn.Width = 220;
+            this.pictureBox1.Image = global::MultiligaApp.Properties.Resources.pobrane1;
+            this.pictureBox1.InitialImage = global::MultiligaApp.Properties.Resources.Free_Download_Motocross_Ktm_Image_620x388__1_1;
+            this.pictureBox1.Location = new System.Drawing.Point(6, 34);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // ProfileForm
             // 
@@ -329,10 +334,10 @@
             this.Text = "Profil";
             this.ProfileView.ResumeLayout(false);
             this.ProfileView.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MatchesView)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -359,7 +364,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button InviteButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView MatchesView;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatchColumn;
     }
 }

@@ -34,7 +34,7 @@ namespace MultiligaApp
                 // 4 - zawodnik
                 // default - mozliwosc logowania
 
-                int user = 1;
+                int user = 4;
                 // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
                 mf.SetMenu(user);               
                 mf.Show();

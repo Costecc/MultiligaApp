@@ -50,8 +50,9 @@ namespace MultiligaApp
                 this.textBox5.Visible = false;
             }
 
-            ResultView.Rows.Add("elo");
-            ResultView.Rows.Add("helo");
+            ResultView.Rows.Add("Motocross Lublin");
+            //ResultView.Rows.Add("Janusz Kamiński");
+            //ResultView.Rows.Add("Janusz Nowak");
         }
 
         #region Windows Form Designer generated code
@@ -295,7 +296,8 @@ namespace MultiligaApp
 
             //TODO
             //Tutaj uzupełnić pozostałe pola - z bazy danych. Na razie tylko imie i nazwisko
-            profileForm.FillProfileData(cell.Value.ToString(), "", "", "", "", "", "");
+            //profileForm.FillProfileData(cell.Value.ToString(), "j.kaminski9508@wp.pl", "Motocross Lublin", "I Liga Motocross", "II Liga, I Liga", "Puchar Polski (2016)", "Fan szybkiej jazdy");
+            profileForm.FillProfileData(cell.Value.ToString(), "Motocross", "Andrzej Nowak", "Informacja", "I Liga", "II Liga", "Puchar Polski (2016)");
             profileForm.Show();
         }
 

@@ -1,4 +1,6 @@
-﻿namespace MultiligaApp
+﻿using System.Windows.Forms;
+
+namespace MultiligaApp
 {
     partial class CompetitionsTeamsForm
     {
@@ -25,18 +27,25 @@
             if(kind == "zawody")
             {
                 CompetitionBox.Text = "Lista zawodów";
+                ConfirmButton.Visible = false;
             }
             else if(kind == "druzyny")
             {
                 CompetitionBox.Text = "Lista drużyn";
+                ConfirmButton.Visible = false;
+            }
+            else
+            {
+                CompetitionBox.Text = "Lista wyścigów";
+                ConfirmButton.Visible = false;
             }
 
             //TODO testowe dane zamienić na prawdziwe z bazy
-            CompetitionView.Rows.Add("Chess Club Poznan", "Akceptuj");
-            CompetitionView.Rows.Add("Klub tenisowy Olsztyn", "");
+            //CompetitionView.Rows.Add("Zawody 1", "Lista wyścigów");
+            //CompetitionView.Rows.Add("Zawody 2", "Lista wyścigów");
 
-            //CompetitionView.Rows.Add("Liga szachowa Puławy", "Akceptuj");
-            //CompetitionView.Rows.Add("Klub tenisowy Lublin", "");
+            CompetitionView.Rows.Add("Liga szachowa Puławy", "Akceptuj");
+            CompetitionView.Rows.Add("Klub tenisowy Lublin", "");
         }
 
         #region Windows Form Designer generated code
@@ -49,11 +58,11 @@
         {
             this.CompetitionBox = new System.Windows.Forms.GroupBox();
             this.CompetitionView = new System.Windows.Forms.DataGridView();
+            this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InviteColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.ReturnButton = new System.Windows.Forms.Button();
-            this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InviteColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.CompetitionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompetitionView)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -87,6 +96,25 @@
             this.CompetitionView.RowTemplate.Height = 24;
             this.CompetitionView.Size = new System.Drawing.Size(288, 273);
             this.CompetitionView.TabIndex = 1;
+            this.CompetitionView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResultView_CellClick);
+            // 
+            // MatchColumn
+            // 
+            this.MatchColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.MatchColumn.HeaderText = "Mecze";
+            this.MatchColumn.Name = "MatchColumn";
+            this.MatchColumn.ReadOnly = true;
+            this.MatchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MatchColumn.Width = 120;
+            // 
+            // InviteColumn
+            // 
+            this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.InviteColumn.HeaderText = "Zaproszenia";
+            this.InviteColumn.Name = "InviteColumn";
+            this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.InviteColumn.Width = 115;
             // 
             // groupBox2
             // 
@@ -118,24 +146,6 @@
             this.ReturnButton.UseVisualStyleBackColor = true;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
-            // MatchColumn
-            // 
-            this.MatchColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MatchColumn.HeaderText = "Mecze";
-            this.MatchColumn.Name = "MatchColumn";
-            this.MatchColumn.ReadOnly = true;
-            this.MatchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MatchColumn.Width = 120;
-            // 
-            // InviteColumn
-            // 
-            this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.InviteColumn.HeaderText = "Zaproszenia";
-            this.InviteColumn.Name = "InviteColumn";
-            this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.InviteColumn.Width = 115;
-            // 
             // CompetitionsTeamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -161,5 +171,33 @@
         private System.Windows.Forms.DataGridView CompetitionView;
         private System.Windows.Forms.DataGridViewTextBoxColumn MatchColumn;
         private System.Windows.Forms.DataGridViewLinkColumn InviteColumn;
+
+        private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCell cell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+
+            if(CompetitionBox.Text == "Lista zawodów")
+            {
+                CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
+                competitionsTeamsForm.SetWindow("wyścigi");
+                competitionsTeamsForm.CompetitionView.Rows.Clear();
+                competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 1", "Dodaj trasę");
+                competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 2", "Dodaj trasę");
+                //competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 1", "");
+                //competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 2", "");
+                competitionsTeamsForm.ConfirmButton.Visible = false;
+                competitionsTeamsForm.Show();
+            }
+            else if(CompetitionBox.Text == "Lista wyścigów")
+            {
+                CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
+                createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
+                createDeleteEditForm.Show();
+            }
+            else if (CompetitionBox.Text == "Lista drużyn")
+            {
+                MessageBox.Show("Zaakceptowano zaproszenie", "Akceptacja zaproszenia");
+            }
+        }
     }
 }

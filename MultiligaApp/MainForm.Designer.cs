@@ -37,7 +37,10 @@
 
             //zawodnik ma prawo do zakłądania drużyny
             if (_user == 4)
+            {
                 załóżNowaDrużynęToolStripMenuItem.Visible = true;
+                drużynyToolStripMenuItem.Visible = true;
+            }
         }
         #region Kod generowany przez Projektanta formularzy systemu Windows
 
@@ -213,13 +216,14 @@
             this.drużynyToolStripMenuItem.Name = "drużynyToolStripMenuItem";
             this.drużynyToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.drużynyToolStripMenuItem.Text = "Drużyny";
+            this.drużynyToolStripMenuItem.Visible = false;
             // 
             // mojeDrużynnyToolStripMenuItem
             // 
             this.mojeDrużynnyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.załóżNowaDrużynęToolStripMenuItem});
             this.mojeDrużynnyToolStripMenuItem.Name = "mojeDrużynnyToolStripMenuItem";
-            this.mojeDrużynnyToolStripMenuItem.Size = new System.Drawing.Size(173, 26);
+            this.mojeDrużynnyToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.mojeDrużynnyToolStripMenuItem.Text = "Moje drużyny";
             this.mojeDrużynnyToolStripMenuItem.Click += new System.EventHandler(this.mojeDrużynyToolStripMenuItem_Click);
             // 
