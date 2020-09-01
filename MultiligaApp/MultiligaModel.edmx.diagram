@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c400173e4654423960b312ee53032de" Name="Diagram1">
+        <EntityTypeShape EntityType="multiligaModel.cykl" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.druzyna" Width="1.5" PointX="22.5" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.dyscyplina" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.kapitan" Width="1.5" PointX="20.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.ksiegowa" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.kurier" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.kwalifikacje" Width="1.5" PointX="7.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.opiekun_zawodow" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.organizator" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.pakiet_startowy" Width="1.5" PointX="5.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.pracownik" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.ranking_globalny" Width="1.5" PointX="17.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.trasa" Width="1.5" PointX="10.5" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.wplata" Width="1.5" PointX="5.25" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.wyscig" Width="1.5" PointX="12.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.zawodnik" Width="1.5" PointX="15" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.zawody" Width="1.5" PointX="17.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.ranking_cyklu" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.ranking_druzyny" Width="1.5" PointX="24.75" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="multiligaModel.wynik_wyscigu" Width="1.5" PointX="17.25" PointY="14.625" IsExpanded="true" />
+        <AssociationConnector Association="multiligaModel.cykl_fk_id_dyscyplina" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.cykl_fk_id_organizator" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.ranking_cyklu_fk_id_cykl1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.druzyna_fk_id_kapitan" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.ranking_druzyny_fk_id_druzyna" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_fk_id_druzyna1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.kapitan_fk_id_opiekun_zawodow" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.kapitan_fk_id_zawodnik6" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_fk_id_kapitan1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.ksiegowa_fk_id_pracownik" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.organizator_fk_id_ksiegowa" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wplata_fk_id_ksiegowa1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.kurier_fk_id_pracownik3" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.organizator_fk_id_kurier" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.pakiet_startowy_fk_id_kurier1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.kwalifikacje_fk_id_organizator1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawody_fk_id_kwalifikacje" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.opiekun_zawodow_fk_id_pracownik2" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.trasa_fk_opiekun_zawodow" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wplata_fk_id_opiekun_zawodow1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wyscig_fk_id_opiekun_zawodow2" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.organizator_fk_id_pracownik1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.trasa_fk_id_organizator3" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wyscig_fk_id_organizator4" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.ranking_globalny_fk_id_zawodnik1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wyscig_fk_id_trasa1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_fk_id_wplata" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wynik_wyscigu_fk_id_wyscig1" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.ranking_cyklu_fk_id_zawodnik" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wynik_wyscigu_fk_id_zawodnik2" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.cykl_wyscig" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.organizator_trasa" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.wyscig_cykl" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_cykl" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_wyscig" ManuallyRouted="false" />
+        <AssociationConnector Association="multiligaModel.zawodnik_zawody" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
