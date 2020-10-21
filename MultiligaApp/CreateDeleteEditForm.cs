@@ -27,7 +27,16 @@ namespace MultiligaApp
                 case "Edytuj zawody":
                     _operation = " edytowano zawody!"; break;
                 case "Załóż konto":
-                    _operation = " założone konto!"; break;
+                    {
+                        _operation = " założone konto!";
+                        using (var db = new multiligaEntities())
+                        {
+                            var z = db.Set<pracownik>();
+                            z.Add(new pracownik { id_pracownik = 2, stanowisko = "test", login = "ee", haslo = "e" });
+                            db.SaveChanges();
+                        }
+                        break;
+                    }                    
                 case "Załóż drużynę zawody":
                     _operation = " założona drużyna!"; break;
                 default:

@@ -1,0 +1,797 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="multiligaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cykl">
+    <Key>
+      <PropertyRef Name="id_cykl" />
+    </Key>
+    <Property Name="id_cykl" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_organizator" Type="Int32" Nullable="false" />
+    <Property Name="id_dyscyplina" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="dyscyplina" Relationship="Self.cykl_fk_id_dyscyplina" FromRole="cykl" ToRole="dyscyplina" />
+    <NavigationProperty Name="organizator" Relationship="Self.cykl_fk_id_organizator" FromRole="cykl" ToRole="organizator" />
+    <NavigationProperty Name="ranking_cyklu" Relationship="Self.ranking_cyklu_fk_id_cykl1" FromRole="cykl" ToRole="ranking_cyklu" />
+    <NavigationProperty Name="wyscig" Relationship="Self.cykl_wyscig" FromRole="cykl" ToRole="wyscig" />
+    <NavigationProperty Name="wyscig1" Relationship="Self.wyscig_cykl" FromRole="cykl" ToRole="wyscig" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_cykl" FromRole="cykl" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="druzyna">
+    <Key>
+      <PropertyRef Name="id_druzyna" />
+    </Key>
+    <Property Name="id_druzyna" Type="Int32" Nullable="false" />
+    <Property Name="id_kapitan" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="kapitan" Relationship="Self.druzyna_fk_id_kapitan" FromRole="druzyna" ToRole="kapitan" />
+    <NavigationProperty Name="ranking_druzyny" Relationship="Self.ranking_druzyny_fk_id_druzyna" FromRole="druzyna" ToRole="ranking_druzyny" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_fk_id_druzyna1" FromRole="druzyna" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="dyscyplina">
+    <Key>
+      <PropertyRef Name="id_dyscyplina" />
+    </Key>
+    <Property Name="id_dyscyplina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="cykl" Relationship="Self.cykl_fk_id_dyscyplina" FromRole="dyscyplina" ToRole="cykl" />
+  </EntityType>
+  <EntityType Name="kapitan">
+    <Key>
+      <PropertyRef Name="id_kapitan" />
+    </Key>
+    <Property Name="id_kapitan" Type="Int32" Nullable="false" />
+    <Property Name="id_opiekun_zawodow" Type="Int32" Nullable="false" />
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="druzyna" Relationship="Self.druzyna_fk_id_kapitan" FromRole="kapitan" ToRole="druzyna" />
+    <NavigationProperty Name="opiekun_zawodow" Relationship="Self.kapitan_fk_id_opiekun_zawodow" FromRole="kapitan" ToRole="opiekun_zawodow" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.kapitan_fk_id_zawodnik6" FromRole="kapitan" ToRole="zawodnik" />
+    <NavigationProperty Name="zawodnik1" Relationship="Self.zawodnik_fk_id_kapitan1" FromRole="kapitan" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="ksiegowa">
+    <Key>
+      <PropertyRef Name="id_ksiegowa" />
+    </Key>
+    <Property Name="id_ksiegowa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pracownik" Relationship="Self.ksiegowa_fk_id_pracownik" FromRole="ksiegowa" ToRole="pracownik" />
+    <NavigationProperty Name="organizator" Relationship="Self.organizator_fk_id_ksiegowa" FromRole="ksiegowa" ToRole="organizator" />
+    <NavigationProperty Name="wplata" Relationship="Self.wplata_fk_id_ksiegowa1" FromRole="ksiegowa" ToRole="wplata" />
+  </EntityType>
+  <EntityType Name="kurier">
+    <Key>
+      <PropertyRef Name="id_kurier" />
+    </Key>
+    <Property Name="id_kurier" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pracownik" Relationship="Self.kurier_fk_id_pracownik3" FromRole="kurier" ToRole="pracownik" />
+    <NavigationProperty Name="organizator" Relationship="Self.organizator_fk_id_kurier" FromRole="kurier" ToRole="organizator" />
+    <NavigationProperty Name="pakiet_startowy" Relationship="Self.pakiet_startowy_fk_id_kurier1" FromRole="kurier" ToRole="pakiet_startowy" />
+  </EntityType>
+  <EntityType Name="kwalifikacje">
+    <Key>
+      <PropertyRef Name="id_kwalifikacji" />
+    </Key>
+    <Property Name="id_kwalifikacji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="miasto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="liczba_osob" Type="Int32" Nullable="false" />
+    <Property Name="id_organizator" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="organizator" Relationship="Self.kwalifikacje_fk_id_organizator1" FromRole="kwalifikacje" ToRole="organizator" />
+    <NavigationProperty Name="zawody" Relationship="Self.zawody_fk_id_kwalifikacje" FromRole="kwalifikacje" ToRole="zawody" />
+  </EntityType>
+  <EntityType Name="opiekun_zawodow">
+    <Key>
+      <PropertyRef Name="id_opiekun_zawodow" />
+    </Key>
+    <Property Name="id_opiekun_zawodow" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="kapitan" Relationship="Self.kapitan_fk_id_opiekun_zawodow" FromRole="opiekun_zawodow" ToRole="kapitan" />
+    <NavigationProperty Name="pracownik" Relationship="Self.opiekun_zawodow_fk_id_pracownik2" FromRole="opiekun_zawodow" ToRole="pracownik" />
+    <NavigationProperty Name="trasa" Relationship="Self.trasa_fk_opiekun_zawodow" FromRole="opiekun_zawodow" ToRole="trasa" />
+    <NavigationProperty Name="wplata" Relationship="Self.wplata_fk_id_opiekun_zawodow1" FromRole="opiekun_zawodow" ToRole="wplata" />
+    <NavigationProperty Name="wyscig" Relationship="Self.wyscig_fk_id_opiekun_zawodow2" FromRole="opiekun_zawodow" ToRole="wyscig" />
+  </EntityType>
+  <EntityType Name="organizator">
+    <Key>
+      <PropertyRef Name="id_organizator" />
+    </Key>
+    <Property Name="id_organizator" Type="Int32" Nullable="false" />
+    <Property Name="id_ksiegowa" Type="Int32" Nullable="false" />
+    <Property Name="id_kurier" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cykl" Relationship="Self.cykl_fk_id_organizator" FromRole="organizator" ToRole="cykl" />
+    <NavigationProperty Name="ksiegowa" Relationship="Self.organizator_fk_id_ksiegowa" FromRole="organizator" ToRole="ksiegowa" />
+    <NavigationProperty Name="kurier" Relationship="Self.organizator_fk_id_kurier" FromRole="organizator" ToRole="kurier" />
+    <NavigationProperty Name="kwalifikacje" Relationship="Self.kwalifikacje_fk_id_organizator1" FromRole="organizator" ToRole="kwalifikacje" />
+    <NavigationProperty Name="pracownik" Relationship="Self.organizator_fk_id_pracownik1" FromRole="organizator" ToRole="pracownik" />
+    <NavigationProperty Name="trasa" Relationship="Self.trasa_fk_id_organizator3" FromRole="organizator" ToRole="trasa" />
+    <NavigationProperty Name="wyscig" Relationship="Self.wyscig_fk_id_organizator4" FromRole="organizator" ToRole="wyscig" />
+    <NavigationProperty Name="trasa1" Relationship="Self.organizator_trasa" FromRole="organizator" ToRole="trasa" />
+  </EntityType>
+  <EntityType Name="pakiet_startowy">
+    <Key>
+      <PropertyRef Name="id_pakiet_startowy" />
+    </Key>
+    <Property Name="id_pakiet_startowy" Type="Int32" Nullable="false" />
+    <Property Name="id_kurier" Type="Int32" Nullable="false" />
+    <Property Name="alarm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="numer" Type="Int32" Nullable="false" />
+    <Property Name="nadajnik" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="kurier" Relationship="Self.pakiet_startowy_fk_id_kurier1" FromRole="pakiet_startowy" ToRole="kurier" />
+  </EntityType>
+  <EntityType Name="pracownik">
+    <Key>
+      <PropertyRef Name="id_pracownik" />
+    </Key>
+    <Property Name="id_pracownik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="stanowisko" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="haslo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ksiegowa" Relationship="Self.ksiegowa_fk_id_pracownik" FromRole="pracownik" ToRole="ksiegowa" />
+    <NavigationProperty Name="kurier" Relationship="Self.kurier_fk_id_pracownik3" FromRole="pracownik" ToRole="kurier" />
+    <NavigationProperty Name="opiekun_zawodow" Relationship="Self.opiekun_zawodow_fk_id_pracownik2" FromRole="pracownik" ToRole="opiekun_zawodow" />
+    <NavigationProperty Name="organizator" Relationship="Self.organizator_fk_id_pracownik1" FromRole="pracownik" ToRole="organizator" />
+  </EntityType>
+  <EntityType Name="ranking_globalny">
+    <Key>
+      <PropertyRef Name="id_zawodnik" />
+    </Key>
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="punkty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.ranking_globalny_fk_id_zawodnik1" FromRole="ranking_globalny" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="trasa">
+    <Key>
+      <PropertyRef Name="id_trasa" />
+    </Key>
+    <Property Name="id_trasa" Type="Int32" Nullable="false" />
+    <Property Name="id_opiekun_zawodow" Type="Int32" Nullable="false" />
+    <Property Name="id_organizator" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="opiekun_zawodow" Relationship="Self.trasa_fk_opiekun_zawodow" FromRole="trasa" ToRole="opiekun_zawodow" />
+    <NavigationProperty Name="organizator" Relationship="Self.trasa_fk_id_organizator3" FromRole="trasa" ToRole="organizator" />
+    <NavigationProperty Name="wyscig" Relationship="Self.wyscig_fk_id_trasa1" FromRole="trasa" ToRole="wyscig" />
+    <NavigationProperty Name="organizator1" Relationship="Self.organizator_trasa" FromRole="trasa" ToRole="organizator" />
+  </EntityType>
+  <EntityType Name="wplata">
+    <Key>
+      <PropertyRef Name="id_wplaty" />
+    </Key>
+    <Property Name="id_wplaty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_ksiegowa" Type="Int32" Nullable="false" />
+    <Property Name="id_opiekun_zawodow" Type="Int32" Nullable="false" />
+    <Property Name="przelew_wykonany" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="ksiegowa" Relationship="Self.wplata_fk_id_ksiegowa1" FromRole="wplata" ToRole="ksiegowa" />
+    <NavigationProperty Name="opiekun_zawodow" Relationship="Self.wplata_fk_id_opiekun_zawodow1" FromRole="wplata" ToRole="opiekun_zawodow" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_fk_id_wplata" FromRole="wplata" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="wyscig">
+    <Key>
+      <PropertyRef Name="id_wyscig" />
+    </Key>
+    <Property Name="id_wyscig" Type="Int32" Nullable="false" />
+    <Property Name="id_organizator" Type="Int32" Nullable="false" />
+    <Property Name="miasto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_trasa" Type="Int32" Nullable="false" />
+    <Property Name="id_opiekun_zawodow" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="opiekun_zawodow" Relationship="Self.wyscig_fk_id_opiekun_zawodow2" FromRole="wyscig" ToRole="opiekun_zawodow" />
+    <NavigationProperty Name="organizator" Relationship="Self.wyscig_fk_id_organizator4" FromRole="wyscig" ToRole="organizator" />
+    <NavigationProperty Name="trasa" Relationship="Self.wyscig_fk_id_trasa1" FromRole="wyscig" ToRole="trasa" />
+    <NavigationProperty Name="wynik_wyscigu" Relationship="Self.wynik_wyscigu_fk_id_wyscig1" FromRole="wyscig" ToRole="wynik_wyscigu" />
+    <NavigationProperty Name="cykl" Relationship="Self.cykl_wyscig" FromRole="wyscig" ToRole="cykl" />
+    <NavigationProperty Name="cykl1" Relationship="Self.wyscig_cykl" FromRole="wyscig" ToRole="cykl" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_wyscig" FromRole="wyscig" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="zawodnik">
+    <Key>
+      <PropertyRef Name="id_zawodnik" />
+    </Key>
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_kapitan" Type="Int32" Nullable="false" />
+    <Property Name="id_druzyna" Type="Int32" Nullable="false" />
+    <Property Name="id_wplata" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="haslo" Type="Int32" Nullable="false" />
+    <Property Name="wiek" Type="Int32" Nullable="false" />
+    <Property Name="wzrost" Type="Int32" Nullable="false" />
+    <Property Name="waga" Type="Int32" Nullable="false" />
+    <Property Name="osiagniecia" Type="Int32" Nullable="false" />
+    <Property Name="publiczne" Type="Int16" Nullable="false" />
+    <NavigationProperty Name="druzyna" Relationship="Self.zawodnik_fk_id_druzyna1" FromRole="zawodnik" ToRole="druzyna" />
+    <NavigationProperty Name="kapitan" Relationship="Self.kapitan_fk_id_zawodnik6" FromRole="zawodnik" ToRole="kapitan" />
+    <NavigationProperty Name="kapitan1" Relationship="Self.zawodnik_fk_id_kapitan1" FromRole="zawodnik" ToRole="kapitan" />
+    <NavigationProperty Name="ranking_globalny" Relationship="Self.ranking_globalny_fk_id_zawodnik1" FromRole="zawodnik" ToRole="ranking_globalny" />
+    <NavigationProperty Name="wplata" Relationship="Self.zawodnik_fk_id_wplata" FromRole="zawodnik" ToRole="wplata" />
+    <NavigationProperty Name="ranking_cyklu" Relationship="Self.ranking_cyklu_fk_id_zawodnik" FromRole="zawodnik" ToRole="ranking_cyklu" />
+    <NavigationProperty Name="wynik_wyscigu" Relationship="Self.wynik_wyscigu_fk_id_zawodnik2" FromRole="zawodnik" ToRole="wynik_wyscigu" />
+    <NavigationProperty Name="cykl" Relationship="Self.zawodnik_cykl" FromRole="zawodnik" ToRole="cykl" />
+    <NavigationProperty Name="wyscig" Relationship="Self.zawodnik_wyscig" FromRole="zawodnik" ToRole="wyscig" />
+    <NavigationProperty Name="zawody" Relationship="Self.zawodnik_zawody" FromRole="zawodnik" ToRole="zawody" />
+  </EntityType>
+  <EntityType Name="zawody">
+    <Key>
+      <PropertyRef Name="id_zawody" />
+    </Key>
+    <Property Name="id_zawody" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dyscyplina" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="id_kwalifikacje" Type="Int32" Nullable="false" />
+    <Property Name="cykl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="data" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="kwalifikacje" Relationship="Self.zawody_fk_id_kwalifikacje" FromRole="zawody" ToRole="kwalifikacje" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_zawody" FromRole="zawody" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="ranking_cyklu">
+    <Key>
+      <PropertyRef Name="id_cykl" />
+      <PropertyRef Name="id_zawodnik" />
+      <PropertyRef Name="punkty" />
+    </Key>
+    <Property Name="id_cykl" Type="Int32" Nullable="false" />
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
+    <Property Name="punkty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cykl" Relationship="Self.ranking_cyklu_fk_id_cykl1" FromRole="ranking_cyklu" ToRole="cykl" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.ranking_cyklu_fk_id_zawodnik" FromRole="ranking_cyklu" ToRole="zawodnik" />
+  </EntityType>
+  <EntityType Name="ranking_druzyny">
+    <Key>
+      <PropertyRef Name="id_druzyna" />
+      <PropertyRef Name="punkty" />
+    </Key>
+    <Property Name="id_druzyna" Type="Int32" Nullable="false" />
+    <Property Name="punkty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="druzyna" Relationship="Self.ranking_druzyny_fk_id_druzyna" FromRole="ranking_druzyny" ToRole="druzyna" />
+  </EntityType>
+  <EntityType Name="wynik_wyscigu">
+    <Key>
+      <PropertyRef Name="id_wyscig" />
+      <PropertyRef Name="id_zawodnik" />
+      <PropertyRef Name="czas" />
+    </Key>
+    <Property Name="id_wyscig" Type="Int32" Nullable="false" />
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
+    <Property Name="czas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="wyscig" Relationship="Self.wynik_wyscigu_fk_id_wyscig1" FromRole="wynik_wyscigu" ToRole="wyscig" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.wynik_wyscigu_fk_id_zawodnik2" FromRole="wynik_wyscigu" ToRole="zawodnik" />
+  </EntityType>
+  <Association Name="cykl_fk_id_dyscyplina">
+    <End Role="dyscyplina" Type="Self.dyscyplina" Multiplicity="1" />
+    <End Role="cykl" Type="Self.cykl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="dyscyplina">
+        <PropertyRef Name="id_dyscyplina" />
+      </Principal>
+      <Dependent Role="cykl">
+        <PropertyRef Name="id_dyscyplina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cykl_fk_id_organizator">
+    <End Role="organizator" Type="Self.organizator" Multiplicity="1" />
+    <End Role="cykl" Type="Self.cykl" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizator">
+        <PropertyRef Name="id_organizator" />
+      </Principal>
+      <Dependent Role="cykl">
+        <PropertyRef Name="id_organizator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ranking_cyklu_fk_id_cykl1">
+    <End Role="cykl" Type="Self.cykl" Multiplicity="1" />
+    <End Role="ranking_cyklu" Type="Self.ranking_cyklu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cykl">
+        <PropertyRef Name="id_cykl" />
+      </Principal>
+      <Dependent Role="ranking_cyklu">
+        <PropertyRef Name="id_cykl" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="druzyna_fk_id_kapitan">
+    <End Role="kapitan" Type="Self.kapitan" Multiplicity="1" />
+    <End Role="druzyna" Type="Self.druzyna" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kapitan">
+        <PropertyRef Name="id_kapitan" />
+      </Principal>
+      <Dependent Role="druzyna">
+        <PropertyRef Name="id_kapitan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ranking_druzyny_fk_id_druzyna">
+    <End Role="druzyna" Type="Self.druzyna" Multiplicity="1" />
+    <End Role="ranking_druzyny" Type="Self.ranking_druzyny" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="druzyna">
+        <PropertyRef Name="id_druzyna" />
+      </Principal>
+      <Dependent Role="ranking_druzyny">
+        <PropertyRef Name="id_druzyna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zawodnik_fk_id_druzyna1">
+    <End Role="druzyna" Type="Self.druzyna" Multiplicity="1" />
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="druzyna">
+        <PropertyRef Name="id_druzyna" />
+      </Principal>
+      <Dependent Role="zawodnik">
+        <PropertyRef Name="id_druzyna" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kapitan_fk_id_opiekun_zawodow">
+    <End Role="opiekun_zawodow" Type="Self.opiekun_zawodow" Multiplicity="1" />
+    <End Role="kapitan" Type="Self.kapitan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opiekun_zawodow">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Principal>
+      <Dependent Role="kapitan">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kapitan_fk_id_zawodnik6">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
+    <End Role="kapitan" Type="Self.kapitan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zawodnik">
+        <PropertyRef Name="id_zawodnik" />
+      </Principal>
+      <Dependent Role="kapitan">
+        <PropertyRef Name="id_zawodnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zawodnik_fk_id_kapitan1">
+    <End Role="kapitan" Type="Self.kapitan" Multiplicity="1" />
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kapitan">
+        <PropertyRef Name="id_kapitan" />
+      </Principal>
+      <Dependent Role="zawodnik">
+        <PropertyRef Name="id_kapitan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ksiegowa_fk_id_pracownik">
+    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
+    <End Role="ksiegowa" Type="Self.ksiegowa" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="pracownik">
+        <PropertyRef Name="id_pracownik" />
+      </Principal>
+      <Dependent Role="ksiegowa">
+        <PropertyRef Name="id_ksiegowa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="organizator_fk_id_ksiegowa">
+    <End Role="ksiegowa" Type="Self.ksiegowa" Multiplicity="1" />
+    <End Role="organizator" Type="Self.organizator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ksiegowa">
+        <PropertyRef Name="id_ksiegowa" />
+      </Principal>
+      <Dependent Role="organizator">
+        <PropertyRef Name="id_ksiegowa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wplata_fk_id_ksiegowa1">
+    <End Role="ksiegowa" Type="Self.ksiegowa" Multiplicity="1" />
+    <End Role="wplata" Type="Self.wplata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ksiegowa">
+        <PropertyRef Name="id_ksiegowa" />
+      </Principal>
+      <Dependent Role="wplata">
+        <PropertyRef Name="id_ksiegowa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kurier_fk_id_pracownik3">
+    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
+    <End Role="kurier" Type="Self.kurier" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="pracownik">
+        <PropertyRef Name="id_pracownik" />
+      </Principal>
+      <Dependent Role="kurier">
+        <PropertyRef Name="id_kurier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="organizator_fk_id_kurier">
+    <End Role="kurier" Type="Self.kurier" Multiplicity="1" />
+    <End Role="organizator" Type="Self.organizator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kurier">
+        <PropertyRef Name="id_kurier" />
+      </Principal>
+      <Dependent Role="organizator">
+        <PropertyRef Name="id_kurier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pakiet_startowy_fk_id_kurier1">
+    <End Role="kurier" Type="Self.kurier" Multiplicity="1" />
+    <End Role="pakiet_startowy" Type="Self.pakiet_startowy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kurier">
+        <PropertyRef Name="id_kurier" />
+      </Principal>
+      <Dependent Role="pakiet_startowy">
+        <PropertyRef Name="id_kurier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="kwalifikacje_fk_id_organizator1">
+    <End Role="organizator" Type="Self.organizator" Multiplicity="1" />
+    <End Role="kwalifikacje" Type="Self.kwalifikacje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizator">
+        <PropertyRef Name="id_organizator" />
+      </Principal>
+      <Dependent Role="kwalifikacje">
+        <PropertyRef Name="id_organizator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zawody_fk_id_kwalifikacje">
+    <End Role="kwalifikacje" Type="Self.kwalifikacje" Multiplicity="1" />
+    <End Role="zawody" Type="Self.zawody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="kwalifikacje">
+        <PropertyRef Name="id_kwalifikacji" />
+      </Principal>
+      <Dependent Role="zawody">
+        <PropertyRef Name="id_kwalifikacje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="opiekun_zawodow_fk_id_pracownik2">
+    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
+    <End Role="opiekun_zawodow" Type="Self.opiekun_zawodow" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="pracownik">
+        <PropertyRef Name="id_pracownik" />
+      </Principal>
+      <Dependent Role="opiekun_zawodow">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="trasa_fk_opiekun_zawodow">
+    <End Role="opiekun_zawodow" Type="Self.opiekun_zawodow" Multiplicity="1" />
+    <End Role="trasa" Type="Self.trasa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opiekun_zawodow">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Principal>
+      <Dependent Role="trasa">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wplata_fk_id_opiekun_zawodow1">
+    <End Role="opiekun_zawodow" Type="Self.opiekun_zawodow" Multiplicity="1" />
+    <End Role="wplata" Type="Self.wplata" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opiekun_zawodow">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Principal>
+      <Dependent Role="wplata">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wyscig_fk_id_opiekun_zawodow2">
+    <End Role="opiekun_zawodow" Type="Self.opiekun_zawodow" Multiplicity="1" />
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="opiekun_zawodow">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Principal>
+      <Dependent Role="wyscig">
+        <PropertyRef Name="id_opiekun_zawodow" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="organizator_fk_id_pracownik1">
+    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
+    <End Role="organizator" Type="Self.organizator" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="pracownik">
+        <PropertyRef Name="id_pracownik" />
+      </Principal>
+      <Dependent Role="organizator">
+        <PropertyRef Name="id_organizator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="trasa_fk_id_organizator3">
+    <End Role="organizator" Type="Self.organizator" Multiplicity="1" />
+    <End Role="trasa" Type="Self.trasa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizator">
+        <PropertyRef Name="id_organizator" />
+      </Principal>
+      <Dependent Role="trasa">
+        <PropertyRef Name="id_organizator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wyscig_fk_id_organizator4">
+    <End Role="organizator" Type="Self.organizator" Multiplicity="1" />
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="organizator">
+        <PropertyRef Name="id_organizator" />
+      </Principal>
+      <Dependent Role="wyscig">
+        <PropertyRef Name="id_organizator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ranking_globalny_fk_id_zawodnik1">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
+    <End Role="ranking_globalny" Type="Self.ranking_globalny" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="zawodnik">
+        <PropertyRef Name="id_zawodnik" />
+      </Principal>
+      <Dependent Role="ranking_globalny">
+        <PropertyRef Name="id_zawodnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wyscig_fk_id_trasa1">
+    <End Role="trasa" Type="Self.trasa" Multiplicity="1" />
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trasa">
+        <PropertyRef Name="id_trasa" />
+      </Principal>
+      <Dependent Role="wyscig">
+        <PropertyRef Name="id_trasa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="zawodnik_fk_id_wplata">
+    <End Role="wplata" Type="Self.wplata" Multiplicity="1" />
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wplata">
+        <PropertyRef Name="id_wplaty" />
+      </Principal>
+      <Dependent Role="zawodnik">
+        <PropertyRef Name="id_wplata" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wynik_wyscigu_fk_id_wyscig1">
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="1" />
+    <End Role="wynik_wyscigu" Type="Self.wynik_wyscigu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wyscig">
+        <PropertyRef Name="id_wyscig" />
+      </Principal>
+      <Dependent Role="wynik_wyscigu">
+        <PropertyRef Name="id_wyscig" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ranking_cyklu_fk_id_zawodnik">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
+    <End Role="ranking_cyklu" Type="Self.ranking_cyklu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zawodnik">
+        <PropertyRef Name="id_zawodnik" />
+      </Principal>
+      <Dependent Role="ranking_cyklu">
+        <PropertyRef Name="id_zawodnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="wynik_wyscigu_fk_id_zawodnik2">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
+    <End Role="wynik_wyscigu" Type="Self.wynik_wyscigu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zawodnik">
+        <PropertyRef Name="id_zawodnik" />
+      </Principal>
+      <Dependent Role="wynik_wyscigu">
+        <PropertyRef Name="id_wyscig" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cykl_wyscig">
+    <End Role="cykl" Type="Self.cykl" Multiplicity="*" />
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+  </Association>
+  <Association Name="organizator_trasa">
+    <End Role="organizator" Type="Self.organizator" Multiplicity="*" />
+    <End Role="trasa" Type="Self.trasa" Multiplicity="*" />
+  </Association>
+  <Association Name="wyscig_cykl">
+    <End Role="cykl" Type="Self.cykl" Multiplicity="*" />
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+  </Association>
+  <Association Name="zawodnik_cykl">
+    <End Role="cykl" Type="Self.cykl" Multiplicity="*" />
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+  </Association>
+  <Association Name="zawodnik_wyscig">
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+  </Association>
+  <Association Name="zawodnik_zawody">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
+    <End Role="zawody" Type="Self.zawody" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="multiligaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cykl" EntityType="Self.cykl" />
+    <EntitySet Name="druzyna" EntityType="Self.druzyna" />
+    <EntitySet Name="dyscyplina" EntityType="Self.dyscyplina" />
+    <EntitySet Name="kapitan" EntityType="Self.kapitan" />
+    <EntitySet Name="ksiegowa" EntityType="Self.ksiegowa" />
+    <EntitySet Name="kurier" EntityType="Self.kurier" />
+    <EntitySet Name="kwalifikacje" EntityType="Self.kwalifikacje" />
+    <EntitySet Name="opiekun_zawodow" EntityType="Self.opiekun_zawodow" />
+    <EntitySet Name="organizator" EntityType="Self.organizator" />
+    <EntitySet Name="pakiet_startowy" EntityType="Self.pakiet_startowy" />
+    <EntitySet Name="pracownik" EntityType="Self.pracownik" />
+    <EntitySet Name="ranking_globalny" EntityType="Self.ranking_globalny" />
+    <EntitySet Name="trasa" EntityType="Self.trasa" />
+    <EntitySet Name="wplata" EntityType="Self.wplata" />
+    <EntitySet Name="wyscig" EntityType="Self.wyscig" />
+    <EntitySet Name="zawodnik" EntityType="Self.zawodnik" />
+    <EntitySet Name="zawody" EntityType="Self.zawody" />
+    <EntitySet Name="ranking_cyklu" EntityType="Self.ranking_cyklu" />
+    <EntitySet Name="ranking_druzyny" EntityType="Self.ranking_druzyny" />
+    <EntitySet Name="wynik_wyscigu" EntityType="Self.wynik_wyscigu" />
+    <AssociationSet Name="cykl_fk_id_dyscyplina" Association="Self.cykl_fk_id_dyscyplina">
+      <End Role="dyscyplina" EntitySet="dyscyplina" />
+      <End Role="cykl" EntitySet="cykl" />
+    </AssociationSet>
+    <AssociationSet Name="cykl_fk_id_organizator" Association="Self.cykl_fk_id_organizator">
+      <End Role="organizator" EntitySet="organizator" />
+      <End Role="cykl" EntitySet="cykl" />
+    </AssociationSet>
+    <AssociationSet Name="ranking_cyklu_fk_id_cykl1" Association="Self.ranking_cyklu_fk_id_cykl1">
+      <End Role="cykl" EntitySet="cykl" />
+      <End Role="ranking_cyklu" EntitySet="ranking_cyklu" />
+    </AssociationSet>
+    <AssociationSet Name="druzyna_fk_id_kapitan" Association="Self.druzyna_fk_id_kapitan">
+      <End Role="kapitan" EntitySet="kapitan" />
+      <End Role="druzyna" EntitySet="druzyna" />
+    </AssociationSet>
+    <AssociationSet Name="ranking_druzyny_fk_id_druzyna" Association="Self.ranking_druzyny_fk_id_druzyna">
+      <End Role="druzyna" EntitySet="druzyna" />
+      <End Role="ranking_druzyny" EntitySet="ranking_druzyny" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_fk_id_druzyna1" Association="Self.zawodnik_fk_id_druzyna1">
+      <End Role="druzyna" EntitySet="druzyna" />
+      <End Role="zawodnik" EntitySet="zawodnik" />
+    </AssociationSet>
+    <AssociationSet Name="kapitan_fk_id_opiekun_zawodow" Association="Self.kapitan_fk_id_opiekun_zawodow">
+      <End Role="opiekun_zawodow" EntitySet="opiekun_zawodow" />
+      <End Role="kapitan" EntitySet="kapitan" />
+    </AssociationSet>
+    <AssociationSet Name="kapitan_fk_id_zawodnik6" Association="Self.kapitan_fk_id_zawodnik6">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="kapitan" EntitySet="kapitan" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_fk_id_kapitan1" Association="Self.zawodnik_fk_id_kapitan1">
+      <End Role="kapitan" EntitySet="kapitan" />
+      <End Role="zawodnik" EntitySet="zawodnik" />
+    </AssociationSet>
+    <AssociationSet Name="ksiegowa_fk_id_pracownik" Association="Self.ksiegowa_fk_id_pracownik">
+      <End Role="pracownik" EntitySet="pracownik" />
+      <End Role="ksiegowa" EntitySet="ksiegowa" />
+    </AssociationSet>
+    <AssociationSet Name="organizator_fk_id_ksiegowa" Association="Self.organizator_fk_id_ksiegowa">
+      <End Role="ksiegowa" EntitySet="ksiegowa" />
+      <End Role="organizator" EntitySet="organizator" />
+    </AssociationSet>
+    <AssociationSet Name="wplata_fk_id_ksiegowa1" Association="Self.wplata_fk_id_ksiegowa1">
+      <End Role="ksiegowa" EntitySet="ksiegowa" />
+      <End Role="wplata" EntitySet="wplata" />
+    </AssociationSet>
+    <AssociationSet Name="kurier_fk_id_pracownik3" Association="Self.kurier_fk_id_pracownik3">
+      <End Role="pracownik" EntitySet="pracownik" />
+      <End Role="kurier" EntitySet="kurier" />
+    </AssociationSet>
+    <AssociationSet Name="organizator_fk_id_kurier" Association="Self.organizator_fk_id_kurier">
+      <End Role="kurier" EntitySet="kurier" />
+      <End Role="organizator" EntitySet="organizator" />
+    </AssociationSet>
+    <AssociationSet Name="pakiet_startowy_fk_id_kurier1" Association="Self.pakiet_startowy_fk_id_kurier1">
+      <End Role="kurier" EntitySet="kurier" />
+      <End Role="pakiet_startowy" EntitySet="pakiet_startowy" />
+    </AssociationSet>
+    <AssociationSet Name="kwalifikacje_fk_id_organizator1" Association="Self.kwalifikacje_fk_id_organizator1">
+      <End Role="organizator" EntitySet="organizator" />
+      <End Role="kwalifikacje" EntitySet="kwalifikacje" />
+    </AssociationSet>
+    <AssociationSet Name="zawody_fk_id_kwalifikacje" Association="Self.zawody_fk_id_kwalifikacje">
+      <End Role="kwalifikacje" EntitySet="kwalifikacje" />
+      <End Role="zawody" EntitySet="zawody" />
+    </AssociationSet>
+    <AssociationSet Name="opiekun_zawodow_fk_id_pracownik2" Association="Self.opiekun_zawodow_fk_id_pracownik2">
+      <End Role="pracownik" EntitySet="pracownik" />
+      <End Role="opiekun_zawodow" EntitySet="opiekun_zawodow" />
+    </AssociationSet>
+    <AssociationSet Name="trasa_fk_opiekun_zawodow" Association="Self.trasa_fk_opiekun_zawodow">
+      <End Role="opiekun_zawodow" EntitySet="opiekun_zawodow" />
+      <End Role="trasa" EntitySet="trasa" />
+    </AssociationSet>
+    <AssociationSet Name="wplata_fk_id_opiekun_zawodow1" Association="Self.wplata_fk_id_opiekun_zawodow1">
+      <End Role="opiekun_zawodow" EntitySet="opiekun_zawodow" />
+      <End Role="wplata" EntitySet="wplata" />
+    </AssociationSet>
+    <AssociationSet Name="wyscig_fk_id_opiekun_zawodow2" Association="Self.wyscig_fk_id_opiekun_zawodow2">
+      <End Role="opiekun_zawodow" EntitySet="opiekun_zawodow" />
+      <End Role="wyscig" EntitySet="wyscig" />
+    </AssociationSet>
+    <AssociationSet Name="organizator_fk_id_pracownik1" Association="Self.organizator_fk_id_pracownik1">
+      <End Role="pracownik" EntitySet="pracownik" />
+      <End Role="organizator" EntitySet="organizator" />
+    </AssociationSet>
+    <AssociationSet Name="trasa_fk_id_organizator3" Association="Self.trasa_fk_id_organizator3">
+      <End Role="organizator" EntitySet="organizator" />
+      <End Role="trasa" EntitySet="trasa" />
+    </AssociationSet>
+    <AssociationSet Name="wyscig_fk_id_organizator4" Association="Self.wyscig_fk_id_organizator4">
+      <End Role="organizator" EntitySet="organizator" />
+      <End Role="wyscig" EntitySet="wyscig" />
+    </AssociationSet>
+    <AssociationSet Name="ranking_globalny_fk_id_zawodnik1" Association="Self.ranking_globalny_fk_id_zawodnik1">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="ranking_globalny" EntitySet="ranking_globalny" />
+    </AssociationSet>
+    <AssociationSet Name="wyscig_fk_id_trasa1" Association="Self.wyscig_fk_id_trasa1">
+      <End Role="trasa" EntitySet="trasa" />
+      <End Role="wyscig" EntitySet="wyscig" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_fk_id_wplata" Association="Self.zawodnik_fk_id_wplata">
+      <End Role="wplata" EntitySet="wplata" />
+      <End Role="zawodnik" EntitySet="zawodnik" />
+    </AssociationSet>
+    <AssociationSet Name="wynik_wyscigu_fk_id_wyscig1" Association="Self.wynik_wyscigu_fk_id_wyscig1">
+      <End Role="wyscig" EntitySet="wyscig" />
+      <End Role="wynik_wyscigu" EntitySet="wynik_wyscigu" />
+    </AssociationSet>
+    <AssociationSet Name="ranking_cyklu_fk_id_zawodnik" Association="Self.ranking_cyklu_fk_id_zawodnik">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="ranking_cyklu" EntitySet="ranking_cyklu" />
+    </AssociationSet>
+    <AssociationSet Name="wynik_wyscigu_fk_id_zawodnik2" Association="Self.wynik_wyscigu_fk_id_zawodnik2">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="wynik_wyscigu" EntitySet="wynik_wyscigu" />
+    </AssociationSet>
+    <AssociationSet Name="cykl_wyscig" Association="Self.cykl_wyscig">
+      <End Role="cykl" EntitySet="cykl" />
+      <End Role="wyscig" EntitySet="wyscig" />
+    </AssociationSet>
+    <AssociationSet Name="organizator_trasa" Association="Self.organizator_trasa">
+      <End Role="organizator" EntitySet="organizator" />
+      <End Role="trasa" EntitySet="trasa" />
+    </AssociationSet>
+    <AssociationSet Name="wyscig_cykl" Association="Self.wyscig_cykl">
+      <End Role="cykl" EntitySet="cykl" />
+      <End Role="wyscig" EntitySet="wyscig" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_cykl" Association="Self.zawodnik_cykl">
+      <End Role="cykl" EntitySet="cykl" />
+      <End Role="zawodnik" EntitySet="zawodnik" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_wyscig" Association="Self.zawodnik_wyscig">
+      <End Role="wyscig" EntitySet="wyscig" />
+      <End Role="zawodnik" EntitySet="zawodnik" />
+    </AssociationSet>
+    <AssociationSet Name="zawodnik_zawody" Association="Self.zawodnik_zawody">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="zawody" EntitySet="zawody" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
