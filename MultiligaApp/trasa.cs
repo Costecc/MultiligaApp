@@ -25,8 +25,8 @@ namespace MultiligaApp
         public int id_opiekun_zawodow { get; set; }
         public int id_organizator { get; set; }
     
-        public virtual opiekun_zawodow opiekun_zawodow { get; set; }
         public virtual organizator organizator { get; set; }
+        public virtual pracownik pracownik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wyscig> wyscig { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

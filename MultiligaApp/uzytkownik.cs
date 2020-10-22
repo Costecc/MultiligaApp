@@ -12,21 +12,20 @@ namespace MultiligaApp
     using System;
     using System.Collections.Generic;
     
-    public partial class kurier
+    public partial class uzytkownik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public kurier()
+        public uzytkownik()
         {
-            this.organizator = new HashSet<organizator>();
-            this.pakiet_startowy = new HashSet<pakiet_startowy>();
+            this.pracownik = new HashSet<pracownik>();
         }
     
-        public int id_kurier { get; set; }
+        public int id_uzytkownik { get; set; }
+        public string login { get; set; }
+        public string haslo { get; set; }
+        public string rola { get; set; }
     
-        public virtual pracownik pracownik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<organizator> organizator { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pakiet_startowy> pakiet_startowy { get; set; }
+        public virtual ICollection<pracownik> pracownik { get; set; }
     }
 }

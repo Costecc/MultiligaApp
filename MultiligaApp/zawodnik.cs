@@ -18,6 +18,7 @@ namespace MultiligaApp
         public zawodnik()
         {
             this.kapitan = new HashSet<kapitan>();
+            this.wplata = new HashSet<wplata>();
             this.ranking_cyklu = new HashSet<ranking_cyklu>();
             this.wynik_wyscigu = new HashSet<wynik_wyscigu>();
             this.cykl = new HashSet<cykl>();
@@ -26,23 +27,23 @@ namespace MultiligaApp
         }
     
         public int id_zawodnik { get; set; }
-        public int id_kapitan { get; set; }
-        public int id_druzyna { get; set; }
-        public int id_wplata { get; set; }
-        public string login { get; set; }
-        public int haslo { get; set; }
+        public int id_uzytkownik { get; set; }
+        public Nullable<int> id_kapitan { get; set; }
+        public Nullable<int> id_druzyna { get; set; }
         public int wiek { get; set; }
         public int wzrost { get; set; }
         public int waga { get; set; }
         public int osiagniecia { get; set; }
         public short publiczne { get; set; }
+        public string imie_nazwisko { get; set; }
     
         public virtual druzyna druzyna { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kapitan> kapitan { get; set; }
         public virtual kapitan kapitan1 { get; set; }
         public virtual ranking_globalny ranking_globalny { get; set; }
-        public virtual wplata wplata { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wplata> wplata { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ranking_cyklu> ranking_cyklu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

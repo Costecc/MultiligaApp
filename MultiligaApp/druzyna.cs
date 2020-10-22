@@ -23,6 +23,7 @@ namespace MultiligaApp
     
         public int id_druzyna { get; set; }
         public int id_kapitan { get; set; }
+        public string nazwa { get; set; }
     
         public virtual kapitan kapitan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

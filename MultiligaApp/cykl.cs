@@ -17,6 +17,7 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public cykl()
         {
+            this.ranking_druzyny = new HashSet<ranking_druzyny>();
             this.ranking_cyklu = new HashSet<ranking_cyklu>();
             this.wyscig = new HashSet<wyscig>();
             this.wyscig1 = new HashSet<wyscig>();
@@ -29,6 +30,8 @@ namespace MultiligaApp
     
         public virtual dyscyplina dyscyplina { get; set; }
         public virtual organizator organizator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ranking_druzyny> ranking_druzyny { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ranking_cyklu> ranking_cyklu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

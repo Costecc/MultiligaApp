@@ -86,25 +86,19 @@
       <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="cykl.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="druzyna.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="dyscyplina.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="kapitan.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ksiegowa.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="kurier.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="kwalifikacje.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -118,32 +112,29 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MultiligaModel.Context.cs">
+    <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MultiligaModel.Context.tt</DependentUpon>
+      <DependentUpon>Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MultiligaModel.cs">
+    <Compile Include="Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="MultiligaModel.Designer.cs">
+    <Compile Include="Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MultiligaModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="opiekun_zawodow.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="organizator.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="pakiet_startowy.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="pracownik.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ProfileForm.cs">
       <SubType>Form</SubType>
@@ -154,13 +145,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ranking_cyklu.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ranking_druzyny.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ranking_globalny.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="SearchForm.cs">
       <SubType>Form</SubType>
@@ -169,22 +160,25 @@
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="trasa.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uzytkownik.cs">
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="wplata.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="wynik_wyscigu.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="wyscig.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="zawodnik.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="zawody.cs">
-      <DependentUpon>MultiligaModel.tt</DependentUpon>
+      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AccountEditForm.resx">
       <DependentUpon>AccountEditForm.cs</DependentUpon>
@@ -223,12 +217,12 @@
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EntityDeploy Include="MultiligaModel.edmx">
+    <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MultiligaModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MultiligaModel.edmx.diagram">
-      <DependentUpon>MultiligaModel.edmx</DependentUpon>
+    <None Include="Model.edmx.diagram">
+      <DependentUpon>Model.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -260,19 +254,19 @@
     <None Include="Resources\pobrane.jfif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MultiligaModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MultiligaModel.Context.cs</LastGenOutput>
-      <DependentUpon>MultiligaModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="MultiligaModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MultiligaModel.edmx</DependentUpon>
-      <LastGenOutput>MultiligaModel.cs</LastGenOutput>
-    </Content>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Content Include="Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

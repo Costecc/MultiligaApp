@@ -16,7 +16,11 @@ namespace MultiligaApp
     {
         public int id_druzyna { get; set; }
         public int punkty { get; set; }
+        public int id_wyscig { get; set; }
+        public int id_cykl { get; set; }
     
+        public virtual cykl cykl { get; set; }
         public virtual druzyna druzyna { get; set; }
+        public virtual wyscig wyscig { get; set; }
     }
 }
