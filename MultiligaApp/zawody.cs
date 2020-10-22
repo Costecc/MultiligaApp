@@ -25,8 +25,10 @@ namespace MultiligaApp
         public int id_kwalifikacje { get; set; }
         public string cykl { get; set; }
         public System.DateTime data { get; set; }
+        public int id_opiekun_zawodow { get; set; }
     
         public virtual kwalifikacje kwalifikacje { get; set; }
+        public virtual pracownik pracownik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik> zawodnik { get; set; }
     }

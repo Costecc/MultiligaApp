@@ -14,20 +14,14 @@ namespace MultiligaApp
     
     public partial class wplata
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public wplata()
-        {
-            this.zawodnik = new HashSet<zawodnik>();
-        }
-    
         public int id_wplaty { get; set; }
+        public int id_zawodnik { get; set; }
         public int id_ksiegowa { get; set; }
         public int id_opiekun_zawodow { get; set; }
         public short przelew_wykonany { get; set; }
     
-        public virtual ksiegowa ksiegowa { get; set; }
-        public virtual opiekun_zawodow opiekun_zawodow { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawodnik> zawodnik { get; set; }
+        public virtual pracownik pracownik { get; set; }
+        public virtual pracownik pracownik1 { get; set; }
+        public virtual zawodnik zawodnik { get; set; }
     }
 }

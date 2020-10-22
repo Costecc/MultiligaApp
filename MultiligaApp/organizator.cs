@@ -30,11 +30,11 @@ namespace MultiligaApp
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cykl> cykl { get; set; }
-        public virtual ksiegowa ksiegowa { get; set; }
-        public virtual kurier kurier { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kwalifikacje> kwalifikacje { get; set; }
         public virtual pracownik pracownik { get; set; }
+        public virtual pracownik pracownik1 { get; set; }
+        public virtual pracownik pracownik2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trasa> trasa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

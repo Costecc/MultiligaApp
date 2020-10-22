@@ -31,8 +31,11 @@ namespace MultiligaApp
                         _operation = " założone konto!";
                         using (var db = new multiligaEntities())
                         {
-                            var z = db.Set<pracownik>();
-                            z.Add(new pracownik { id_pracownik = 2, stanowisko = "test", login = "ee", haslo = "e" });
+                            var user = db.Set<uzytkownik>();
+                            var contestant = db.Set<zawodnik>();
+                            user.Add(new uzytkownik { login = textBox5.Text.ToString(), haslo = textBox6.Text.ToString(), rola = "zawodnik" }); //konto z poziomu gui mogą zakładać tylko zawodnicy
+                            contestant.Add(new zawodnik { imie_nazwisko = textBox2.Text.ToString() });
+                            //TODO utworzyc tez rekord wplaty na tego zawodnika
                             db.SaveChanges();
                         }
                         break;

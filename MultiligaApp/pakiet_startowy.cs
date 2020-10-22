@@ -20,6 +20,6 @@ namespace MultiligaApp
         public int numer { get; set; }
         public string nadajnik { get; set; }
     
-        public virtual kurier kurier { get; set; }
+        public virtual pracownik pracownik { get; set; }
     }
 }
