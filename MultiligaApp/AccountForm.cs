@@ -85,6 +85,37 @@ namespace MultiligaApp
                     MessageBox.Show("Zły format adresu email", "Niepowodzenie");
                 }
             }
+            else if (this.groupBox1.Text == "Zmiana hasła")
+            {
+                string currEmail = LoginForm.getCurrentEmail();
+                using (var db = new multiligaEntities())
+                {
+                    var user = db.uzytkownik.FirstOrDefault(uz => uz.login == currEmail && uz.haslo == textBox1.Text.ToString());
+                    if (user != null)
+                    {
+                        if (textBox2.Text.ToString() == textBox3.Text.ToString())
+                        {
+                            user.haslo = textBox2.Text.ToString();
+                            db.SaveChanges();
+                            MessageBox.Show("Poprawnie zmieniono hasło", "Sukces");
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Błąd przy potwierdzaniu nowego hasła", "Niepowodzenie");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podano niepoprawne hasło", "Niepowodzenie");
+                    }
+                }
+            }
+            else if (this.groupBox1.Text == "Usuwanie konta")
+            {
+                //TODO
+            }
+
 
         }
     }
