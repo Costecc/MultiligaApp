@@ -192,11 +192,11 @@ warning 6002: The table/view 'multiliga.multiliga.wyscig_cykl' does not have a p
           <Property Name="id_uzytkownik" Type="int" Nullable="false" />
           <Property Name="id_kapitan" Type="int" />
           <Property Name="id_druzyna" Type="int" />
-          <Property Name="wiek" Type="int" Nullable="false" />
-          <Property Name="wzrost" Type="int" Nullable="false" />
-          <Property Name="waga" Type="int" Nullable="false" />
-          <Property Name="osiagniecia" Type="int" Nullable="false" />
-          <Property Name="publiczne" Type="smallint" Nullable="false" />
+          <Property Name="wiek" Type="int" />
+          <Property Name="wzrost" Type="int" />
+          <Property Name="waga" Type="int" />
+          <Property Name="osiagniecia" Type="int" />
+          <Property Name="publiczne" Type="smallint" />
           <Property Name="imie_nazwisko" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -1162,11 +1162,11 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_zawody' does not have
           <Property Name="id_uzytkownik" Type="Int32" Nullable="false" />
           <Property Name="id_kapitan" Type="Int32" />
           <Property Name="id_druzyna" Type="Int32" />
-          <Property Name="wiek" Type="Int32" Nullable="false" />
-          <Property Name="wzrost" Type="Int32" Nullable="false" />
-          <Property Name="waga" Type="Int32" Nullable="false" />
-          <Property Name="osiagniecia" Type="Int32" Nullable="false" />
-          <Property Name="publiczne" Type="Int16" Nullable="false" />
+          <Property Name="wiek" Type="Int32" />
+          <Property Name="wzrost" Type="Int32" />
+          <Property Name="waga" Type="Int32" />
+          <Property Name="osiagniecia" Type="Int32" />
+          <Property Name="publiczne" Type="Int16" />
           <Property Name="imie_nazwisko" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="druzyna" Relationship="Self.zawodnik_fk_id_druzyna1" FromRole="zawodnik" ToRole="druzyna" />
           <NavigationProperty Name="kapitan" Relationship="Self.kapitan_fk_id_zawodnik6" FromRole="zawodnik" ToRole="kapitan" />

@@ -30,11 +30,11 @@ namespace MultiligaApp
         public int id_uzytkownik { get; set; }
         public Nullable<int> id_kapitan { get; set; }
         public Nullable<int> id_druzyna { get; set; }
-        public int wiek { get; set; }
-        public int wzrost { get; set; }
-        public int waga { get; set; }
-        public int osiagniecia { get; set; }
-        public short publiczne { get; set; }
+        public Nullable<int> wiek { get; set; }
+        public Nullable<int> wzrost { get; set; }
+        public Nullable<int> waga { get; set; }
+        public Nullable<int> osiagniecia { get; set; }
+        public Nullable<short> publiczne { get; set; }
         public string imie_nazwisko { get; set; }
     
         public virtual druzyna druzyna { get; set; }
