@@ -12,6 +12,7 @@ namespace MultiligaApp
 {
     public partial class LoginForm : Form
     {
+        private static string currentEmail;
         public LoginForm()
         {
             InitializeComponent();
@@ -61,6 +62,7 @@ namespace MultiligaApp
                             user = 3;
                         }
                     }
+                    currentEmail = Login.Text.ToString();
                     // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
                     mf.SetMenu(user);
                     mf.Show();
@@ -89,6 +91,11 @@ namespace MultiligaApp
             CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
             createDeleteEditForm.SetCreateForm("Załóż konto", "", "Imię i nazwisko", "", "", "Email", "Hasło", "");
             createDeleteEditForm.Show();
+        }
+
+        static public string getCurrentEmail()
+        {
+            return currentEmail;
         }
     }
 }
