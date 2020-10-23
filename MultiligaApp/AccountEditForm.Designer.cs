@@ -30,22 +30,22 @@
         {
             this.components = new System.ComponentModel.Container();
             this.EditBox = new System.Windows.Forms.GroupBox();
-            this.AccountEmailLabel = new System.Windows.Forms.Label();
-            this.AccountPasswordLabel = new System.Windows.Forms.Label();
-            this.AccountPhotoLabel = new System.Windows.Forms.Label();
-            this.AccountHeightLabel = new System.Windows.Forms.Label();
-            this.AccountWeightLabel = new System.Windows.Forms.Label();
-            this.AccountWinsLabel = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.EmailText = new System.Windows.Forms.TextBox();
-            this.PermissionsCheckBox = new System.Windows.Forms.CheckBox();
-            this.HeightText = new System.Windows.Forms.TextBox();
-            this.WeightText = new System.Windows.Forms.TextBox();
-            this.WinsText = new System.Windows.Forms.TextBox();
-            this.SaveButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.ImageChange = new System.Windows.Forms.LinkLabel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.WinsText = new System.Windows.Forms.TextBox();
+            this.WeightText = new System.Windows.Forms.TextBox();
+            this.HeightText = new System.Windows.Forms.TextBox();
+            this.PermissionsCheckBox = new System.Windows.Forms.CheckBox();
+            this.EmailText = new System.Windows.Forms.TextBox();
+            this.AccountWinsLabel = new System.Windows.Forms.Label();
+            this.AccountWeightLabel = new System.Windows.Forms.Label();
+            this.AccountHeightLabel = new System.Windows.Forms.Label();
+            this.AccountPhotoLabel = new System.Windows.Forms.Label();
+            this.AccountPasswordLabel = new System.Windows.Forms.Label();
+            this.AccountEmailLabel = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.EditBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,66 +66,168 @@
             this.EditBox.Controls.Add(this.AccountPhotoLabel);
             this.EditBox.Controls.Add(this.AccountPasswordLabel);
             this.EditBox.Controls.Add(this.AccountEmailLabel);
-            this.EditBox.Location = new System.Drawing.Point(13, 13);
+            this.EditBox.Location = new System.Drawing.Point(10, 11);
+            this.EditBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.EditBox.Name = "EditBox";
-            this.EditBox.Size = new System.Drawing.Size(291, 333);
+            this.EditBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EditBox.Size = new System.Drawing.Size(218, 271);
             this.EditBox.TabIndex = 0;
             this.EditBox.TabStop = false;
             this.EditBox.Text = "Edycja konta";
             // 
-            // AccountEmailLabel
+            // ImageChange
             // 
-            this.AccountEmailLabel.AutoSize = true;
-            this.AccountEmailLabel.Location = new System.Drawing.Point(16, 33);
-            this.AccountEmailLabel.Name = "AccountEmailLabel";
-            this.AccountEmailLabel.Size = new System.Drawing.Size(42, 17);
-            this.AccountEmailLabel.TabIndex = 0;
-            this.AccountEmailLabel.Text = "Email";
+            this.ImageChange.AutoSize = true;
+            this.ImageChange.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImageChange.LinkColor = System.Drawing.Color.Black;
+            this.ImageChange.Location = new System.Drawing.Point(96, 73);
+            this.ImageChange.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ImageChange.Name = "ImageChange";
+            this.ImageChange.Size = new System.Drawing.Size(117, 13);
+            this.ImageChange.TabIndex = 17;
+            this.ImageChange.TabStop = true;
+            this.ImageChange.Text = "Zmień zdjęcie profilowe";
+            this.ImageChange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ImageChange_LinkClicked);
             // 
-            // AccountPasswordLabel
+            // linkLabel1
             // 
-            this.AccountPasswordLabel.AutoSize = true;
-            this.AccountPasswordLabel.Location = new System.Drawing.Point(16, 61);
-            this.AccountPasswordLabel.Name = "AccountPasswordLabel";
-            this.AccountPasswordLabel.Size = new System.Drawing.Size(44, 17);
-            this.AccountPasswordLabel.TabIndex = 1;
-            this.AccountPasswordLabel.Text = "Hasło";
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel1.Location = new System.Drawing.Point(96, 50);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(66, 13);
+            this.linkLabel1.TabIndex = 16;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Zmień hasło";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // AccountPhotoLabel
+            // CancelButton
             // 
-            this.AccountPhotoLabel.AutoSize = true;
-            this.AccountPhotoLabel.Location = new System.Drawing.Point(16, 90);
-            this.AccountPhotoLabel.Name = "AccountPhotoLabel";
-            this.AccountPhotoLabel.Size = new System.Drawing.Size(54, 17);
-            this.AccountPhotoLabel.TabIndex = 2;
-            this.AccountPhotoLabel.Text = "Zdjęcie";
+            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CancelButton.Location = new System.Drawing.Point(14, 231);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(190, 32);
+            this.CancelButton.TabIndex = 15;
+            this.CancelButton.Text = "Anuluj";
+            this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // AccountHeightLabel
+            // SaveButton
             // 
-            this.AccountHeightLabel.AutoSize = true;
-            this.AccountHeightLabel.Location = new System.Drawing.Point(16, 119);
-            this.AccountHeightLabel.Name = "AccountHeightLabel";
-            this.AccountHeightLabel.Size = new System.Drawing.Size(52, 17);
-            this.AccountHeightLabel.TabIndex = 3;
-            this.AccountHeightLabel.Text = "Wzrost";
+            this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SaveButton.Location = new System.Drawing.Point(14, 194);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(190, 32);
+            this.SaveButton.TabIndex = 14;
+            this.SaveButton.Text = "Zatwierdź";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // AccountWeightLabel
+            // WinsText
             // 
-            this.AccountWeightLabel.AutoSize = true;
-            this.AccountWeightLabel.Location = new System.Drawing.Point(16, 145);
-            this.AccountWeightLabel.Name = "AccountWeightLabel";
-            this.AccountWeightLabel.Size = new System.Drawing.Size(45, 17);
-            this.AccountWeightLabel.TabIndex = 4;
-            this.AccountWeightLabel.Text = "Waga";
+            this.WinsText.Location = new System.Drawing.Point(96, 141);
+            this.WinsText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WinsText.Name = "WinsText";
+            this.WinsText.Size = new System.Drawing.Size(110, 20);
+            this.WinsText.TabIndex = 13;
+            // 
+            // WeightText
+            // 
+            this.WeightText.Location = new System.Drawing.Point(96, 119);
+            this.WeightText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.WeightText.Name = "WeightText";
+            this.WeightText.Size = new System.Drawing.Size(110, 20);
+            this.WeightText.TabIndex = 12;
+            // 
+            // HeightText
+            // 
+            this.HeightText.Location = new System.Drawing.Point(96, 97);
+            this.HeightText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.HeightText.Name = "HeightText";
+            this.HeightText.Size = new System.Drawing.Size(110, 20);
+            this.HeightText.TabIndex = 11;
+            // 
+            // PermissionsCheckBox
+            // 
+            this.PermissionsCheckBox.AutoSize = true;
+            this.PermissionsCheckBox.Location = new System.Drawing.Point(14, 164);
+            this.PermissionsCheckBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PermissionsCheckBox.Name = "PermissionsCheckBox";
+            this.PermissionsCheckBox.Size = new System.Drawing.Size(181, 17);
+            this.PermissionsCheckBox.TabIndex = 8;
+            this.PermissionsCheckBox.Text = "Zgoda na wyświetlanie informacji";
+            this.PermissionsCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // EmailText
+            // 
+            this.EmailText.Location = new System.Drawing.Point(96, 27);
+            this.EmailText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.EmailText.Name = "EmailText";
+            this.EmailText.Size = new System.Drawing.Size(110, 20);
+            this.EmailText.TabIndex = 7;
             // 
             // AccountWinsLabel
             // 
             this.AccountWinsLabel.AutoSize = true;
-            this.AccountWinsLabel.Location = new System.Drawing.Point(16, 174);
+            this.AccountWinsLabel.Location = new System.Drawing.Point(12, 141);
+            this.AccountWinsLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.AccountWinsLabel.Name = "AccountWinsLabel";
-            this.AccountWinsLabel.Size = new System.Drawing.Size(82, 17);
+            this.AccountWinsLabel.Size = new System.Drawing.Size(62, 13);
             this.AccountWinsLabel.TabIndex = 5;
             this.AccountWinsLabel.Text = "Osiągnięcia";
+            // 
+            // AccountWeightLabel
+            // 
+            this.AccountWeightLabel.AutoSize = true;
+            this.AccountWeightLabel.Location = new System.Drawing.Point(12, 118);
+            this.AccountWeightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccountWeightLabel.Name = "AccountWeightLabel";
+            this.AccountWeightLabel.Size = new System.Drawing.Size(36, 13);
+            this.AccountWeightLabel.TabIndex = 4;
+            this.AccountWeightLabel.Text = "Waga";
+            // 
+            // AccountHeightLabel
+            // 
+            this.AccountHeightLabel.AutoSize = true;
+            this.AccountHeightLabel.Location = new System.Drawing.Point(12, 97);
+            this.AccountHeightLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccountHeightLabel.Name = "AccountHeightLabel";
+            this.AccountHeightLabel.Size = new System.Drawing.Size(40, 13);
+            this.AccountHeightLabel.TabIndex = 3;
+            this.AccountHeightLabel.Text = "Wzrost";
+            // 
+            // AccountPhotoLabel
+            // 
+            this.AccountPhotoLabel.AutoSize = true;
+            this.AccountPhotoLabel.Location = new System.Drawing.Point(12, 73);
+            this.AccountPhotoLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccountPhotoLabel.Name = "AccountPhotoLabel";
+            this.AccountPhotoLabel.Size = new System.Drawing.Size(42, 13);
+            this.AccountPhotoLabel.TabIndex = 2;
+            this.AccountPhotoLabel.Text = "Zdjęcie";
+            // 
+            // AccountPasswordLabel
+            // 
+            this.AccountPasswordLabel.AutoSize = true;
+            this.AccountPasswordLabel.Location = new System.Drawing.Point(12, 50);
+            this.AccountPasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccountPasswordLabel.Name = "AccountPasswordLabel";
+            this.AccountPasswordLabel.Size = new System.Drawing.Size(36, 13);
+            this.AccountPasswordLabel.TabIndex = 1;
+            this.AccountPasswordLabel.Text = "Hasło";
+            // 
+            // AccountEmailLabel
+            // 
+            this.AccountEmailLabel.AutoSize = true;
+            this.AccountEmailLabel.Location = new System.Drawing.Point(12, 27);
+            this.AccountEmailLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.AccountEmailLabel.Name = "AccountEmailLabel";
+            this.AccountEmailLabel.Size = new System.Drawing.Size(32, 13);
+            this.AccountEmailLabel.TabIndex = 0;
+            this.AccountEmailLabel.Text = "Email";
             // 
             // contextMenuStrip1
             // 
@@ -133,99 +235,16 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // EmailText
-            // 
-            this.EmailText.Location = new System.Drawing.Point(128, 33);
-            this.EmailText.Name = "EmailText";
-            this.EmailText.Size = new System.Drawing.Size(145, 22);
-            this.EmailText.TabIndex = 7;
-            // 
-            // PermissionsCheckBox
-            // 
-            this.PermissionsCheckBox.AutoSize = true;
-            this.PermissionsCheckBox.Location = new System.Drawing.Point(19, 202);
-            this.PermissionsCheckBox.Name = "PermissionsCheckBox";
-            this.PermissionsCheckBox.Size = new System.Drawing.Size(236, 21);
-            this.PermissionsCheckBox.TabIndex = 8;
-            this.PermissionsCheckBox.Text = "Zgoda na wyświetlanie informacji";
-            this.PermissionsCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // HeightText
-            // 
-            this.HeightText.Location = new System.Drawing.Point(128, 119);
-            this.HeightText.Name = "HeightText";
-            this.HeightText.Size = new System.Drawing.Size(145, 22);
-            this.HeightText.TabIndex = 11;
-            // 
-            // WeightText
-            // 
-            this.WeightText.Location = new System.Drawing.Point(128, 147);
-            this.WeightText.Name = "WeightText";
-            this.WeightText.Size = new System.Drawing.Size(145, 22);
-            this.WeightText.TabIndex = 12;
-            // 
-            // WinsText
-            // 
-            this.WinsText.Location = new System.Drawing.Point(128, 174);
-            this.WinsText.Name = "WinsText";
-            this.WinsText.Size = new System.Drawing.Size(145, 22);
-            this.WinsText.TabIndex = 13;
-            // 
-            // SaveButton
-            // 
-            this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveButton.Location = new System.Drawing.Point(19, 239);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(254, 39);
-            this.SaveButton.TabIndex = 14;
-            this.SaveButton.Text = "Zatwierdź";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
-            // 
-            // CancelButton
-            // 
-            this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelButton.Location = new System.Drawing.Point(19, 284);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(254, 39);
-            this.CancelButton.TabIndex = 15;
-            this.CancelButton.Text = "Anuluj";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.linkLabel1.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel1.Location = new System.Drawing.Point(128, 62);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(85, 17);
-            this.linkLabel1.TabIndex = 16;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Zmień hasło";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // ImageChange
-            // 
-            this.ImageChange.AutoSize = true;
-            this.ImageChange.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImageChange.LinkColor = System.Drawing.Color.Black;
-            this.ImageChange.Location = new System.Drawing.Point(128, 90);
-            this.ImageChange.Name = "ImageChange";
-            this.ImageChange.Size = new System.Drawing.Size(155, 17);
-            this.ImageChange.TabIndex = 17;
-            this.ImageChange.TabStop = true;
-            this.ImageChange.Text = "Zmień zdjęcie profilowe";
-            this.ImageChange.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ImageChange_LinkClicked);
-            // 
             // AccountEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 361);
+            this.ClientSize = new System.Drawing.Size(237, 293);
             this.Controls.Add(this.EditBox);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "AccountEditForm";
             this.Text = "Edycja konta";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountEditForm_FormClosed);
             this.EditBox.ResumeLayout(false);
             this.EditBox.PerformLayout();
             this.ResumeLayout(false);

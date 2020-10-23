@@ -20,35 +20,96 @@ namespace MultiligaApp
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string _operation = "usunięto zawody!";
-            switch(groupBox1.Text)
+            bool succesfulOperation = true;
+            switch (groupBox1.Text)
             {
                 case "Utwórz nowe zawody":
-                    _operation = " utworzono zawody!"; break;
+                    _operation = " utworzono zawody!";
+                    break;
                 case "Edytuj zawody":
-                    _operation = " edytowano zawody!"; break;
+                    _operation = " edytowano zawody!";
+                    break;
                 case "Załóż konto":
-                    _operation = " założone konto!"; break;
+                    {
+                        _operation = " założone konto!";
+                        if (IsValidEmail(textBox5.Text.ToString()))
+                        {
+                            //TODO sprawdzic czy juz nie ma konta dla podanego maila
+                            using (var db = new multiligaEntities())
+                            {
+                                var user = db.Set<uzytkownik>();
+                                var contestant = db.Set<zawodnik>();
+                                var newUser = new uzytkownik { login = textBox5.Text.ToString(), haslo = textBox6.Text.ToString(), rola = "zawodnik" }; //konto z poziomu gui mogą zakładać tylko zawodnicy
+                                user.Add(newUser);
+                                db.SaveChanges();
+                                contestant.Add(new zawodnik { id_uzytkownik = newUser.id_uzytkownik, publiczne = 0, imie_nazwisko = textBox2.Text.ToString() });
+                                db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Zły format adresu email", "Niepowodzenie");
+                            succesfulOperation = false;
+                        }
+                        break;
+                    }
                 case "Załóż drużynę zawody":
-                    _operation = " założona drużyna!"; break;
+                    _operation = " założona drużyna!";
+                    break;
                 default:
                     break;
             }
 
-            //TODO - do zrobienia - obsługa czy poprawnie czy błędnie, sprawdzając w bazie danych
-            if (true)
+            if (succesfulOperation == true)
             {
                 MessageBox.Show("Poprawnie " + _operation, "Sukces");
+                Close();
             }
             else
             {
-                MessageBox.Show("Nie " + _operation, "Niepowodzenie");
+                succesfulOperation = true;
             }
-            Close();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private void CreateDeleteEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                int visibleForms = 0;
+                for (int i = 0; i < Application.OpenForms.Count; ++i)
+                {
+                    if (Application.OpenForms[i].Visible == true)
+                    {
+                        ++visibleForms;
+                    }
+                }
+                if (visibleForms == 0)
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

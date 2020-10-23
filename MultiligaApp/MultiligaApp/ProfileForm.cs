@@ -24,11 +24,11 @@ namespace MultiligaApp
 
         private void InviteButton_Click(object sender, EventArgs e)
         {
-            if(InviteButton.Text == "Zaproś do drużyny")
+            if (InviteButton.Text == "Zaproś do drużyny")
             {
                 //TODO - w miejsce if(true) zrobic ifa sprawdzajacego czy dany gracz juz jest w 
                 //przynajmniej jednej druzynie. Jesli jest to nie mozna zaprosic do druzyny
-                if(true)
+                if (true)
                     MessageBox.Show("Zaproszono do drużyny", "Zaproszenie wysłane");
                 else
                     MessageBox.Show("Nie można zaprosić do drużyny! Zawodnik jest już w innej drużynie", "Informacja");
@@ -38,11 +38,35 @@ namespace MultiligaApp
                 //TODO - w miejsce if(true) zrobic ifa sprawdzajacego czy dana drużyna juz jest w 
                 //przynajmniej jednych zawodach. Jesli jest to nie mozna zaprosic do zawodów
 
-                if(true)
+                if (true)
                     MessageBox.Show("Zaproszono do zawodów", "Zaproszenie wysłane");
                 else
                     MessageBox.Show("Nie można zaprosić do zawodów! Drużyna jest już w innych zawodach", "Informacja");
             }
         }
+
+        private void ProfileForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                int visibleForms = 0;
+                for (int i = 0; i < Application.OpenForms.Count; ++i)
+                {
+                    if (Application.OpenForms[i].Visible == true)
+                    {
+                        ++visibleForms;
+                    }
+                }
+                if (visibleForms == 0)
+                {
+                    Application.Exit();
+                }
+            }
+        }
     }
 }
+
