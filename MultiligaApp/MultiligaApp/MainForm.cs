@@ -65,7 +65,7 @@ namespace MultiligaApp
             searchForm.SetSearchingMenu(_user, "Wyszukiwanie gracza", "Imię i nazwisko", "Liga", "Dyscyplina", "Drużyna", "");
             searchForm.Show();
         }
-        
+
         private void mojeZawodyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
@@ -77,7 +77,7 @@ namespace MultiligaApp
         {
             CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
             competitionsTeamsForm.SetWindow("druzyny");
-            competitionsTeamsForm.Show();            
+            competitionsTeamsForm.Show();
         }
 
         private void utwórzNoweToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,6 +113,29 @@ namespace MultiligaApp
             //CreateDeleteEditForm createForm = new CreateDeleteEditForm();
             //createForm.SetCreateForm("Wprowadź trasę wyścigu", "Nazwa", "", "", "", "", "", "");
             //createForm.Show();
+        }
+
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                int visibleForms = 0;
+                for (int i = 0; i < Application.OpenForms.Count; ++i)
+                {
+                    if (Application.OpenForms[i].Visible == true)
+                    {
+                        ++visibleForms;
+                    }
+                }
+                if (visibleForms == 0)
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }
