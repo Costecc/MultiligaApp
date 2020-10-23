@@ -187,11 +187,11 @@ warning 6002: The table/view 'multiliga.multiliga.wyscig_cykl' does not have a p
     <Property Name="id_uzytkownik" Type="int" Nullable="false" />
     <Property Name="id_kapitan" Type="int" />
     <Property Name="id_druzyna" Type="int" />
-    <Property Name="wiek" Type="int" Nullable="false" />
-    <Property Name="wzrost" Type="int" Nullable="false" />
-    <Property Name="waga" Type="int" Nullable="false" />
-    <Property Name="osiagniecia" Type="int" Nullable="false" />
-    <Property Name="publiczne" Type="smallint" Nullable="false" />
+    <Property Name="wiek" Type="int" />
+    <Property Name="wzrost" Type="int" />
+    <Property Name="waga" Type="int" />
+    <Property Name="osiagniecia" Type="int" />
+    <Property Name="publiczne" Type="smallint" />
     <Property Name="imie_nazwisko" Type="nvarchar(max)" />
   </EntityType>
   <!--Errors Found During Generation:

@@ -133,7 +133,7 @@
             this.LoginLabel.Name = "LoginLabel";
             this.LoginLabel.Size = new System.Drawing.Size(43, 17);
             this.LoginLabel.TabIndex = 1;
-            this.LoginLabel.Text = "Login";
+            this.LoginLabel.Text = "Email";
             // 
             // label1
             // 
