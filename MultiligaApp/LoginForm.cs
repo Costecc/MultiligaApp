@@ -12,7 +12,7 @@ namespace MultiligaApp
 {
     public partial class LoginForm : Form
     {
-        private static string currentEmail;
+        static private string currentEmail;
         public LoginForm()
         {
             InitializeComponent();
@@ -21,6 +21,7 @@ namespace MultiligaApp
         private void LoginButton_Click(object sender, EventArgs e)
         {
             IncorrectLoginLabel.Visible = false;
+   
             using (var db = new multiligaEntities())
             {
                 if (db.uzytkownik.Any(u => u.login == Login.Text.ToString() && u.haslo == Password.Text.ToString()))         //sprawdzam czy podany login i podane hasło są w bazie danych
@@ -36,11 +37,13 @@ namespace MultiligaApp
                     // 3 - opiekun
                     // 4 - zawodnik
                     // default - mozliwosc logowania
+
                     var userQuery = from uz in db.uzytkownik
-                                    where uz.login == Login.Text.ToString() && uz.haslo == Password.Text.ToString()
-                                    select uz;
+                                where uz.login == Login.Text.ToString() && uz.haslo == Password.Text.ToString()
+                                select uz;
                     var role = userQuery.FirstOrDefault<uzytkownik>().rola;
                     var userId = userQuery.FirstOrDefault<uzytkownik>().id_uzytkownik;
+
                     int user = 0;
                     if (role == "zawodnik")
                     {
@@ -49,15 +52,16 @@ namespace MultiligaApp
                     }
                     else
                     {
-                        var employeeQuery = from pr in db.pracownik
-                                            where pr.id_pracownik == userId
-                                            select pr;
-                        var employeeRole = employeeQuery.FirstOrDefault<pracownik>().stanowisko;
-                        if (employeeRole == "organizator")
+                       var employeeQuery = from pr in db.pracownik
+                                where pr.id_pracownik == userId
+                                select pr;
+                       var employeeRole = employeeQuery.FirstOrDefault<pracownik>().stanowisko;
+
+                        if(employeeRole == "organizator")
                         {
                             user = 1;
                         }
-                        else if (employeeRole == "opiekun zawodow")
+                        else if(employeeRole == "opiekun zawodow")
                         {
                             user = 3;
                         }
@@ -65,7 +69,7 @@ namespace MultiligaApp
                     currentEmail = Login.Text.ToString();
                     // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
                     mf.SetMenu(user);
-                    mf.Show();
+                    mf.Show();                    
                 }
                 else
                 {
@@ -78,7 +82,7 @@ namespace MultiligaApp
         {
             AccountForm accountEditionForm = new AccountForm();
             accountEditionForm.SetMenu("Przypomnienie hasła", "", "Adres email", "");
-            accountEditionForm.Show();
+            accountEditionForm.Show();            
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
@@ -96,6 +100,29 @@ namespace MultiligaApp
         static public string getCurrentEmail()
         {
             return currentEmail;
+        }
+
+        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                int visibleForms = 0;
+                for (int i = 0; i < Application.OpenForms.Count; ++i)
+                {
+                    if (Application.OpenForms[i].Visible == true)
+                    {
+                        ++visibleForms;
+                    }
+                }
+                if (visibleForms == 0)
+                {
+                    Application.Exit();
+                }
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MultiligaApp
         {
             string _operation = "usunięto zawody!";
             bool succesfulOperation = true;
-            switch (groupBox1.Text)
+            switch(groupBox1.Text)
             {
                 case "Utwórz nowe zawody":
                     _operation = " utworzono zawody!";
@@ -30,18 +30,19 @@ namespace MultiligaApp
                     _operation = " edytowano zawody!";
                     break;
                 case "Załóż konto":
-                    {
+                    {                     
                         _operation = " założone konto!";
                         if (IsValidEmail(textBox5.Text.ToString()))
                         {
+                            //TODO sprawdzic czy juz nie ma konta dla podanego maila
                             using (var db = new multiligaEntities())
                             {
                                 var user = db.Set<uzytkownik>();
                                 var contestant = db.Set<zawodnik>();
                                 var newUser = new uzytkownik { login = textBox5.Text.ToString(), haslo = textBox6.Text.ToString(), rola = "zawodnik" }; //konto z poziomu gui mogą zakładać tylko zawodnicy
-                                user.Add(newUser);
+                                user.Add(newUser);   
                                 db.SaveChanges();
-                                contestant.Add(new zawodnik { id_uzytkownik = newUser.id_uzytkownik, publiczne = 0, imie_nazwisko = textBox2.Text.ToString() });
+                                contestant.Add(new zawodnik { id_uzytkownik = newUser.id_uzytkownik, publiczne = 0, imie_nazwisko = textBox2.Text.ToString() }) ;
                                 db.SaveChanges();
                             }
                         }
@@ -70,7 +71,6 @@ namespace MultiligaApp
             }
         }
 
-
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -86,6 +86,29 @@ namespace MultiligaApp
             catch
             {
                 return false;
+            }
+        }
+
+        private void CreateDeleteEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (Application.OpenForms.Count == 0)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                int visibleForms = 0;
+                for (int i = 0; i < Application.OpenForms.Count; ++i)
+                {
+                    if (Application.OpenForms[i].Visible == true)
+                    {
+                        ++visibleForms;
+                    }
+                }
+                if (visibleForms == 0)
+                {
+                    Application.Exit();
+                }
             }
         }
     }
