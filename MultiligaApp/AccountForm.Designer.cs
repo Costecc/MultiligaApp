@@ -72,9 +72,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(17, 23);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(288, 154);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -84,7 +84,7 @@
             // 
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CancelButton.Location = new System.Drawing.Point(14, 100);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(130, 30);
             this.CancelButton.TabIndex = 8;
@@ -107,7 +107,7 @@
             // 
             this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.SaveButton.Location = new System.Drawing.Point(145, 100);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(130, 30);
             this.SaveButton.TabIndex = 6;
@@ -118,7 +118,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(130, 72);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(145, 20);
             this.textBox3.TabIndex = 5;
@@ -126,7 +126,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(130, 49);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(145, 20);
             this.textBox2.TabIndex = 4;
@@ -164,7 +164,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(130, 24);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(145, 20);
             this.textBox1.TabIndex = 0;
@@ -175,9 +175,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(322, 187);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "AccountForm";
             this.Text = "Moje Konto";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
