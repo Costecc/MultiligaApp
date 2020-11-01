@@ -17,19 +17,33 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zawody()
         {
+            this.ranking_druzyny = new HashSet<ranking_druzyny>();
+            this.ranking_druzyny1 = new HashSet<ranking_druzyny>();
             this.zawodnik = new HashSet<zawodnik>();
+            this.wyscig = new HashSet<wyscig>();
         }
     
         public int id_zawody { get; set; }
-        public string dyscyplina { get; set; }
-        public int id_kwalifikacje { get; set; }
-        public string cykl { get; set; }
-        public System.DateTime data { get; set; }
+        public int id_organizator { get; set; }
+        public int id_dyscyplina { get; set; }
+        public Nullable<int> id_kwalifikacje { get; set; }
+        public string nazwa { get; set; }
+        public Nullable<System.DateTime> data_poczatek { get; set; }
+        public Nullable<System.DateTime> data_koniec { get; set; }
         public int id_opiekun_zawodow { get; set; }
     
+        public virtual dyscyplina dyscyplina { get; set; }
         public virtual kwalifikacje kwalifikacje { get; set; }
         public virtual pracownik pracownik { get; set; }
+        public virtual pracownik pracownik1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ranking_druzyny> ranking_druzyny { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ranking_druzyny> ranking_druzyny1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik> zawodnik { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wyscig> wyscig { get; set; }
+        public virtual wyscig wyscig1 { get; set; }
     }
 }

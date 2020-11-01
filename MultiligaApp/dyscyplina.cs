@@ -17,13 +17,13 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public dyscyplina()
         {
-            this.cykl = new HashSet<cykl>();
+            this.zawody = new HashSet<zawody>();
         }
     
         public int id_dyscyplina { get; set; }
         public string nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cykl> cykl { get; set; }
+        public virtual ICollection<zawody> zawody { get; set; }
     }
 }

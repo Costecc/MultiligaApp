@@ -18,11 +18,14 @@ namespace MultiligaApp
         public pracownik()
         {
             this.kapitan = new HashSet<kapitan>();
+            this.kwalifikacje = new HashSet<kwalifikacje>();
             this.organizator = new HashSet<organizator>();
             this.organizator1 = new HashSet<organizator>();
             this.pakiet_startowy = new HashSet<pakiet_startowy>();
             this.zawody = new HashSet<zawody>();
+            this.zawody1 = new HashSet<zawody>();
             this.trasa = new HashSet<trasa>();
+            this.trasa1 = new HashSet<trasa>();
             this.wplata = new HashSet<wplata>();
             this.wplata1 = new HashSet<wplata>();
         }
@@ -36,6 +39,8 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kapitan> kapitan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<kwalifikacje> kwalifikacje { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<organizator> organizator { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<organizator> organizator1 { get; set; }
@@ -44,9 +49,13 @@ namespace MultiligaApp
         public virtual ICollection<pakiet_startowy> pakiet_startowy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawody> zawody { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<zawody> zawody1 { get; set; }
         public virtual uzytkownik uzytkownik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trasa> trasa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<trasa> trasa1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wplata> wplata { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

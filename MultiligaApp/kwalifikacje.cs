@@ -25,7 +25,7 @@ namespace MultiligaApp
         public int liczba_osob { get; set; }
         public int id_organizator { get; set; }
     
-        public virtual organizator organizator { get; set; }
+        public virtual pracownik pracownik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawody> zawody { get; set; }
     }
