@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="multiligaModelStoreContainer" CdmEntityContainer="multiligaEntities">
-    <EntitySetMapping Name="cykl">
-      <EntityTypeMapping TypeName="multiligaModel.cykl">
-        <MappingFragment StoreEntitySet="cykl">
-          <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
-          <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
-          <ScalarProperty Name="id_dyscyplina" ColumnName="id_dyscyplina" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="druzyna">
       <EntityTypeMapping TypeName="multiligaModel.druzyna">
         <MappingFragment StoreEntitySet="druzyna">
@@ -119,9 +110,10 @@
       <EntityTypeMapping TypeName="multiligaModel.wyscig">
         <MappingFragment StoreEntitySet="wyscig">
           <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-          <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
+          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
           <ScalarProperty Name="miasto" ColumnName="miasto" />
           <ScalarProperty Name="id_trasa" ColumnName="id_trasa" />
+          <ScalarProperty Name="data" ColumnName="data" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -145,20 +137,13 @@
       <EntityTypeMapping TypeName="multiligaModel.zawody">
         <MappingFragment StoreEntitySet="zawody">
           <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
-          <ScalarProperty Name="dyscyplina" ColumnName="dyscyplina" />
+          <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
+          <ScalarProperty Name="id_dyscyplina" ColumnName="id_dyscyplina" />
           <ScalarProperty Name="id_kwalifikacje" ColumnName="id_kwalifikacje" />
-          <ScalarProperty Name="cykl" ColumnName="cykl" />
-          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="data_poczatek" ColumnName="data_poczatek" />
+          <ScalarProperty Name="data_koniec" ColumnName="data_koniec" />
           <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ranking_cyklu">
-      <EntityTypeMapping TypeName="multiligaModel.ranking_cyklu">
-        <MappingFragment StoreEntitySet="ranking_cyklu">
-          <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
-          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
-          <ScalarProperty Name="punkty" ColumnName="punkty" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -168,7 +153,7 @@
           <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
           <ScalarProperty Name="punkty" ColumnName="punkty" />
           <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-          <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
+          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -181,38 +166,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="cykl_wyscig" TypeName="multiligaModel.cykl_wyscig" StoreEntitySet="cykl_wyscig">
-      <EndProperty Name="cykl">
-        <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
-      </EndProperty>
-      <EndProperty Name="wyscig">
-        <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="organizator_trasa" TypeName="multiligaModel.organizator_trasa" StoreEntitySet="organizator_trasa">
-      <EndProperty Name="organizator">
-        <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
-      </EndProperty>
-      <EndProperty Name="trasa">
-        <ScalarProperty Name="id_trasa" ColumnName="id_trasa" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="wyscig_cykl" TypeName="multiligaModel.wyscig_cykl" StoreEntitySet="wyscig_cykl">
-      <EndProperty Name="cykl">
-        <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
-      </EndProperty>
-      <EndProperty Name="wyscig">
-        <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="zawodnik_cykl" TypeName="multiligaModel.zawodnik_cykl" StoreEntitySet="zawodnik_cykl">
-      <EndProperty Name="cykl">
-        <ScalarProperty Name="id_cykl" ColumnName="id_cykl" />
-      </EndProperty>
-      <EndProperty Name="zawodnik">
-        <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="zawodnik_wyscig" TypeName="multiligaModel.zawodnik_wyscig" StoreEntitySet="zawodnik_wyscig">
       <EndProperty Name="wyscig">
         <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
@@ -224,6 +177,14 @@
     <AssociationSetMapping Name="zawodnik_zawody" TypeName="multiligaModel.zawodnik_zawody" StoreEntitySet="zawodnik_zawody">
       <EndProperty Name="zawodnik">
         <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
+      </EndProperty>
+      <EndProperty Name="zawody">
+        <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="zawody_wyscig" TypeName="multiligaModel.zawody_wyscig" StoreEntitySet="zawody_wyscig">
+      <EndProperty Name="wyscig">
+        <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
       </EndProperty>
       <EndProperty Name="zawody">
         <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />

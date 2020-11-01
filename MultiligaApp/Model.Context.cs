@@ -25,7 +25,6 @@ namespace MultiligaApp
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<cykl> cykl { get; set; }
         public virtual DbSet<druzyna> druzyna { get; set; }
         public virtual DbSet<dyscyplina> dyscyplina { get; set; }
         public virtual DbSet<kapitan> kapitan { get; set; }
@@ -40,7 +39,6 @@ namespace MultiligaApp
         public virtual DbSet<wyscig> wyscig { get; set; }
         public virtual DbSet<zawodnik> zawodnik { get; set; }
         public virtual DbSet<zawody> zawody { get; set; }
-        public virtual DbSet<ranking_cyklu> ranking_cyklu { get; set; }
         public virtual DbSet<ranking_druzyny> ranking_druzyny { get; set; }
         public virtual DbSet<wynik_wyscigu> wynik_wyscigu { get; set; }
     }

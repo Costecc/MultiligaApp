@@ -85,9 +85,6 @@
     <Compile Include="CreateDeleteEditForm.Designer.cs">
       <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="cykl.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="druzyna.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -127,6 +124,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="multiligaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>multiligaDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="multiligaDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>multiligaDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="organizator.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -144,9 +151,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ranking_cyklu.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="ranking_druzyny.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -223,6 +227,28 @@
     </EntityDeploy>
     <None Include="Model.edmx.diagram">
       <DependentUpon>Model.edmx</DependentUpon>
+    </None>
+    <None Include="multiligaDataSet.xsc">
+      <DependentUpon>multiligaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="multiligaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>multiligaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="multiligaDataSet.xss">
+      <DependentUpon>multiligaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="multiligaDataSet1.xsc">
+      <DependentUpon>multiligaDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="multiligaDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>multiligaDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="multiligaDataSet1.xss">
+      <DependentUpon>multiligaDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

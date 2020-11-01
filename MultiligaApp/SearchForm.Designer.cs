@@ -98,11 +98,9 @@ namespace MultiligaApp
             this.SearchMenu.Controls.Add(this.label2);
             this.SearchMenu.Controls.Add(this.label4);
             this.SearchMenu.Controls.Add(this.label1);
-            this.SearchMenu.Location = new System.Drawing.Point(10, 11);
-            this.SearchMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchMenu.Location = new System.Drawing.Point(13, 13);
             this.SearchMenu.Name = "SearchMenu";
-            this.SearchMenu.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchMenu.Size = new System.Drawing.Size(238, 247);
+            this.SearchMenu.Size = new System.Drawing.Size(317, 304);
             this.SearchMenu.TabIndex = 0;
             this.SearchMenu.TabStop = false;
             this.SearchMenu.Text = "Parametry wyszukiwania";
@@ -112,10 +110,9 @@ namespace MultiligaApp
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button2.BackColor = System.Drawing.SystemColors.ControlLight;
             this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.Location = new System.Drawing.Point(4, 199);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(6, 245);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 32);
+            this.button2.Size = new System.Drawing.Size(148, 39);
             this.button2.TabIndex = 11;
             this.button2.Text = "Powrót";
             this.button2.UseVisualStyleBackColor = false;
@@ -123,28 +120,25 @@ namespace MultiligaApp
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(87, 123);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Location = new System.Drawing.Point(116, 151);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(141, 20);
+            this.textBox5.Size = new System.Drawing.Size(187, 22);
             this.textBox5.TabIndex = 10;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(87, 100);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox4.Location = new System.Drawing.Point(116, 123);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(141, 20);
+            this.textBox4.Size = new System.Drawing.Size(187, 22);
             this.textBox4.TabIndex = 9;
             // 
             // SearchButton
             // 
             this.SearchButton.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.SearchButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SearchButton.Location = new System.Drawing.Point(116, 199);
-            this.SearchButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchButton.Location = new System.Drawing.Point(154, 245);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(112, 32);
+            this.SearchButton.Size = new System.Drawing.Size(149, 39);
             this.SearchButton.TabIndex = 0;
             this.SearchButton.Text = "Szukaj";
             this.SearchButton.UseVisualStyleBackColor = true;
@@ -152,86 +146,76 @@ namespace MultiligaApp
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(87, 75);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox3.Location = new System.Drawing.Point(116, 92);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(141, 20);
+            this.textBox3.Size = new System.Drawing.Size(187, 22);
             this.textBox3.TabIndex = 8;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(87, 27);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox1.Location = new System.Drawing.Point(116, 33);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 20);
+            this.textBox1.Size = new System.Drawing.Size(187, 22);
             this.textBox1.TabIndex = 6;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(87, 50);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Location = new System.Drawing.Point(116, 61);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(141, 20);
+            this.textBox2.Size = new System.Drawing.Size(187, 22);
             this.textBox2.TabIndex = 7;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 123);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(7, 151);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 5;
             this.label5.Text = "label5";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 75);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(6, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 3;
             this.label3.Text = "label3";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 50);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(6, 61);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "label2";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 100);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(7, 123);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(46, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "label4";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 27);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(7, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
             // 
             // SearchResults
             // 
             this.SearchResults.Controls.Add(this.ResultView);
-            this.SearchResults.Location = new System.Drawing.Point(252, 10);
-            this.SearchResults.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SearchResults.Location = new System.Drawing.Point(336, 12);
             this.SearchResults.Name = "SearchResults";
-            this.SearchResults.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.SearchResults.Size = new System.Drawing.Size(194, 248);
+            this.SearchResults.Size = new System.Drawing.Size(259, 305);
             this.SearchResults.TabIndex = 1;
             this.SearchResults.TabStop = false;
             this.SearchResults.Text = "Wyniki wyszukiwania";
@@ -244,30 +228,30 @@ namespace MultiligaApp
             this.ResultView.ColumnHeadersVisible = false;
             this.ResultView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ResultName});
-            this.ResultView.Location = new System.Drawing.Point(8, 28);
-            this.ResultView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ResultView.Location = new System.Drawing.Point(10, 34);
             this.ResultView.Name = "ResultView";
             this.ResultView.RowHeadersVisible = false;
+            this.ResultView.RowHeadersWidth = 51;
             this.ResultView.RowTemplate.Height = 24;
-            this.ResultView.Size = new System.Drawing.Size(180, 203);
+            this.ResultView.Size = new System.Drawing.Size(240, 250);
             this.ResultView.TabIndex = 0;
             this.ResultView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResultView_CellClick);
             // 
             // ResultName
             // 
             this.ResultName.HeaderText = "Nazwa";
+            this.ResultName.MinimumWidth = 6;
             this.ResultName.Name = "ResultName";
             this.ResultName.ReadOnly = true;
             this.ResultName.Width = 235;
             // 
             // SearchForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(458, 268);
+            this.ClientSize = new System.Drawing.Size(610, 330);
             this.Controls.Add(this.SearchResults);
             this.Controls.Add(this.SearchMenu);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SearchForm";
             this.Text = "Wyszukiwanie";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SearchForm_FormClosed);

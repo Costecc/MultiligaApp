@@ -95,8 +95,7 @@
             this.wyścigiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(629, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(839, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -108,34 +107,34 @@
             this.edytujKontoToolStripMenuItem,
             this.usuńKontoToolStripMenuItem});
             this.mojeKontoToolStripMenuItem.Name = "mojeKontoToolStripMenuItem";
-            this.mojeKontoToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.mojeKontoToolStripMenuItem.Size = new System.Drawing.Size(99, 24);
             this.mojeKontoToolStripMenuItem.Text = "Moje konto";
             // 
             // zmieńHasłoToolStripMenuItem
             // 
             this.zmieńHasłoToolStripMenuItem.Name = "zmieńHasłoToolStripMenuItem";
-            this.zmieńHasłoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.zmieńHasłoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.zmieńHasłoToolStripMenuItem.Text = "Zmień hasło";
             this.zmieńHasłoToolStripMenuItem.Click += new System.EventHandler(this.zmieńHasłoToolStripMenuItem_Click);
             // 
             // przypomnijHasłoToolStripMenuItem
             // 
             this.przypomnijHasłoToolStripMenuItem.Name = "przypomnijHasłoToolStripMenuItem";
-            this.przypomnijHasłoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.przypomnijHasłoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.przypomnijHasłoToolStripMenuItem.Text = "Przypomnij hasło";
             this.przypomnijHasłoToolStripMenuItem.Click += new System.EventHandler(this.przypomnijHasłoToolStripMenuItem_Click);
             // 
             // edytujKontoToolStripMenuItem
             // 
             this.edytujKontoToolStripMenuItem.Name = "edytujKontoToolStripMenuItem";
-            this.edytujKontoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.edytujKontoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.edytujKontoToolStripMenuItem.Text = "Edytuj konto";
             this.edytujKontoToolStripMenuItem.Click += new System.EventHandler(this.edytujKontoToolStripMenuItem_Click);
             // 
             // usuńKontoToolStripMenuItem
             // 
             this.usuńKontoToolStripMenuItem.Name = "usuńKontoToolStripMenuItem";
-            this.usuńKontoToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.usuńKontoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
             this.usuńKontoToolStripMenuItem.Text = "Usuń konto";
             this.usuńKontoToolStripMenuItem.Click += new System.EventHandler(this.usuńKontoToolStripMenuItem_Click);
             // 
@@ -145,20 +144,20 @@
             this.drużynaToolStripMenuItem,
             this.graczToolStripMenuItem});
             this.wyszukajToolStripMenuItem.Name = "wyszukajToolStripMenuItem";
-            this.wyszukajToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.wyszukajToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.wyszukajToolStripMenuItem.Text = "Wyszukaj";
             // 
             // drużynaToolStripMenuItem
             // 
             this.drużynaToolStripMenuItem.Name = "drużynaToolStripMenuItem";
-            this.drużynaToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.drużynaToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.drużynaToolStripMenuItem.Text = "Drużyna";
             this.drużynaToolStripMenuItem.Click += new System.EventHandler(this.drużynaToolStripMenuItem_Click);
             // 
             // graczToolStripMenuItem
             // 
             this.graczToolStripMenuItem.Name = "graczToolStripMenuItem";
-            this.graczToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.graczToolStripMenuItem.Size = new System.Drawing.Size(146, 26);
             this.graczToolStripMenuItem.Text = "Gracz";
             this.graczToolStripMenuItem.Click += new System.EventHandler(this.graczToolStripMenuItem_Click);
             // 
@@ -168,13 +167,13 @@
             this.mojeZawodyToolStripMenuItem,
             this.zarzadzajZawodamiToolStripMenuItem});
             this.zawodyToolStripMenuItem.Name = "zawodyToolStripMenuItem";
-            this.zawodyToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.zawodyToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.zawodyToolStripMenuItem.Text = "Zawody";
             // 
             // mojeZawodyToolStripMenuItem
             // 
             this.mojeZawodyToolStripMenuItem.Name = "mojeZawodyToolStripMenuItem";
-            this.mojeZawodyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mojeZawodyToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
             this.mojeZawodyToolStripMenuItem.Text = "Moje zawody";
             this.mojeZawodyToolStripMenuItem.Click += new System.EventHandler(this.mojeZawodyToolStripMenuItem_Click);
             // 
@@ -185,28 +184,28 @@
             this.usunZawodyToolStripMenuItem,
             this.edytujZawodyToolStripMenuItem1});
             this.zarzadzajZawodamiToolStripMenuItem.Name = "zarzadzajZawodamiToolStripMenuItem";
-            this.zarzadzajZawodamiToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zarzadzajZawodamiToolStripMenuItem.Size = new System.Drawing.Size(230, 26);
             this.zarzadzajZawodamiToolStripMenuItem.Text = "Zarzadzaj zawodami";
             this.zarzadzajZawodamiToolStripMenuItem.Visible = false;
             // 
             // dodajNoweZawodyToolStripMenuItem
             // 
             this.dodajNoweZawodyToolStripMenuItem.Name = "dodajNoweZawodyToolStripMenuItem";
-            this.dodajNoweZawodyToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.dodajNoweZawodyToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.dodajNoweZawodyToolStripMenuItem.Text = "Utwórz nowe zawody";
             this.dodajNoweZawodyToolStripMenuItem.Click += new System.EventHandler(this.utwórzNoweToolStripMenuItem_Click);
             // 
             // usunZawodyToolStripMenuItem
             // 
             this.usunZawodyToolStripMenuItem.Name = "usunZawodyToolStripMenuItem";
-            this.usunZawodyToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
+            this.usunZawodyToolStripMenuItem.Size = new System.Drawing.Size(234, 26);
             this.usunZawodyToolStripMenuItem.Text = "Usun zawody";
             this.usunZawodyToolStripMenuItem.Click += new System.EventHandler(this.usuńToolStripMenuItem_Click);
             // 
             // edytujZawodyToolStripMenuItem1
             // 
             this.edytujZawodyToolStripMenuItem1.Name = "edytujZawodyToolStripMenuItem1";
-            this.edytujZawodyToolStripMenuItem1.Size = new System.Drawing.Size(186, 22);
+            this.edytujZawodyToolStripMenuItem1.Size = new System.Drawing.Size(234, 26);
             this.edytujZawodyToolStripMenuItem1.Text = "Edytuj zawody";
             this.edytujZawodyToolStripMenuItem1.Click += new System.EventHandler(this.edytujZawodyToolStripMenuItem_Click);
             // 
@@ -215,7 +214,7 @@
             this.drużynyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mojeDrużynnyToolStripMenuItem});
             this.drużynyToolStripMenuItem.Name = "drużynyToolStripMenuItem";
-            this.drużynyToolStripMenuItem.Size = new System.Drawing.Size(62, 20);
+            this.drużynyToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.drużynyToolStripMenuItem.Text = "Drużyny";
             this.drużynyToolStripMenuItem.Visible = false;
             // 
@@ -224,14 +223,14 @@
             this.mojeDrużynnyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.załóżNowaDrużynęToolStripMenuItem});
             this.mojeDrużynnyToolStripMenuItem.Name = "mojeDrużynnyToolStripMenuItem";
-            this.mojeDrużynnyToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.mojeDrużynnyToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.mojeDrużynnyToolStripMenuItem.Text = "Moje drużyny";
             this.mojeDrużynnyToolStripMenuItem.Click += new System.EventHandler(this.mojeDrużynyToolStripMenuItem_Click);
             // 
             // załóżNowaDrużynęToolStripMenuItem
             // 
             this.załóżNowaDrużynęToolStripMenuItem.Name = "załóżNowaDrużynęToolStripMenuItem";
-            this.załóżNowaDrużynęToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.załóżNowaDrużynęToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.załóżNowaDrużynęToolStripMenuItem.Text = "Załóż nowa drużynę";
             this.załóżNowaDrużynęToolStripMenuItem.Visible = false;
             this.załóżNowaDrużynęToolStripMenuItem.Click += new System.EventHandler(this.załóżNowaDrużynęToolStripMenuItem_Click);
@@ -241,14 +240,14 @@
             this.wyścigiToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.wprowadźTrasęWyściguToolStripMenuItem});
             this.wyścigiToolStripMenuItem.Name = "wyścigiToolStripMenuItem";
-            this.wyścigiToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.wyścigiToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
             this.wyścigiToolStripMenuItem.Text = "Wyścigi";
             this.wyścigiToolStripMenuItem.Visible = false;
             // 
             // wprowadźTrasęWyściguToolStripMenuItem
             // 
             this.wprowadźTrasęWyściguToolStripMenuItem.Name = "wprowadźTrasęWyściguToolStripMenuItem";
-            this.wprowadźTrasęWyściguToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.wprowadźTrasęWyściguToolStripMenuItem.Size = new System.Drawing.Size(256, 26);
             this.wprowadźTrasęWyściguToolStripMenuItem.Text = "Wprowadź trasę wyścigu";
             this.wprowadźTrasęWyściguToolStripMenuItem.Click += new System.EventHandler(this.wprowadźTrasęWyściguToolStripMenuItem_Click);
             // 
@@ -283,10 +282,9 @@
             this.LogoutLabel.DisabledLinkColor = System.Drawing.Color.White;
             this.LogoutLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LogoutLabel.LinkColor = System.Drawing.Color.Black;
-            this.LogoutLabel.Location = new System.Drawing.Point(571, 3);
-            this.LogoutLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LogoutLabel.Location = new System.Drawing.Point(761, 4);
             this.LogoutLabel.Name = "LogoutLabel";
-            this.LogoutLabel.Size = new System.Drawing.Size(51, 15);
+            this.LogoutLabel.Size = new System.Drawing.Size(64, 20);
             this.LogoutLabel.TabIndex = 1;
             this.LogoutLabel.TabStop = true;
             this.LogoutLabel.Text = "Wyloguj";
@@ -303,65 +301,54 @@
             this.Current.Controls.Add(this.groupBox3);
             this.Current.Controls.Add(this.groupBox5);
             this.Current.Controls.Add(this.groupBox2);
-            this.Current.Location = new System.Drawing.Point(19, 39);
-            this.Current.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Current.Location = new System.Drawing.Point(25, 48);
             this.Current.Name = "Current";
-            this.Current.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Current.Size = new System.Drawing.Size(590, 427);
+            this.Current.Size = new System.Drawing.Size(787, 526);
             this.Current.TabIndex = 2;
             this.Current.TabStop = false;
             this.Current.Text = "Aktualności";
             // 
             // groupBox4
             // 
-            this.groupBox4.Location = new System.Drawing.Point(303, 223);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Location = new System.Drawing.Point(404, 275);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox4.Size = new System.Drawing.Size(267, 180);
+            this.groupBox4.Size = new System.Drawing.Size(356, 221);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Location = new System.Drawing.Point(303, 26);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Location = new System.Drawing.Point(404, 32);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox3.Size = new System.Drawing.Size(267, 180);
+            this.groupBox3.Size = new System.Drawing.Size(356, 221);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             // 
             // groupBox5
             // 
-            this.groupBox5.Location = new System.Drawing.Point(20, 223);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Location = new System.Drawing.Point(26, 275);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox5.Size = new System.Drawing.Size(267, 180);
+            this.groupBox5.Size = new System.Drawing.Size(356, 221);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(20, 26);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(26, 32);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(267, 180);
+            this.groupBox2.Size = new System.Drawing.Size(356, 221);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(629, 480);
+            this.ClientSize = new System.Drawing.Size(839, 591);
             this.Controls.Add(this.Current);
             this.Controls.Add(this.LogoutLabel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "MainForm";
             this.Text = "Multiliga";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

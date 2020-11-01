@@ -83,7 +83,7 @@ namespace MultiligaApp
         private void utwórzNoweToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateDeleteEditForm createForm = new CreateDeleteEditForm();
-            createForm.SetCreateForm("Utwórz nowe zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Harmonogram", "Rodzaj wyścigu");
+            createForm.SetCreateForm("Utwórz nowe zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Daty oddzielone średnikiem (MM-DD-RRRR)", "Rodzaj zawodów");
             createForm.Show();
         }
 

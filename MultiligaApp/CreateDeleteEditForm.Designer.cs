@@ -1,4 +1,6 @@
-﻿namespace MultiligaApp
+﻿using System.Collections.Generic;
+
+namespace MultiligaApp
 {
     partial class CreateDeleteEditForm
     {
@@ -44,7 +46,7 @@
             if (label3 == "")
             {
                 this.label3.Visible = false;
-                this.comboBox3.Visible = false;
+                this.TextBox3.Visible = false;
             }
             if (label4 == "")
             {
@@ -76,14 +78,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.pracownikBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.multiligaDataSet1 = new MultiligaApp.multiligaDataSet1();
+            this.TextBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.dyscyplinaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.multiligaDataSet = new MultiligaApp.multiligaDataSet();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -93,7 +100,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
+            this.dyscyplinaTableAdapter = new MultiligaApp.multiligaDataSetTableAdapters.dyscyplinaTableAdapter();
+            this.pracownikTableAdapter = new MultiligaApp.multiligaDataSet1TableAdapters.pracownikTableAdapter();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pracownikBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dyscyplinaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -103,7 +116,7 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.comboBox7);
             this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.TextBox3);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -115,26 +128,26 @@
             this.groupBox1.Controls.Add(this.CancelButton);
             this.groupBox1.Controls.Add(this.SaveButton);
             this.groupBox1.Location = new System.Drawing.Point(10, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(211, 271);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(213, 303);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(99, 150);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox6.Location = new System.Drawing.Point(9, 181);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
+            this.textBox6.Size = new System.Drawing.Size(190, 20);
             this.textBox6.TabIndex = 47;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(99, 126);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 46;
@@ -142,51 +155,88 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(99, 53);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 20);
             this.textBox2.TabIndex = 45;
             // 
             // comboBox7
             // 
+            this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(99, 172);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox7.Items.AddRange(new object[] {
+            "kwalifikacje",
+            "zapisy otwarte"});
+            this.comboBox7.Location = new System.Drawing.Point(100, 205);
+            this.comboBox7.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(100, 21);
             this.comboBox7.TabIndex = 44;
             // 
             // comboBox4
             // 
+            this.comboBox4.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.pracownikBindingSource, "id_pracownik", true));
+            this.comboBox4.DataSource = this.pracownikBindingSource;
+            this.comboBox4.DisplayMember = "nazwisko";
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(99, 99);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(100, 21);
             this.comboBox4.TabIndex = 41;
+            this.comboBox4.ValueMember = "id_pracownik";
+            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.ComboBox4_SelectedIndexChanged);
             // 
-            // comboBox3
+            // pracownikBindingSource
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(99, 75);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(100, 21);
-            this.comboBox3.TabIndex = 40;
+            this.pracownikBindingSource.DataMember = "pracownik";
+            this.pracownikBindingSource.DataSource = this.multiligaDataSet1;
+            this.pracownikBindingSource.Filter = "stanowisko = \'opiekun\'";
+            // 
+            // multiligaDataSet1
+            // 
+            this.multiligaDataSet1.DataSetName = "multiligaDataSet1";
+            this.multiligaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // TextBox3
+            // 
+            this.TextBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.TextBox3.FormattingEnabled = true;
+            this.TextBox3.Location = new System.Drawing.Point(99, 75);
+            this.TextBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.TextBox3.Name = "TextBox3";
+            this.TextBox3.Size = new System.Drawing.Size(100, 20);
+            this.TextBox3.TabIndex = 40;
             // 
             // comboBox1
             // 
+            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dyscyplinaBindingSource, "id_dyscyplina", true));
+            this.comboBox1.DataSource = this.dyscyplinaBindingSource;
+            this.comboBox1.DisplayMember = "nazwa";
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(99, 26);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(100, 21);
             this.comboBox1.TabIndex = 38;
+            this.comboBox1.ValueMember = "id_dyscyplina";
+            // 
+            // dyscyplinaBindingSource
+            // 
+            this.dyscyplinaBindingSource.DataMember = "dyscyplina";
+            this.dyscyplinaBindingSource.DataSource = this.multiligaDataSet;
+            // 
+            // multiligaDataSet
+            // 
+            this.multiligaDataSet.DataSetName = "multiligaDataSet";
+            this.multiligaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 175);
+            this.label7.Location = new System.Drawing.Point(9, 208);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
@@ -196,8 +246,9 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(8, 150);
+            this.label6.Location = new System.Drawing.Point(9, 148);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label6.MaximumSize = new System.Drawing.Size(200, 100);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 36;
@@ -256,8 +307,8 @@
             // CancelButton
             // 
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelButton.Location = new System.Drawing.Point(8, 233);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CancelButton.Location = new System.Drawing.Point(9, 266);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(190, 32);
             this.CancelButton.TabIndex = 30;
@@ -268,8 +319,8 @@
             // SaveButton
             // 
             this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveButton.Location = new System.Drawing.Point(8, 197);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.SaveButton.Location = new System.Drawing.Point(9, 230);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(190, 32);
             this.SaveButton.TabIndex = 29;
@@ -277,17 +328,30 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
+            // dyscyplinaTableAdapter
+            // 
+            this.dyscyplinaTableAdapter.ClearBeforeFill = true;
+            // 
+            // pracownikTableAdapter
+            // 
+            this.pracownikTableAdapter.ClearBeforeFill = true;
+            // 
             // CreateDeleteEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 292);
+            this.ClientSize = new System.Drawing.Size(224, 325);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "CreateDeleteEditForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateDeleteEditForm_FormClosed);
+            this.Load += new System.EventHandler(this.CreateDeleteEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pracownikBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dyscyplinaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -300,7 +364,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox TextBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -311,5 +375,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
+        private multiligaDataSet multiligaDataSet;
+        private System.Windows.Forms.BindingSource dyscyplinaBindingSource;
+        private multiligaDataSetTableAdapters.dyscyplinaTableAdapter dyscyplinaTableAdapter;
+        private multiligaDataSet1 multiligaDataSet1;
+        private System.Windows.Forms.BindingSource pracownikBindingSource;
+        private multiligaDataSet1TableAdapters.pracownikTableAdapter pracownikTableAdapter;
     }
 }

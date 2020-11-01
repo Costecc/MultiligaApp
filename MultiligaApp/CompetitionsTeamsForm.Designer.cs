@@ -71,11 +71,9 @@ namespace MultiligaApp
             // CompetitionBox
             // 
             this.CompetitionBox.Controls.Add(this.CompetitionView);
-            this.CompetitionBox.Location = new System.Drawing.Point(10, 11);
-            this.CompetitionBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompetitionBox.Location = new System.Drawing.Point(13, 13);
             this.CompetitionBox.Name = "CompetitionBox";
-            this.CompetitionBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.CompetitionBox.Size = new System.Drawing.Size(229, 260);
+            this.CompetitionBox.Size = new System.Drawing.Size(305, 320);
             this.CompetitionBox.TabIndex = 0;
             this.CompetitionBox.TabStop = false;
             this.CompetitionBox.Text = "groupBox1";
@@ -92,12 +90,12 @@ namespace MultiligaApp
             this.CompetitionView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MatchColumn,
             this.InviteColumn});
-            this.CompetitionView.Location = new System.Drawing.Point(5, 25);
-            this.CompetitionView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.CompetitionView.Location = new System.Drawing.Point(7, 31);
             this.CompetitionView.Name = "CompetitionView";
             this.CompetitionView.RowHeadersVisible = false;
+            this.CompetitionView.RowHeadersWidth = 51;
             this.CompetitionView.RowTemplate.Height = 24;
-            this.CompetitionView.Size = new System.Drawing.Size(216, 222);
+            this.CompetitionView.Size = new System.Drawing.Size(288, 273);
             this.CompetitionView.TabIndex = 1;
             this.CompetitionView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResultView_CellClick);
             // 
@@ -105,6 +103,7 @@ namespace MultiligaApp
             // 
             this.MatchColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.MatchColumn.HeaderText = "Mecze";
+            this.MatchColumn.MinimumWidth = 6;
             this.MatchColumn.Name = "MatchColumn";
             this.MatchColumn.ReadOnly = true;
             this.MatchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -114,6 +113,7 @@ namespace MultiligaApp
             // 
             this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.InviteColumn.HeaderText = "Zaproszenia";
+            this.InviteColumn.MinimumWidth = 6;
             this.InviteColumn.Name = "InviteColumn";
             this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -123,20 +123,17 @@ namespace MultiligaApp
             // 
             this.groupBox2.Controls.Add(this.ConfirmButton);
             this.groupBox2.Controls.Add(this.ReturnButton);
-            this.groupBox2.Location = new System.Drawing.Point(10, 276);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Location = new System.Drawing.Point(13, 340);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(229, 55);
+            this.groupBox2.Size = new System.Drawing.Size(305, 68);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
             // ConfirmButton
             // 
-            this.ConfirmButton.Location = new System.Drawing.Point(116, 18);
-            this.ConfirmButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ConfirmButton.Location = new System.Drawing.Point(154, 22);
             this.ConfirmButton.Name = "ConfirmButton";
-            this.ConfirmButton.Size = new System.Drawing.Size(106, 28);
+            this.ConfirmButton.Size = new System.Drawing.Size(141, 35);
             this.ConfirmButton.TabIndex = 1;
             this.ConfirmButton.Text = "Zatwierdź";
             this.ConfirmButton.UseVisualStyleBackColor = true;
@@ -144,10 +141,9 @@ namespace MultiligaApp
             // 
             // ReturnButton
             // 
-            this.ReturnButton.Location = new System.Drawing.Point(5, 18);
-            this.ReturnButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ReturnButton.Location = new System.Drawing.Point(7, 22);
             this.ReturnButton.Name = "ReturnButton";
-            this.ReturnButton.Size = new System.Drawing.Size(106, 28);
+            this.ReturnButton.Size = new System.Drawing.Size(141, 35);
             this.ReturnButton.TabIndex = 0;
             this.ReturnButton.Text = "Powrót";
             this.ReturnButton.UseVisualStyleBackColor = true;
@@ -155,12 +151,11 @@ namespace MultiligaApp
             // 
             // CompetitionsTeamsForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(250, 340);
+            this.ClientSize = new System.Drawing.Size(333, 419);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.CompetitionBox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "CompetitionsTeamsForm";
             this.Text = "Multiliga";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CompetitionsTeamsForm_FormClosed);

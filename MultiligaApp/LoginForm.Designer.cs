@@ -43,10 +43,9 @@
             // 
             // Login
             // 
-            this.Login.Location = new System.Drawing.Point(68, 28);
-            this.Login.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Login.Location = new System.Drawing.Point(91, 35);
             this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(152, 20);
+            this.Login.Size = new System.Drawing.Size(201, 22);
             this.Login.TabIndex = 0;
             // 
             // LoginBox
@@ -60,11 +59,9 @@
             this.LoginBox.Controls.Add(this.PasswordLabel);
             this.LoginBox.Controls.Add(this.LoginLabel);
             this.LoginBox.Controls.Add(this.Login);
-            this.LoginBox.Location = new System.Drawing.Point(16, 12);
-            this.LoginBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LoginBox.Location = new System.Drawing.Point(22, 15);
             this.LoginBox.Name = "LoginBox";
-            this.LoginBox.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.LoginBox.Size = new System.Drawing.Size(249, 162);
+            this.LoginBox.Size = new System.Drawing.Size(332, 200);
             this.LoginBox.TabIndex = 1;
             this.LoginBox.TabStop = false;
             this.LoginBox.Text = "Zaloguj";
@@ -75,10 +72,9 @@
             this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(151, 117);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(201, 144);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(82, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Załóż konto";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -89,10 +85,9 @@
             this.ForgetPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ForgetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForgetPassword.ForeColor = System.Drawing.Color.Black;
-            this.ForgetPassword.Location = new System.Drawing.Point(33, 117);
-            this.ForgetPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ForgetPassword.Location = new System.Drawing.Point(44, 144);
             this.ForgetPassword.Name = "ForgetPassword";
-            this.ForgetPassword.Size = new System.Drawing.Size(101, 13);
+            this.ForgetPassword.Size = new System.Drawing.Size(132, 17);
             this.ForgetPassword.TabIndex = 7;
             this.ForgetPassword.Text = "Nie pamiętam hasła";
             this.ForgetPassword.Click += new System.EventHandler(this.ForgetPassword_Click);
@@ -101,10 +96,9 @@
             // 
             this.IncorrectLoginLabel.AutoSize = true;
             this.IncorrectLoginLabel.ForeColor = System.Drawing.Color.Red;
-            this.IncorrectLoginLabel.Location = new System.Drawing.Point(28, 139);
-            this.IncorrectLoginLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.IncorrectLoginLabel.Location = new System.Drawing.Point(38, 171);
             this.IncorrectLoginLabel.Name = "IncorrectLoginLabel";
-            this.IncorrectLoginLabel.Size = new System.Drawing.Size(144, 13);
+            this.IncorrectLoginLabel.Size = new System.Drawing.Size(188, 17);
             this.IncorrectLoginLabel.TabIndex = 6;
             this.IncorrectLoginLabel.Text = "Niepoprawny login lub hasło!";
             this.IncorrectLoginLabel.Visible = false;
@@ -113,19 +107,17 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(28, 125);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(38, 154);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.Size = new System.Drawing.Size(0, 17);
             this.label3.TabIndex = 5;
             // 
             // LoginButton
             // 
             this.LoginButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.LoginButton.Location = new System.Drawing.Point(31, 86);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LoginButton.Location = new System.Drawing.Point(41, 106);
             this.LoginButton.Name = "LoginButton";
-            this.LoginButton.Size = new System.Drawing.Size(188, 28);
+            this.LoginButton.Size = new System.Drawing.Size(251, 35);
             this.LoginButton.TabIndex = 4;
             this.LoginButton.Text = "Zaloguj";
             this.LoginButton.UseVisualStyleBackColor = true;
@@ -133,39 +125,35 @@
             // 
             // Password
             // 
-            this.Password.Location = new System.Drawing.Point(68, 57);
-            this.Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Password.Location = new System.Drawing.Point(90, 70);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(152, 20);
+            this.Password.Size = new System.Drawing.Size(202, 22);
             this.Password.TabIndex = 3;
             // 
             // PasswordLabel
             // 
             this.PasswordLabel.AutoSize = true;
-            this.PasswordLabel.Location = new System.Drawing.Point(28, 56);
-            this.PasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.PasswordLabel.Location = new System.Drawing.Point(38, 69);
             this.PasswordLabel.Name = "PasswordLabel";
-            this.PasswordLabel.Size = new System.Drawing.Size(36, 13);
+            this.PasswordLabel.Size = new System.Drawing.Size(44, 17);
             this.PasswordLabel.TabIndex = 2;
             this.PasswordLabel.Text = "Hasło";
             // 
             // LoginLabel
             // 
             this.LoginLabel.AutoSize = true;
-            this.LoginLabel.Location = new System.Drawing.Point(28, 32);
-            this.LoginLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LoginLabel.Location = new System.Drawing.Point(38, 39);
             this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(32, 13);
+            this.LoginLabel.Size = new System.Drawing.Size(42, 17);
             this.LoginLabel.TabIndex = 1;
             this.LoginLabel.Text = "Email";
             // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 186);
+            this.ClientSize = new System.Drawing.Size(377, 229);
             this.Controls.Add(this.LoginBox);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LoginForm";
             this.Text = "Logowanie";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);

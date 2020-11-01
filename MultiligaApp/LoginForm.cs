@@ -53,7 +53,7 @@ namespace MultiligaApp
                     else
                     {
                        var employeeQuery = from pr in db.pracownik
-                                where pr.id_pracownik == userId
+                                where pr.id_uzytkownik == userId
                                 select pr;
                        var employeeRole = employeeQuery.FirstOrDefault<pracownik>().stanowisko;
 
@@ -100,6 +100,11 @@ namespace MultiligaApp
         static public string getCurrentEmail()
         {
             return currentEmail;
+        }
+
+        static public void setCurrentEmail(string email)
+        {
+            currentEmail = email;
         }
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
