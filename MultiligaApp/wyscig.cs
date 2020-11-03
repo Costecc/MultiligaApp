@@ -18,9 +18,8 @@ namespace MultiligaApp
         public wyscig()
         {
             this.wynik_wyscigu = new HashSet<wynik_wyscigu>();
-            this.zawodnik = new HashSet<zawodnik>();
-            this.zawody = new HashSet<zawody>();
             this.zawody1 = new HashSet<zawody>();
+            this.zawodnik = new HashSet<zawodnik>();
         }
     
         public int id_wyscig { get; set; }
@@ -30,13 +29,12 @@ namespace MultiligaApp
         public System.DateTime data { get; set; }
     
         public virtual trasa trasa { get; set; }
+        public virtual zawody zawody { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wynik_wyscigu> wynik_wyscigu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawodnik> zawodnik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawody> zawody { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawody> zawody1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<zawodnik> zawodnik { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace MultiligaApp
+﻿using System.Windows.Forms;
+namespace MultiligaApp
 {
     partial class MainForm
     {
@@ -32,8 +33,10 @@
             }
 
             //organizator ma prawo do zarządzania zawodami - ustawienie przycisku jako widocznego
-            if(_user == 1)
+            if (_user == 1)
+            {
                 zarzadzajZawodamiToolStripMenuItem.Visible = true;
+            }
 
             //zawodnik ma prawo do zakłądania drużyny
             if (_user == 4)

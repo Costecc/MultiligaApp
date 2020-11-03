@@ -91,9 +91,6 @@
     <Compile Include="dyscyplina.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="kapitan.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="kwalifikacje.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -163,6 +160,7 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlHelper.cs" />
     <Compile Include="trasa.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -179,6 +177,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="zawodnik.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zawodnik_druzyna.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zawodnik_zawody.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="zawody.cs">

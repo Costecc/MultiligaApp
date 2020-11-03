@@ -36,6 +36,17 @@ namespace MultiligaApp
         {
             //TODO - WYSZUKAĆ W BAZIE CZY ZNALEZIONO przynajmniej jedną DRUŻYNĘ
             //jeśli nie to komunikat że nie znaleziono
+            if(SearchMenu.Text == "Wyszukiwanie gracza")
+            {
+                using (var db = new multiligaEntities())
+                {
+                    var contestants = SqlHelper.selectContestants(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                    ResultView.DataSource = contestants.Select(x => new { Value = x.imie_nazwisko }).ToList();
+                    ResultView.ClearSelection();
+                    ResultView.CurrentCell = null;
+
+                }
+            }
             if(false)
             {
                 MessageBox.Show("Nie znaleziono rekordu o danych parametrach!", "Brak wyników");

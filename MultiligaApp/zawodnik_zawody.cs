@@ -12,13 +12,13 @@ namespace MultiligaApp
     using System;
     using System.Collections.Generic;
     
-    public partial class kwalifikacje
+    public partial class zawodnik_zawody
     {
-        public int id_kwalifikacji { get; set; }
-        public string miasto { get; set; }
-        public int liczba_osob { get; set; }
-        public int id_organizator { get; set; }
+        public int id_zawodnik { get; set; }
+        public int id_zawody { get; set; }
+        public int id_zawodnik_zawody { get; set; }
     
-        public virtual pracownik pracownik { get; set; }
+        public virtual zawodnik zawodnik { get; set; }
+        public virtual zawody zawody { get; set; }
     }
 }

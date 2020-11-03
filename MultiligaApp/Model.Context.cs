@@ -27,7 +27,6 @@ namespace MultiligaApp
     
         public virtual DbSet<druzyna> druzyna { get; set; }
         public virtual DbSet<dyscyplina> dyscyplina { get; set; }
-        public virtual DbSet<kapitan> kapitan { get; set; }
         public virtual DbSet<kwalifikacje> kwalifikacje { get; set; }
         public virtual DbSet<organizator> organizator { get; set; }
         public virtual DbSet<pakiet_startowy> pakiet_startowy { get; set; }
@@ -38,6 +37,8 @@ namespace MultiligaApp
         public virtual DbSet<wplata> wplata { get; set; }
         public virtual DbSet<wyscig> wyscig { get; set; }
         public virtual DbSet<zawodnik> zawodnik { get; set; }
+        public virtual DbSet<zawodnik_druzyna> zawodnik_druzyna { get; set; }
+        public virtual DbSet<zawodnik_zawody> zawodnik_zawody { get; set; }
         public virtual DbSet<zawody> zawody { get; set; }
         public virtual DbSet<ranking_druzyny> ranking_druzyny { get; set; }
         public virtual DbSet<wynik_wyscigu> wynik_wyscigu { get; set; }

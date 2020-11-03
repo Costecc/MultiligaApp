@@ -17,17 +17,16 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zawodnik()
         {
-            this.kapitan = new HashSet<kapitan>();
+            this.druzyna = new HashSet<druzyna>();
             this.wplata = new HashSet<wplata>();
+            this.zawodnik_druzyna = new HashSet<zawodnik_druzyna>();
             this.wynik_wyscigu = new HashSet<wynik_wyscigu>();
+            this.zawodnik_zawody = new HashSet<zawodnik_zawody>();
             this.wyscig = new HashSet<wyscig>();
-            this.zawody = new HashSet<zawody>();
         }
     
         public int id_zawodnik { get; set; }
         public int id_uzytkownik { get; set; }
-        public Nullable<int> id_kapitan { get; set; }
-        public Nullable<int> id_druzyna { get; set; }
         public Nullable<int> wiek { get; set; }
         public Nullable<int> wzrost { get; set; }
         public Nullable<int> waga { get; set; }
@@ -35,18 +34,18 @@ namespace MultiligaApp
         public Nullable<short> publiczne { get; set; }
         public string imie_nazwisko { get; set; }
     
-        public virtual druzyna druzyna { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<kapitan> kapitan { get; set; }
-        public virtual kapitan kapitan1 { get; set; }
+        public virtual ICollection<druzyna> druzyna { get; set; }
         public virtual ranking_globalny ranking_globalny { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wplata> wplata { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<zawodnik_druzyna> zawodnik_druzyna { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wynik_wyscigu> wynik_wyscigu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wyscig> wyscig { get; set; }
+        public virtual ICollection<zawodnik_zawody> zawodnik_zawody { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawody> zawody { get; set; }
+        public virtual ICollection<wyscig> wyscig { get; set; }
     }
 }

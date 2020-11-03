@@ -17,7 +17,6 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public pracownik()
         {
-            this.kapitan = new HashSet<kapitan>();
             this.kwalifikacje = new HashSet<kwalifikacje>();
             this.organizator = new HashSet<organizator>();
             this.organizator1 = new HashSet<organizator>();
@@ -36,8 +35,6 @@ namespace MultiligaApp
         public string imie { get; set; }
         public string nazwisko { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<kapitan> kapitan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kwalifikacje> kwalifikacje { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
