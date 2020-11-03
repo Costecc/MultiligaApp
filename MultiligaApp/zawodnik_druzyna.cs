@@ -12,13 +12,13 @@ namespace MultiligaApp
     using System;
     using System.Collections.Generic;
     
-    public partial class ranking_cyklu
+    public partial class zawodnik_druzyna
     {
-        public int id_cykl { get; set; }
+        public int id_zawodnik_druzyna { get; set; }
         public int id_zawodnik { get; set; }
-        public int punkty { get; set; }
+        public int id_druzyna { get; set; }
     
-        public virtual cykl cykl { get; set; }
+        public virtual druzyna druzyna { get; set; }
         public virtual zawodnik zawodnik { get; set; }
     }
 }

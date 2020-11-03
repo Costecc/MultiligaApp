@@ -50,7 +50,7 @@ namespace MultiligaApp
                 this.textBox5.Visible = false;
             }
 
-            ResultView.Rows.Add("Motocross Lublin");
+            //ResultView.Rows.Add("Motocross Lublin");
             //ResultView.Rows.Add("Janusz Kamiński");
             //ResultView.Rows.Add("Janusz Nowak");
         }
@@ -78,7 +78,6 @@ namespace MultiligaApp
             this.label1 = new System.Windows.Forms.Label();
             this.SearchResults = new System.Windows.Forms.GroupBox();
             this.ResultView = new System.Windows.Forms.DataGridView();
-            this.ResultName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchMenu.SuspendLayout();
             this.SearchResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultView)).BeginInit();
@@ -226,8 +225,6 @@ namespace MultiligaApp
             this.ResultView.AllowUserToDeleteRows = false;
             this.ResultView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.ResultView.ColumnHeadersVisible = false;
-            this.ResultView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ResultName});
             this.ResultView.Location = new System.Drawing.Point(10, 34);
             this.ResultView.Name = "ResultView";
             this.ResultView.RowHeadersVisible = false;
@@ -236,14 +233,6 @@ namespace MultiligaApp
             this.ResultView.Size = new System.Drawing.Size(240, 250);
             this.ResultView.TabIndex = 0;
             this.ResultView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResultView_CellClick);
-            // 
-            // ResultName
-            // 
-            this.ResultName.HeaderText = "Nazwa";
-            this.ResultName.MinimumWidth = 6;
-            this.ResultName.Name = "ResultName";
-            this.ResultName.ReadOnly = true;
-            this.ResultName.Width = 235;
             // 
             // SearchForm
             // 
@@ -303,7 +292,5 @@ namespace MultiligaApp
             profileForm.FillProfileData(cell.Value.ToString(), "Motocross", "Andrzej Nowak", "Informacja", "I Liga", "II Liga", "Puchar Polski (2016)");
             profileForm.Show();
         }
-
-        private DataGridViewTextBoxColumn ResultName;
     }
 }

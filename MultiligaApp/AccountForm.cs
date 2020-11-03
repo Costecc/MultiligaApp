@@ -87,7 +87,7 @@ namespace MultiligaApp
             }
             else if(this.groupBox1.Text == "Zmiana hasła")
             {
-                string currEmail = LoginForm.getCurrentEmail();                
+                string currEmail = SqlHelper.getCurrentEmail();                
                 using (var db = new multiligaEntities())
                 {
                     var user = db.uzytkownik.FirstOrDefault(uz => uz.login == currEmail && uz.haslo == textBox1.Text.ToString());
@@ -115,7 +115,7 @@ namespace MultiligaApp
             {
                 using (var db = new multiligaEntities())
                 {
-                    string currEmail = LoginForm.getCurrentEmail();
+                    string currEmail = SqlHelper.getCurrentEmail();
                     try
                     {
                         var user = db.uzytkownik.FirstOrDefault(uz => uz.login == currEmail && uz.haslo == textBox2.Text.ToString());

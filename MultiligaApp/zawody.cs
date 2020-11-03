@@ -17,10 +17,10 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zawody()
         {
+            this.wyscig = new HashSet<wyscig>();
+            this.zawodnik_zawody = new HashSet<zawodnik_zawody>();
             this.ranking_druzyny = new HashSet<ranking_druzyny>();
             this.ranking_druzyny1 = new HashSet<ranking_druzyny>();
-            this.zawodnik = new HashSet<zawodnik>();
-            this.wyscig = new HashSet<wyscig>();
         }
     
         public int id_zawody { get; set; }
@@ -33,17 +33,16 @@ namespace MultiligaApp
         public int id_opiekun_zawodow { get; set; }
     
         public virtual dyscyplina dyscyplina { get; set; }
-        public virtual kwalifikacje kwalifikacje { get; set; }
         public virtual pracownik pracownik { get; set; }
         public virtual pracownik pracownik1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<wyscig> wyscig { get; set; }
+        public virtual wyscig wyscig1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<zawodnik_zawody> zawodnik_zawody { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ranking_druzyny> ranking_druzyny { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ranking_druzyny> ranking_druzyny1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawodnik> zawodnik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wyscig> wyscig { get; set; }
-        public virtual wyscig wyscig1 { get; set; }
     }
 }

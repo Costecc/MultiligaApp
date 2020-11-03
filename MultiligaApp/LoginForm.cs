@@ -12,7 +12,7 @@ namespace MultiligaApp
 {
     public partial class LoginForm : Form
     {
-        static private string currentEmail;
+        //static private string currentEmail;
         public LoginForm()
         {
             InitializeComponent();
@@ -37,36 +37,29 @@ namespace MultiligaApp
                     // 3 - opiekun
                     // 4 - zawodnik
                     // default - mozliwosc logowania
+                    SqlHelper.setCurrentEmail(Login.Text.ToString());                  
 
-                    var userQuery = from uz in db.uzytkownik
-                                where uz.login == Login.Text.ToString() && uz.haslo == Password.Text.ToString()
-                                select uz;
-                    var role = userQuery.FirstOrDefault<uzytkownik>().rola;
-                    var userId = userQuery.FirstOrDefault<uzytkownik>().id_uzytkownik;
+                    var currentUser = SqlHelper.getLoggedUser();
 
                     int user = 0;
-                    if (role == "zawodnik")
+                    if (currentUser.rola == "zawodnik")
                     {
                         user = 4;
                         //todo dla kapitana
                     }
                     else
-                    {
-                       var employeeQuery = from pr in db.pracownik
-                                where pr.id_uzytkownik == userId
-                                select pr;
-                       var employeeRole = employeeQuery.FirstOrDefault<pracownik>().stanowisko;
+                    {                       
+                        var currentEmployee = SqlHelper.getLoggedEmployee();
 
-                        if(employeeRole == "organizator")
+                        if(currentEmployee.stanowisko == "organizator")
                         {
                             user = 1;
                         }
-                        else if(employeeRole == "opiekun zawodow")
+                        else if(currentEmployee.stanowisko == "opiekun zawodow")
                         {
                             user = 3;
                         }
-                    }
-                    currentEmail = Login.Text.ToString();
+                    }                    
                     // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
                     mf.SetMenu(user);
                     mf.Show();                    
@@ -93,19 +86,19 @@ namespace MultiligaApp
         private void label1_Click(object sender, EventArgs e)
         {
             CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
-            createDeleteEditForm.SetCreateForm("Załóż konto", "", "Imię i nazwisko", "", "", "Email", "Hasło", "");
+            createDeleteEditForm.SetCreateForm("Załóż konto", "", "", "Imię i nazwisko", "", "Email", "\nHasło", "");
             createDeleteEditForm.Show();
         }
 
-        static public string getCurrentEmail()
-        {
-            return currentEmail;
-        }
+        //static public string getCurrentEmail()
+        //{
+        //    return currentEmail;
+        //}
 
-        static public void setCurrentEmail(string email)
-        {
-            currentEmail = email;
-        }
+        //static public void setCurrentEmail(string email)
+        //{
+        //    currentEmail = email;
+        //}
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {

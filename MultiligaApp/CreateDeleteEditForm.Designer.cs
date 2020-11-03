@@ -41,12 +41,12 @@ namespace MultiligaApp
             if (label2 == "")
             {
                 this.label2.Visible = false;
-                this.textBox2.Visible = false;
+                this.numberOfRaces.Visible = false;
             }
             if (label3 == "")
             {
                 this.label3.Visible = false;
-                this.TextBox3.Visible = false;
+                this.textBox3.Visible = false;
             }
             if (label4 == "")
             {
@@ -80,14 +80,14 @@ namespace MultiligaApp
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numberOfRaces = new System.Windows.Forms.NumericUpDown();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.pracownikBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.multiligaDataSet1 = new MultiligaApp.multiligaDataSet1();
-            this.TextBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.dyscyplinaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.multiligaDataSet = new MultiligaApp.multiligaDataSet();
@@ -103,6 +103,7 @@ namespace MultiligaApp
             this.dyscyplinaTableAdapter = new MultiligaApp.multiligaDataSetTableAdapters.dyscyplinaTableAdapter();
             this.pracownikTableAdapter = new MultiligaApp.multiligaDataSet1TableAdapters.pracownikTableAdapter();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfRaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pracownikBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dyscyplinaBindingSource)).BeginInit();
@@ -111,12 +112,12 @@ namespace MultiligaApp
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numberOfRaces);
             this.groupBox1.Controls.Add(this.textBox6);
             this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.textBox3);
             this.groupBox1.Controls.Add(this.comboBox7);
             this.groupBox1.Controls.Add(this.comboBox4);
-            this.groupBox1.Controls.Add(this.TextBox3);
             this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
@@ -127,38 +128,55 @@ namespace MultiligaApp
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.CancelButton);
             this.groupBox1.Controls.Add(this.SaveButton);
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(13, 14);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(213, 303);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(284, 373);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
+            // numberOfRaces
+            // 
+            this.numberOfRaces.Location = new System.Drawing.Point(132, 60);
+            this.numberOfRaces.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numberOfRaces.Name = "numberOfRaces";
+            this.numberOfRaces.Size = new System.Drawing.Size(132, 22);
+            this.numberOfRaces.TabIndex = 48;
+            this.numberOfRaces.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(9, 181);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox6.Location = new System.Drawing.Point(12, 223);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(190, 20);
+            this.textBox6.Size = new System.Drawing.Size(252, 22);
             this.textBox6.TabIndex = 47;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(99, 126);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox5.Location = new System.Drawing.Point(132, 155);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
+            this.textBox5.Size = new System.Drawing.Size(132, 22);
             this.textBox5.TabIndex = 46;
             // 
-            // textBox2
+            // textBox3
             // 
-            this.textBox2.Location = new System.Drawing.Point(99, 53);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 45;
+            this.textBox3.Location = new System.Drawing.Point(132, 90);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(132, 22);
+            this.textBox3.TabIndex = 45;
             // 
             // comboBox7
             // 
@@ -167,10 +185,10 @@ namespace MultiligaApp
             this.comboBox7.Items.AddRange(new object[] {
             "kwalifikacje",
             "zapisy otwarte"});
-            this.comboBox7.Location = new System.Drawing.Point(100, 205);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox7.Location = new System.Drawing.Point(133, 252);
+            this.comboBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(100, 21);
+            this.comboBox7.Size = new System.Drawing.Size(132, 24);
             this.comboBox7.TabIndex = 44;
             // 
             // comboBox4
@@ -180,10 +198,10 @@ namespace MultiligaApp
             this.comboBox4.DisplayMember = "nazwisko";
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(99, 99);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox4.Location = new System.Drawing.Point(132, 122);
+            this.comboBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(100, 21);
+            this.comboBox4.Size = new System.Drawing.Size(132, 24);
             this.comboBox4.TabIndex = 41;
             this.comboBox4.ValueMember = "id_pracownik";
             this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.ComboBox4_SelectedIndexChanged);
@@ -199,16 +217,6 @@ namespace MultiligaApp
             this.multiligaDataSet1.DataSetName = "multiligaDataSet1";
             this.multiligaDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // TextBox3
-            // 
-            this.TextBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this.TextBox3.FormattingEnabled = true;
-            this.TextBox3.Location = new System.Drawing.Point(99, 75);
-            this.TextBox3.Margin = new System.Windows.Forms.Padding(2);
-            this.TextBox3.Name = "TextBox3";
-            this.TextBox3.Size = new System.Drawing.Size(100, 20);
-            this.TextBox3.TabIndex = 40;
-            // 
             // comboBox1
             // 
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dyscyplinaBindingSource, "id_dyscyplina", true));
@@ -216,10 +224,10 @@ namespace MultiligaApp
             this.comboBox1.DisplayMember = "nazwa";
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(99, 26);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.comboBox1.Location = new System.Drawing.Point(132, 32);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.Size = new System.Drawing.Size(132, 24);
             this.comboBox1.TabIndex = 38;
             this.comboBox1.ValueMember = "id_dyscyplina";
             // 
@@ -236,81 +244,74 @@ namespace MultiligaApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 208);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Location = new System.Drawing.Point(12, 256);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(46, 17);
             this.label7.TabIndex = 37;
             this.label7.Text = "label7";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 148);
-            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label6.MaximumSize = new System.Drawing.Size(200, 100);
+            this.label6.Location = new System.Drawing.Point(12, 182);
+            this.label6.MaximumSize = new System.Drawing.Size(267, 123);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(46, 17);
             this.label6.TabIndex = 36;
             this.label6.Text = "label6";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 126);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(11, 155);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(46, 17);
             this.label5.TabIndex = 35;
             this.label5.Text = "label5";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 102);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(11, 126);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(46, 17);
             this.label4.TabIndex = 34;
             this.label4.Text = "label4";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 77);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(11, 95);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 33;
             this.label3.Text = "label3";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 53);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(11, 65);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(46, 17);
             this.label2.TabIndex = 32;
             this.label2.Text = "label2";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 26);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(11, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 31;
             this.label1.Text = "label1";
             // 
             // CancelButton
             // 
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.CancelButton.Location = new System.Drawing.Point(9, 266);
-            this.CancelButton.Margin = new System.Windows.Forms.Padding(2);
+            this.CancelButton.Location = new System.Drawing.Point(12, 327);
+            this.CancelButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(190, 32);
+            this.CancelButton.Size = new System.Drawing.Size(253, 39);
             this.CancelButton.TabIndex = 30;
             this.CancelButton.Text = "Anuluj";
             this.CancelButton.UseVisualStyleBackColor = true;
@@ -319,10 +320,10 @@ namespace MultiligaApp
             // SaveButton
             // 
             this.SaveButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.SaveButton.Location = new System.Drawing.Point(9, 230);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(2);
+            this.SaveButton.Location = new System.Drawing.Point(12, 283);
+            this.SaveButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(190, 32);
+            this.SaveButton.Size = new System.Drawing.Size(253, 39);
             this.SaveButton.TabIndex = 29;
             this.SaveButton.Text = "Zatwierdź";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -338,16 +339,17 @@ namespace MultiligaApp
             // 
             // CreateDeleteEditForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 325);
+            this.ClientSize = new System.Drawing.Size(299, 400);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "CreateDeleteEditForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateDeleteEditForm_FormClosed);
             this.Load += new System.EventHandler(this.CreateDeleteEditForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numberOfRaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pracownikBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.multiligaDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dyscyplinaBindingSource)).EndInit();
@@ -361,10 +363,9 @@ namespace MultiligaApp
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.ComboBox TextBox3;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -381,5 +382,6 @@ namespace MultiligaApp
         private multiligaDataSet1 multiligaDataSet1;
         private System.Windows.Forms.BindingSource pracownikBindingSource;
         private multiligaDataSet1TableAdapters.pracownikTableAdapter pracownikTableAdapter;
+        private System.Windows.Forms.NumericUpDown numberOfRaces;
     }
 }

@@ -55,14 +55,14 @@ namespace MultiligaApp
         private void drużynaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchForm searchForm = new SearchForm();
-            searchForm.SetSearchingMenu(_user, "Wyszukiwanie drużyny", "Nazwa", "Liga", "Miasto", "Poziom ligi", "Dyscyplina");
+            searchForm.SetSearchingMenu(_user, "Wyszukiwanie drużyny", "Nazwa", "Zawody", "Miasto", "Poziom ligi", "Dyscyplina");
             searchForm.Show();
         }
 
         private void graczToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchForm searchForm = new SearchForm();
-            searchForm.SetSearchingMenu(_user, "Wyszukiwanie gracza", "Imię i nazwisko", "Liga", "Dyscyplina", "Drużyna", "");
+            searchForm.SetSearchingMenu(_user, "Wyszukiwanie gracza", "Imię i nazwisko", "Zawody", "Dyscyplina", "Drużyna", "");
             searchForm.Show();
         }
         
@@ -97,14 +97,14 @@ namespace MultiligaApp
         private void edytujZawodyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateDeleteEditForm createForm = new CreateDeleteEditForm();
-            createForm.SetCreateForm("Edytuj zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Harmonogram", "Rodzaj wyścigu");
+            createForm.SetCreateForm("Edytuj zawody", "Dyscyplina", "Liczba wyścigów", "Miasto", "Opiekun", "Nazwa", "Daty oddzielone średnikiem (MM-DD-RRRR)", "Rodzaj wyścigu");
             createForm.Show();
         }
 
         private void załóżNowaDrużynęToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CreateDeleteEditForm createForm = new CreateDeleteEditForm();
-            createForm.SetCreateForm("Załóż drużynę zawody", "Nazwa", "", "", "", "", "", "");
+            createForm.SetCreateForm("Załóż drużynę", "", "", "Nazwa", "", "", "", "");
             createForm.Show();
         }
 

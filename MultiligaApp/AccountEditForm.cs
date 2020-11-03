@@ -41,14 +41,14 @@ namespace MultiligaApp
             string _operation = "";
             using (var db = new multiligaEntities())
             {
-                var currEmail = LoginForm.getCurrentEmail();
+                var currEmail = SqlHelper.getCurrentEmail();
                 var user = db.uzytkownik.FirstOrDefault(uz => uz.login == currEmail);
                 var contestant = db.zawodnik.FirstOrDefault(zaw => zaw.id_uzytkownik == user.id_uzytkownik);
                 
                 if (IsValidEmail(EmailText.Text.ToString()))
                 {
                     user.login = EmailText.Text.ToString();
-                    LoginForm.setCurrentEmail(EmailText.Text.ToString());
+                    SqlHelper.setCurrentEmail(EmailText.Text.ToString());
                     _operation += "\n- email";
                 }
                 else if(EmailText.Text.Length > 0)
