@@ -148,12 +148,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ranking_druzyny.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ranking_globalny.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="SearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,7 +164,7 @@
     <Compile Include="wplata.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="wynik_wyscigu.cs">
+    <Compile Include="wynik.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="wyscig.cs">

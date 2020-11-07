@@ -1,5 +1,5 @@
 ﻿using System.Windows.Forms;
-
+using System;
 namespace MultiligaApp
 {
     partial class SearchForm
@@ -273,15 +273,15 @@ namespace MultiligaApp
 
         private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewTextBoxCell cell = (DataGridViewTextBoxCell)ResultView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
+            DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)ResultView.Rows[e.RowIndex].Cells[0];      //cells[0] -> bierzemy dane z kolumny ID
             ProfileForm profileForm = new ProfileForm();
 
             if(SearchMenu.Text == "Wyszukiwanie gracza")
             {
-                profileForm.SetProfile(_user, "Profil zawodnika", "Zaproś do drużyny", "Imię i nazwisko", "Email", "Drużyna", "Aktualna liga", "Ligi", "Osiągnięcia", "O sobie");
+                //TODO               
+                profileForm.SetProfile(_user, "Profil zawodnika", "Zaproś do drużyny", "Imię i nazwisko", "Email", "Drużyna", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "O sobie");
             }
-            else
+            else if(SearchMenu.Text == "Wyszukiwanie drużyny")
             {
                 profileForm.SetProfile(_user, "Profil drużyny", "Zaproś do zawodów", "Nazwa", "Dyscyplina", "Kapitan", "O druzynie", "Aktualne rozgrywki", "Poprzednie rozgrywki", "Osiągnięcia");
             }
@@ -289,7 +289,9 @@ namespace MultiligaApp
             //TODO
             //Tutaj uzupełnić pozostałe pola - z bazy danych. Na razie tylko imie i nazwisko
             //profileForm.FillProfileData(cell.Value.ToString(), "j.kaminski9508@wp.pl", "Motocross Lublin", "I Liga Motocross", "II Liga, I Liga", "Puchar Polski (2016)", "Fan szybkiej jazdy");
-            profileForm.FillProfileData(cell.Value.ToString(), "Motocross", "Andrzej Nowak", "Informacja", "I Liga", "II Liga", "Puchar Polski (2016)");
+            //profileForm.FillProfileData(IDcell.Value.ToString(), "Motocross", "Andrzej Nowak", "I Liga", "II Liga", "Puchar Polski (2016)", "");
+
+            SqlHelper.showContestantProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
             profileForm.Show();
         }
     }

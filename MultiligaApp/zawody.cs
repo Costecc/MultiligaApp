@@ -19,8 +19,6 @@ namespace MultiligaApp
         {
             this.wyscig = new HashSet<wyscig>();
             this.zawodnik_zawody = new HashSet<zawodnik_zawody>();
-            this.ranking_druzyny = new HashSet<ranking_druzyny>();
-            this.ranking_druzyny1 = new HashSet<ranking_druzyny>();
         }
     
         public int id_zawody { get; set; }
@@ -40,9 +38,5 @@ namespace MultiligaApp
         public virtual wyscig wyscig1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik_zawody> zawodnik_zawody { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ranking_druzyny> ranking_druzyny { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ranking_druzyny> ranking_druzyny1 { get; set; }
     }
 }

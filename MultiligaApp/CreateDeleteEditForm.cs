@@ -177,7 +177,7 @@ namespace MultiligaApp
             {
                 if (!raceNameTaken(textBox5.Text.ToString()))   //jeśli nazwa nie jest zajęta
                 {
-                    if (competitionScheduleCheck(Convert.ToInt32(numberOfRaces), textBox6.Text))
+                    if (competitionScheduleCheck(Convert.ToInt32(numberOfRaces.Value), textBox6.Text))
                     {
                         var currentEmployee = SqlHelper.getLoggedEmployee();
                         
@@ -195,7 +195,7 @@ namespace MultiligaApp
                             db.wyscig.Add(race);
                             db.SaveChanges();
 
-                            if (checkQualifiersPossibility(Convert.ToInt32(numberOfRaces), comboBox7.Text) && i == 0)
+                            if (checkQualifiersPossibility(Convert.ToInt32(numberOfRaces.Value), comboBox7.Text) && i == 0)
                             {
                                 competition.id_kwalifikacje = race.id_wyscig;
                                 db.SaveChanges();
