@@ -76,9 +76,9 @@ namespace MultiligaApp
                     MessageBox.Show("Błąd w podanej wadze", "Niepowodzenie");
                 }
 
-                if (WinsText.Text.ToString().Length > 0)
+                if (AboutMe.Text.ToString().Length > 0)
                 {
-                    contestant.osiagniecia = WinsText.Text.ToString();
+                    contestant.o_sobie = AboutMe.Text.ToString();
                     _operation += "\n- osiagniecia";
                 }
 

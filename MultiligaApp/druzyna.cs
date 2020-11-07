@@ -18,7 +18,6 @@ namespace MultiligaApp
         public druzyna()
         {
             this.zawodnik_druzyna = new HashSet<zawodnik_druzyna>();
-            this.ranking_druzyny = new HashSet<ranking_druzyny>();
         }
     
         public int id_druzyna { get; set; }
@@ -28,7 +27,5 @@ namespace MultiligaApp
         public virtual zawodnik zawodnik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik_druzyna> zawodnik_druzyna { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ranking_druzyny> ranking_druzyny { get; set; }
     }
 }

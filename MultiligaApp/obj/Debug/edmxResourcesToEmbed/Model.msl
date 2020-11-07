@@ -59,14 +59,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ranking_globalny">
-      <EntityTypeMapping TypeName="multiligaModel.ranking_globalny">
-        <MappingFragment StoreEntitySet="ranking_globalny">
-          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
-          <ScalarProperty Name="punkty" ColumnName="punkty" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="trasa">
       <EntityTypeMapping TypeName="multiligaModel.trasa">
         <MappingFragment StoreEntitySet="trasa">
@@ -97,6 +89,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="wynik">
+      <EntityTypeMapping TypeName="multiligaModel.wynik">
+        <MappingFragment StoreEntitySet="wynik">
+          <ScalarProperty Name="id_wynik" ColumnName="id_wynik" />
+          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
+          <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
+          <ScalarProperty Name="czas" ColumnName="czas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="wyscig">
       <EntityTypeMapping TypeName="multiligaModel.wyscig">
         <MappingFragment StoreEntitySet="wyscig">
@@ -116,7 +118,7 @@
           <ScalarProperty Name="wiek" ColumnName="wiek" />
           <ScalarProperty Name="wzrost" ColumnName="wzrost" />
           <ScalarProperty Name="waga" ColumnName="waga" />
-          <ScalarProperty Name="osiagniecia" ColumnName="osiagniecia" />
+          <ScalarProperty Name="o_sobie" ColumnName="o_sobie" />
           <ScalarProperty Name="publiczne" ColumnName="publiczne" />
           <ScalarProperty Name="imie_nazwisko" ColumnName="imie_nazwisko" />
         </MappingFragment>
@@ -151,25 +153,6 @@
           <ScalarProperty Name="data_poczatek" ColumnName="data_poczatek" />
           <ScalarProperty Name="data_koniec" ColumnName="data_koniec" />
           <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ranking_druzyny">
-      <EntityTypeMapping TypeName="multiligaModel.ranking_druzyny">
-        <MappingFragment StoreEntitySet="ranking_druzyny">
-          <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
-          <ScalarProperty Name="punkty" ColumnName="punkty" />
-          <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="wynik_wyscigu">
-      <EntityTypeMapping TypeName="multiligaModel.wynik_wyscigu">
-        <MappingFragment StoreEntitySet="wynik_wyscigu">
-          <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
-          <ScalarProperty Name="czas" ColumnName="czas" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

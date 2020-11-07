@@ -38,14 +38,11 @@ namespace MultiligaApp
             //jeśli nie to komunikat że nie znaleziono
             if(SearchMenu.Text == "Wyszukiwanie gracza")
             {
-                using (var db = new multiligaEntities())
-                {
                     var contestants = SqlHelper.selectContestants(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
-                    ResultView.DataSource = contestants.Select(x => new { Value = x.imie_nazwisko }).ToList();
+                    ResultView.DataSource = contestants.Select(x => new { ID = x.FirstOrDefault().id_zawodnik, Name = x.FirstOrDefault().imie_nazwisko }).ToList();
+                    ResultView.Columns["ID"].Visible = false;
                     ResultView.ClearSelection();
                     ResultView.CurrentCell = null;
-
-                }
             }
             if(false)
             {

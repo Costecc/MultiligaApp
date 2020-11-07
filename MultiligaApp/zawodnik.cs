@@ -19,8 +19,8 @@ namespace MultiligaApp
         {
             this.druzyna = new HashSet<druzyna>();
             this.wplata = new HashSet<wplata>();
+            this.wynik = new HashSet<wynik>();
             this.zawodnik_druzyna = new HashSet<zawodnik_druzyna>();
-            this.wynik_wyscigu = new HashSet<wynik_wyscigu>();
             this.zawodnik_zawody = new HashSet<zawodnik_zawody>();
             this.wyscig = new HashSet<wyscig>();
         }
@@ -30,19 +30,18 @@ namespace MultiligaApp
         public Nullable<int> wiek { get; set; }
         public Nullable<int> wzrost { get; set; }
         public Nullable<int> waga { get; set; }
-        public string osiagniecia { get; set; }
+        public string o_sobie { get; set; }
         public Nullable<short> publiczne { get; set; }
         public string imie_nazwisko { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<druzyna> druzyna { get; set; }
-        public virtual ranking_globalny ranking_globalny { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wplata> wplata { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<zawodnik_druzyna> zawodnik_druzyna { get; set; }
+        public virtual ICollection<wynik> wynik { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<wynik_wyscigu> wynik_wyscigu { get; set; }
+        public virtual ICollection<zawodnik_druzyna> zawodnik_druzyna { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik_zawody> zawodnik_zawody { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

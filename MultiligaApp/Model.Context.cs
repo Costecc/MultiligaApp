@@ -31,16 +31,14 @@ namespace MultiligaApp
         public virtual DbSet<organizator> organizator { get; set; }
         public virtual DbSet<pakiet_startowy> pakiet_startowy { get; set; }
         public virtual DbSet<pracownik> pracownik { get; set; }
-        public virtual DbSet<ranking_globalny> ranking_globalny { get; set; }
         public virtual DbSet<trasa> trasa { get; set; }
         public virtual DbSet<uzytkownik> uzytkownik { get; set; }
         public virtual DbSet<wplata> wplata { get; set; }
+        public virtual DbSet<wynik> wynik { get; set; }
         public virtual DbSet<wyscig> wyscig { get; set; }
         public virtual DbSet<zawodnik> zawodnik { get; set; }
         public virtual DbSet<zawodnik_druzyna> zawodnik_druzyna { get; set; }
         public virtual DbSet<zawodnik_zawody> zawodnik_zawody { get; set; }
         public virtual DbSet<zawody> zawody { get; set; }
-        public virtual DbSet<ranking_druzyny> ranking_druzyny { get; set; }
-        public virtual DbSet<wynik_wyscigu> wynik_wyscigu { get; set; }
     }
 }

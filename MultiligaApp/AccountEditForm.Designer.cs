@@ -34,7 +34,7 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
-            this.WinsText = new System.Windows.Forms.TextBox();
+            this.AboutMe = new System.Windows.Forms.TextBox();
             this.WeightText = new System.Windows.Forms.TextBox();
             this.HeightText = new System.Windows.Forms.TextBox();
             this.PermissionsCheckBox = new System.Windows.Forms.CheckBox();
@@ -55,7 +55,7 @@
             this.EditBox.Controls.Add(this.linkLabel1);
             this.EditBox.Controls.Add(this.CancelButton);
             this.EditBox.Controls.Add(this.SaveButton);
-            this.EditBox.Controls.Add(this.WinsText);
+            this.EditBox.Controls.Add(this.AboutMe);
             this.EditBox.Controls.Add(this.WeightText);
             this.EditBox.Controls.Add(this.HeightText);
             this.EditBox.Controls.Add(this.PermissionsCheckBox);
@@ -121,12 +121,12 @@
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
-            // WinsText
+            // AboutMe
             // 
-            this.WinsText.Location = new System.Drawing.Point(128, 174);
-            this.WinsText.Name = "WinsText";
-            this.WinsText.Size = new System.Drawing.Size(145, 22);
-            this.WinsText.TabIndex = 13;
+            this.AboutMe.Location = new System.Drawing.Point(128, 174);
+            this.AboutMe.Name = "AboutMe";
+            this.AboutMe.Size = new System.Drawing.Size(145, 22);
+            this.AboutMe.TabIndex = 13;
             // 
             // WeightText
             // 
@@ -166,7 +166,7 @@
             this.AccountWinsLabel.Name = "AccountWinsLabel";
             this.AccountWinsLabel.Size = new System.Drawing.Size(82, 17);
             this.AccountWinsLabel.TabIndex = 5;
-            this.AccountWinsLabel.Text = "Osiągnięcia";
+            this.AccountWinsLabel.Text = "O mnie";
             // 
             // AccountWeightLabel
             // 
@@ -250,7 +250,7 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button SaveButton;
-        private System.Windows.Forms.TextBox WinsText;
+        private System.Windows.Forms.TextBox AboutMe;
         private System.Windows.Forms.TextBox WeightText;
         private System.Windows.Forms.TextBox HeightText;
     }

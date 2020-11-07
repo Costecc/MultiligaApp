@@ -52,27 +52,6 @@
     <Property Name="imie" Type="nvarchar(max)" />
     <Property Name="nazwisko" Type="nvarchar(max)" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'multiliga.multiliga.ranking_druzyny' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="ranking_druzyny">
-    <Key>
-      <PropertyRef Name="id_druzyna" />
-      <PropertyRef Name="punkty" />
-      <PropertyRef Name="id_wyscig" />
-      <PropertyRef Name="id_zawody" />
-    </Key>
-    <Property Name="id_druzyna" Type="int" Nullable="false" />
-    <Property Name="punkty" Type="int" Nullable="false" />
-    <Property Name="id_wyscig" Type="int" Nullable="false" />
-    <Property Name="id_zawody" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ranking_globalny">
-    <Key>
-      <PropertyRef Name="id_zawodnik" />
-    </Key>
-    <Property Name="id_zawodnik" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="punkty" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="trasa">
     <Key>
       <PropertyRef Name="id_trasa" />
@@ -100,17 +79,14 @@ warning 6002: The table/view 'multiliga.multiliga.ranking_druzyny' does not have
     <Property Name="id_opiekun_zawodow" Type="int" Nullable="false" />
     <Property Name="przelew_wykonany" Type="smallint" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'multiliga.multiliga.wynik_wyscigu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-  <EntityType Name="wynik_wyscigu">
+  <EntityType Name="wynik">
     <Key>
-      <PropertyRef Name="id_wyscig" />
-      <PropertyRef Name="id_zawodnik" />
-      <PropertyRef Name="czas" />
+      <PropertyRef Name="id_wynik" />
     </Key>
-    <Property Name="id_wyscig" Type="int" Nullable="false" />
+    <Property Name="id_wynik" Type="int" Nullable="false" />
     <Property Name="id_zawodnik" Type="int" Nullable="false" />
-    <Property Name="czas" Type="int" Nullable="false" />
+    <Property Name="id_wyscig" Type="int" Nullable="false" />
+    <Property Name="czas" Type="time" Precision="7" />
   </EntityType>
   <EntityType Name="wyscig">
     <Key>
@@ -131,7 +107,7 @@ warning 6002: The table/view 'multiliga.multiliga.wynik_wyscigu' does not have a
     <Property Name="wiek" Type="int" />
     <Property Name="wzrost" Type="int" />
     <Property Name="waga" Type="int" />
-    <Property Name="osiagniecia" Type="nvarchar(max)" />
+    <Property Name="o_sobie" Type="nvarchar(max)" />
     <Property Name="publiczne" Type="smallint" />
     <Property Name="imie_nazwisko" Type="nvarchar(max)" />
   </EntityType>
@@ -258,6 +234,30 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_wynik_id_wyscig">
+    <End Role="wyscig" Type="Self.wyscig" Multiplicity="1" />
+    <End Role="wynik" Type="Self.wynik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="wyscig">
+        <PropertyRef Name="id_wyscig" />
+      </Principal>
+      <Dependent Role="wynik">
+        <PropertyRef Name="id_wyscig" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_wynik_id_zawodnik">
+    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
+    <End Role="wynik" Type="Self.wynik" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zawodnik">
+        <PropertyRef Name="id_zawodnik" />
+      </Principal>
+      <Dependent Role="wynik">
+        <PropertyRef Name="id_zawodnik" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_zawodnik_druzyna_id_druzyna">
     <End Role="druzyna" Type="Self.druzyna" Multiplicity="1" />
     <End Role="zawodnik_druzyna" Type="Self.zawodnik_druzyna" Multiplicity="*" />
@@ -291,30 +291,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       </Principal>
       <Dependent Role="wplata">
         <PropertyRef Name="id_zawodnik" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_zawody_id_zawody1">
-    <End Role="zawody" Type="Self.zawody" Multiplicity="1" />
-    <End Role="ranking_druzyny" Type="Self.ranking_druzyny" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="zawody">
-        <PropertyRef Name="id_zawody" />
-      </Principal>
-      <Dependent Role="ranking_druzyny">
-        <PropertyRef Name="id_zawody" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_zawody_id_zawody2">
-    <End Role="zawody" Type="Self.zawody" Multiplicity="1" />
-    <End Role="ranking_druzyny" Type="Self.ranking_druzyny" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="zawody">
-        <PropertyRef Name="id_zawody" />
-      </Principal>
-      <Dependent Role="ranking_druzyny">
-        <PropertyRef Name="id_zawody" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -368,30 +344,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="ranking_druzyny$fk_id_druzyna">
-    <End Role="druzyna" Type="Self.druzyna" Multiplicity="1" />
-    <End Role="ranking_druzyny" Type="Self.ranking_druzyny" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="druzyna">
-        <PropertyRef Name="id_druzyna" />
-      </Principal>
-      <Dependent Role="ranking_druzyny">
-        <PropertyRef Name="id_druzyna" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="ranking_globalny$fk_id_zawodnik1">
-    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
-    <End Role="ranking_globalny" Type="Self.ranking_globalny" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="zawodnik">
-        <PropertyRef Name="id_zawodnik" />
-      </Principal>
-      <Dependent Role="ranking_globalny">
-        <PropertyRef Name="id_zawodnik" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="trasa$fk_id_organizator3">
     <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
     <End Role="trasa" Type="Self.trasa" Multiplicity="*" />
@@ -437,30 +389,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       </Principal>
       <Dependent Role="wplata">
         <PropertyRef Name="id_ksiegowa" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="wynik_wyscigu$fk_id_wyscig1">
-    <End Role="wyscig" Type="Self.wyscig" Multiplicity="1" />
-    <End Role="wynik_wyscigu" Type="Self.wynik_wyscigu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="wyscig">
-        <PropertyRef Name="id_wyscig" />
-      </Principal>
-      <Dependent Role="wynik_wyscigu">
-        <PropertyRef Name="id_wyscig" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="wynik_wyscigu$fk_id_zawodnik2">
-    <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
-    <End Role="wynik_wyscigu" Type="Self.wynik_wyscigu" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="zawodnik">
-        <PropertyRef Name="id_zawodnik" />
-      </Principal>
-      <Dependent Role="wynik_wyscigu">
-        <PropertyRef Name="id_wyscig" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -543,30 +471,15 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <EntitySet Name="organizator" EntityType="Self.organizator" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="pakiet_startowy" EntityType="Self.pakiet_startowy" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="pracownik" EntityType="Self.pracownik" Schema="multiliga" store:Type="Tables" />
-    <EntitySet Name="ranking_globalny" EntityType="Self.ranking_globalny" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="trasa" EntityType="Self.trasa" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="uzytkownik" EntityType="Self.uzytkownik" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="wplata" EntityType="Self.wplata" Schema="multiliga" store:Type="Tables" />
+    <EntitySet Name="wynik" EntityType="Self.wynik" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="wyscig" EntityType="Self.wyscig" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik" EntityType="Self.zawodnik" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik_druzyna" EntityType="Self.zawodnik_druzyna" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik_zawody" EntityType="Self.zawodnik_zawody" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawody" EntityType="Self.zawody" Schema="multiliga" store:Type="Tables" />
-    <EntitySet Name="ranking_druzyny" EntityType="Self.ranking_druzyny" store:Type="Tables" store:Schema="multiliga">
-      <DefiningQuery>SELECT 
-    [ranking_druzyny].[id_druzyna] AS [id_druzyna], 
-    [ranking_druzyny].[punkty] AS [punkty], 
-    [ranking_druzyny].[id_wyscig] AS [id_wyscig], 
-    [ranking_druzyny].[id_zawody] AS [id_zawody]
-    FROM [multiliga].[ranking_druzyny] AS [ranking_druzyny]</DefiningQuery>
-    </EntitySet>
-    <EntitySet Name="wynik_wyscigu" EntityType="Self.wynik_wyscigu" store:Type="Tables" store:Schema="multiliga">
-      <DefiningQuery>SELECT 
-    [wynik_wyscigu].[id_wyscig] AS [id_wyscig], 
-    [wynik_wyscigu].[id_zawodnik] AS [id_zawodnik], 
-    [wynik_wyscigu].[czas] AS [czas]
-    FROM [multiliga].[wynik_wyscigu] AS [wynik_wyscigu]</DefiningQuery>
-    </EntitySet>
     <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" store:Type="Tables" store:Schema="multiliga">
       <DefiningQuery>SELECT 
     [zawodnik_wyscig].[id_zawodnik] AS [id_zawodnik], 
@@ -601,6 +514,14 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       <End Role="uzytkownik" EntitySet="uzytkownik" />
       <End Role="pracownik" EntitySet="pracownik" />
     </AssociationSet>
+    <AssociationSet Name="FK_wynik_id_wyscig" Association="Self.FK_wynik_id_wyscig">
+      <End Role="wyscig" EntitySet="wyscig" />
+      <End Role="wynik" EntitySet="wynik" />
+    </AssociationSet>
+    <AssociationSet Name="FK_wynik_id_zawodnik" Association="Self.FK_wynik_id_zawodnik">
+      <End Role="zawodnik" EntitySet="zawodnik" />
+      <End Role="wynik" EntitySet="wynik" />
+    </AssociationSet>
     <AssociationSet Name="FK_zawodnik_druzyna_id_druzyna" Association="Self.FK_zawodnik_druzyna_id_druzyna">
       <End Role="druzyna" EntitySet="druzyna" />
       <End Role="zawodnik_druzyna" EntitySet="zawodnik_druzyna" />
@@ -612,14 +533,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <AssociationSet Name="FK_zawodnik_id_zawodnik" Association="Self.FK_zawodnik_id_zawodnik">
       <End Role="zawodnik" EntitySet="zawodnik" />
       <End Role="wplata" EntitySet="wplata" />
-    </AssociationSet>
-    <AssociationSet Name="FK_zawody_id_zawody1" Association="Self.FK_zawody_id_zawody1">
-      <End Role="zawody" EntitySet="zawody" />
-      <End Role="ranking_druzyny" EntitySet="ranking_druzyny" />
-    </AssociationSet>
-    <AssociationSet Name="FK_zawody_id_zawody2" Association="Self.FK_zawody_id_zawody2">
-      <End Role="zawody" EntitySet="zawody" />
-      <End Role="ranking_druzyny" EntitySet="ranking_druzyny" />
     </AssociationSet>
     <AssociationSet Name="FK_zawody_id_zawody3" Association="Self.FK_zawody_id_zawody3">
       <End Role="zawody" EntitySet="zawody" />
@@ -637,14 +550,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
       <End Role="pracownik" EntitySet="pracownik" />
       <End Role="pakiet_startowy" EntitySet="pakiet_startowy" />
     </AssociationSet>
-    <AssociationSet Name="ranking_druzyny$fk_id_druzyna" Association="Self.ranking_druzyny$fk_id_druzyna">
-      <End Role="druzyna" EntitySet="druzyna" />
-      <End Role="ranking_druzyny" EntitySet="ranking_druzyny" />
-    </AssociationSet>
-    <AssociationSet Name="ranking_globalny$fk_id_zawodnik1" Association="Self.ranking_globalny$fk_id_zawodnik1">
-      <End Role="zawodnik" EntitySet="zawodnik" />
-      <End Role="ranking_globalny" EntitySet="ranking_globalny" />
-    </AssociationSet>
     <AssociationSet Name="trasa$fk_id_organizator3" Association="Self.trasa$fk_id_organizator3">
       <End Role="pracownik" EntitySet="pracownik" />
       <End Role="trasa" EntitySet="trasa" />
@@ -660,14 +565,6 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <AssociationSet Name="wplata$fk_id_pracownik" Association="Self.wplata$fk_id_pracownik">
       <End Role="pracownik" EntitySet="pracownik" />
       <End Role="wplata" EntitySet="wplata" />
-    </AssociationSet>
-    <AssociationSet Name="wynik_wyscigu$fk_id_wyscig1" Association="Self.wynik_wyscigu$fk_id_wyscig1">
-      <End Role="wyscig" EntitySet="wyscig" />
-      <End Role="wynik_wyscigu" EntitySet="wynik_wyscigu" />
-    </AssociationSet>
-    <AssociationSet Name="wynik_wyscigu$fk_id_zawodnik2" Association="Self.wynik_wyscigu$fk_id_zawodnik2">
-      <End Role="zawodnik" EntitySet="zawodnik" />
-      <End Role="wynik_wyscigu" EntitySet="wynik_wyscigu" />
     </AssociationSet>
     <AssociationSet Name="wyscig$fk_id_trasa1" Association="Self.wyscig$fk_id_trasa1">
       <End Role="trasa" EntitySet="trasa" />
