@@ -79,13 +79,10 @@
     <Compile Include="CompetitionsTeamsForm.Designer.cs">
       <DependentUpon>CompetitionsTeamsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreateDeleteEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CreateDeleteEditForm.Designer.cs">
-      <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="druzyna.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="druzyna_zawody.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="dyscyplina.cs">
@@ -93,18 +90,6 @@
     </Compile>
     <Compile Include="kwalifikacje.cs">
       <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoginForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -121,6 +106,38 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="organizator.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pakiet_startowy.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pracownik.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="trasa.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\CompetitionDataUtility.cs" />
+    <Compile Include="Utility\ContestantDataUtility.cs" />
+    <Compile Include="CreateDeleteEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreateDeleteEditForm.Designer.cs">
+      <DependentUpon>CreateDeleteEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="multiligaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -130,15 +147,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>multiligaDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="organizator.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pakiet_startowy.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pracownik.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="ProfileForm.cs">
       <SubType>Form</SubType>
@@ -154,10 +162,8 @@
     <Compile Include="SearchForm.Designer.cs">
       <DependentUpon>SearchForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SqlHelper.cs" />
-    <Compile Include="trasa.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Utility\TeamDataUtility.cs" />
+    <Compile Include="Utility\LoggedUserUtility.cs" />
     <Compile Include="uzytkownik.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

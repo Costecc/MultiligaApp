@@ -7,6 +7,7 @@
           <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
           <ScalarProperty Name="id_kapitan" ColumnName="id_kapitan" />
           <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="informacja" ColumnName="informacja" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -130,6 +131,7 @@
           <ScalarProperty Name="id_zawodnik_druzyna" ColumnName="id_zawodnik_druzyna" />
           <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
           <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
+          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -153,6 +155,16 @@
           <ScalarProperty Name="data_poczatek" ColumnName="data_poczatek" />
           <ScalarProperty Name="data_koniec" ColumnName="data_koniec" />
           <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="druzyna_zawody">
+      <EntityTypeMapping TypeName="multiligaModel.druzyna_zawody">
+        <MappingFragment StoreEntitySet="druzyna_zawody">
+          <ScalarProperty Name="id_druzyna_zawody" ColumnName="id_druzyna_zawody" />
+          <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
+          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
+          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

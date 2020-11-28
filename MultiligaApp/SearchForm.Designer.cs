@@ -141,7 +141,7 @@ namespace MultiligaApp
             this.SearchButton.TabIndex = 0;
             this.SearchButton.Text = "Szukaj";
             this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.button1_Click);
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // textBox3
             // 
@@ -280,10 +280,12 @@ namespace MultiligaApp
             {
                 //TODO               
                 profileForm.SetProfile(_user, "Profil zawodnika", "Zaproś do drużyny", "Imię i nazwisko", "Email", "Drużyna", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "O sobie");
+                ContestantDataUtility.showContestantProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
             }
             else if(SearchMenu.Text == "Wyszukiwanie drużyny")
             {
-                profileForm.SetProfile(_user, "Profil drużyny", "Zaproś do zawodów", "Nazwa", "Dyscyplina", "Kapitan", "O druzynie", "Aktualne rozgrywki", "Poprzednie rozgrywki", "Osiągnięcia");
+                TeamDataUtility.showTeamsProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
+                profileForm.SetProfile(_user, "Profil drużyny", "Zaproś do zawodów", "Nazwa", "Kapitan", "Dyscypliny", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "Informacja");
             }
 
             //TODO
@@ -291,7 +293,7 @@ namespace MultiligaApp
             //profileForm.FillProfileData(cell.Value.ToString(), "j.kaminski9508@wp.pl", "Motocross Lublin", "I Liga Motocross", "II Liga, I Liga", "Puchar Polski (2016)", "Fan szybkiej jazdy");
             //profileForm.FillProfileData(IDcell.Value.ToString(), "Motocross", "Andrzej Nowak", "I Liga", "II Liga", "Puchar Polski (2016)", "");
 
-            SqlHelper.showContestantProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
+            
             profileForm.Show();
         }
     }
