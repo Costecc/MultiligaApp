@@ -12,14 +12,14 @@ namespace MultiligaApp
     using System;
     using System.Collections.Generic;
     
-    public partial class zawodnik_druzyna
+    public partial class druzyna_zawody
     {
-        public int id_zawodnik_druzyna { get; set; }
-        public int id_zawodnik { get; set; }
+        public int id_druzyna_zawody { get; set; }
         public int id_druzyna { get; set; }
+        public int id_zawody { get; set; }
         public bool zaakceptowane { get; set; }
     
         public virtual druzyna druzyna { get; set; }
-        public virtual zawodnik zawodnik { get; set; }
+        public virtual zawody zawody { get; set; }
     }
 }

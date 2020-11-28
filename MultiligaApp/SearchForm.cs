@@ -32,21 +32,25 @@ namespace MultiligaApp
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void SearchButton_Click(object sender, EventArgs e)
         {
             //TODO - WYSZUKAĆ W BAZIE CZY ZNALEZIONO przynajmniej jedną DRUŻYNĘ
             //jeśli nie to komunikat że nie znaleziono
             if(SearchMenu.Text == "Wyszukiwanie gracza")
             {
-                    var contestants = SqlHelper.selectContestants(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
+                    var contestants = ContestantDataUtility.selectContestants(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
                     ResultView.DataSource = contestants.Select(x => new { ID = x.FirstOrDefault().id_zawodnik, Name = x.FirstOrDefault().imie_nazwisko }).ToList();
                     ResultView.Columns["ID"].Visible = false;
                     ResultView.ClearSelection();
                     ResultView.CurrentCell = null;
             }
-            if(false)
+            if(SearchMenu.Text == "Wyszukiwanie drużyny")
             {
-                MessageBox.Show("Nie znaleziono rekordu o danych parametrach!", "Brak wyników");
+                var teams = TeamDataUtility.selectTeams(textBox1.Text, textBox2.Text, textBox3.Text, textBox5.Text);
+                ResultView.DataSource = teams.Select(x => new { ID = x.FirstOrDefault().id_druzyna, Name = x.FirstOrDefault().nazwa }).ToList();
+                ResultView.Columns["ID"].Visible = false;
+                ResultView.ClearSelection();
+                ResultView.CurrentCell = null;
             }
         }
 

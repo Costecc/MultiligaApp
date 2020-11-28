@@ -37,25 +37,25 @@ namespace MultiligaApp
                     // 3 - opiekun
                     // 4 - zawodnik
                     // default - mozliwosc logowania
-                    SqlHelper.setCurrentEmail(Login.Text.ToString());                  
+                    LoggedUserUtility.setCurrentEmail(Login.Text.ToString());                  
 
-                    var currentUser = SqlHelper.getLoggedUser();
+                    var currentUser = LoggedUserUtility.getLoggedUser();
 
                     int user = 0;
                     if (currentUser.rola == "zawodnik")
                     {
                         user = 4;
-                        //todo dla kapitana
+                        //TODO kapitan, sprawdzic czy w tabeli druzyna jest jako kapitan
                     }
                     else
                     {                       
-                        var currentEmployee = SqlHelper.getLoggedEmployee();
+                        var currentEmployee = LoggedUserUtility.getLoggedEmployee();
 
                         if(currentEmployee.stanowisko == "organizator")
                         {
                             user = 1;
                         }
-                        else if(currentEmployee.stanowisko == "opiekun zawodow")
+                        else if(currentEmployee.stanowisko == "opiekun")
                         {
                             user = 3;
                         }

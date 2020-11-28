@@ -7,7 +7,9 @@
     <Property Name="id_druzyna" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_kapitan" Type="Int32" Nullable="false" />
     <Property Name="nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="informacja" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="zawodnik" Relationship="Self.druzyna_fk_id_kapitan" FromRole="druzyna" ToRole="zawodnik" />
+    <NavigationProperty Name="druzyna_zawody" Relationship="Self.FK_id_druzyna_druzyna_zawody" FromRole="druzyna" ToRole="druzyna_zawody" />
     <NavigationProperty Name="zawodnik_druzyna" Relationship="Self.FK_zawodnik_druzyna_id_druzyna" FromRole="druzyna" ToRole="zawodnik_druzyna" />
   </EntityType>
   <EntityType Name="dyscyplina">
@@ -110,7 +112,7 @@
     <Key>
       <PropertyRef Name="id_wynik" />
     </Key>
-    <Property Name="id_wynik" Type="Int32" Nullable="false" />
+    <Property Name="id_wynik" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
     <Property Name="id_wyscig" Type="Int32" Nullable="false" />
     <Property Name="czas" Type="Time" Precision="7" />
@@ -158,6 +160,7 @@
     <Property Name="id_zawodnik_druzyna" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
     <Property Name="id_druzyna" Type="Int32" Nullable="false" />
+    <Property Name="zaakceptowane" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="druzyna" Relationship="Self.FK_zawodnik_druzyna_id_druzyna" FromRole="zawodnik_druzyna" ToRole="druzyna" />
     <NavigationProperty Name="zawodnik" Relationship="Self.FK_zawodnik_druzyna_id_zawodnik" FromRole="zawodnik_druzyna" ToRole="zawodnik" />
   </EntityType>
@@ -189,6 +192,21 @@
     <NavigationProperty Name="wyscig" Relationship="Self.FK_zawody_id_zawody3" FromRole="zawody" ToRole="wyscig" />
     <NavigationProperty Name="wyscig1" Relationship="Self.zawody_fk_id_kwalifikacje" FromRole="zawody" ToRole="wyscig" />
     <NavigationProperty Name="zawodnik_zawody" Relationship="Self.zawodnik_zawody_fk_id_zawody" FromRole="zawody" ToRole="zawodnik_zawody" />
+    <NavigationProperty Name="druzyna_zawody" Relationship="Self.FK_id_zawody_druzyna_zawody" FromRole="zawody" ToRole="druzyna_zawody" />
+  </EntityType>
+  <EntityType Name="druzyna_zawody">
+    <Key>
+      <PropertyRef Name="id_druzyna_zawody" />
+      <PropertyRef Name="id_druzyna" />
+      <PropertyRef Name="id_zawody" />
+      <PropertyRef Name="zaakceptowane" />
+    </Key>
+    <Property Name="id_druzyna_zawody" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_druzyna" Type="Int32" Nullable="false" />
+    <Property Name="id_zawody" Type="Int32" Nullable="false" />
+    <Property Name="zaakceptowane" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="druzyna" Relationship="Self.FK_id_druzyna_druzyna_zawody" FromRole="druzyna_zawody" ToRole="druzyna" />
+    <NavigationProperty Name="zawody" Relationship="Self.FK_id_zawody_druzyna_zawody" FromRole="druzyna_zawody" ToRole="zawody" />
   </EntityType>
   <Association Name="druzyna_fk_id_kapitan">
     <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
@@ -199,6 +217,18 @@
       </Principal>
       <Dependent Role="druzyna">
         <PropertyRef Name="id_kapitan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_id_druzyna_druzyna_zawody">
+    <End Role="druzyna" Type="Self.druzyna" Multiplicity="1" />
+    <End Role="druzyna_zawody" Type="Self.druzyna_zawody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="druzyna">
+        <PropertyRef Name="id_druzyna" />
+      </Principal>
+      <Dependent Role="druzyna_zawody">
+        <PropertyRef Name="id_druzyna" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -480,6 +510,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_id_zawody_druzyna_zawody">
+    <End Role="zawody" Type="Self.zawody" Multiplicity="1" />
+    <End Role="druzyna_zawody" Type="Self.druzyna_zawody" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zawody">
+        <PropertyRef Name="id_zawody" />
+      </Principal>
+      <Dependent Role="druzyna_zawody">
+        <PropertyRef Name="id_zawody" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="zawodnik_wyscig">
     <End Role="wyscig" Type="Self.wyscig" Multiplicity="*" />
     <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="*" />
@@ -500,9 +542,14 @@
     <EntitySet Name="zawodnik_druzyna" EntityType="Self.zawodnik_druzyna" />
     <EntitySet Name="zawodnik_zawody" EntityType="Self.zawodnik_zawody" />
     <EntitySet Name="zawody" EntityType="Self.zawody" />
+    <EntitySet Name="druzyna_zawody" EntityType="Self.druzyna_zawody" />
     <AssociationSet Name="druzyna_fk_id_kapitan" Association="Self.druzyna_fk_id_kapitan">
       <End Role="zawodnik" EntitySet="zawodnik" />
       <End Role="druzyna" EntitySet="druzyna" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_druzyna_druzyna_zawody" Association="Self.FK_id_druzyna_druzyna_zawody">
+      <End Role="druzyna" EntitySet="druzyna" />
+      <End Role="druzyna_zawody" EntitySet="druzyna_zawody" />
     </AssociationSet>
     <AssociationSet Name="FK_zawodnik_druzyna_id_druzyna" Association="Self.FK_zawodnik_druzyna_id_druzyna">
       <End Role="druzyna" EntitySet="druzyna" />
@@ -595,6 +642,10 @@
     <AssociationSet Name="zawodnik_zawody_fk_id_zawody" Association="Self.zawodnik_zawody_fk_id_zawody">
       <End Role="zawody" EntitySet="zawody" />
       <End Role="zawodnik_zawody" EntitySet="zawodnik_zawody" />
+    </AssociationSet>
+    <AssociationSet Name="FK_id_zawody_druzyna_zawody" Association="Self.FK_id_zawody_druzyna_zawody">
+      <End Role="zawody" EntitySet="zawody" />
+      <End Role="druzyna_zawody" EntitySet="druzyna_zawody" />
     </AssociationSet>
     <AssociationSet Name="zawodnik_wyscig" Association="Self.zawodnik_wyscig">
       <End Role="wyscig" EntitySet="wyscig" />

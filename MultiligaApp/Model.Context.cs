@@ -40,5 +40,6 @@ namespace MultiligaApp
         public virtual DbSet<zawodnik_druzyna> zawodnik_druzyna { get; set; }
         public virtual DbSet<zawodnik_zawody> zawodnik_zawody { get; set; }
         public virtual DbSet<zawody> zawody { get; set; }
+        public virtual DbSet<druzyna_zawody> druzyna_zawody { get; set; }
     }
 }

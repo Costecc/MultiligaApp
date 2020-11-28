@@ -50,10 +50,10 @@ namespace MultiligaApp
             MatchesView.Rows.Add("XYZ 0:1 Motocross Lublin");
         }
 
-        public void FillProfileData(string label8, string label9, List<string> teams, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe )
+        public void FillProfileDataContestant(string name, string email, List<string> teams, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe )
         {
-            this.label8.Text = label8;
-            this.label9.Text = label9;                     
+            this.label8.Text = name;
+            this.label9.Text = email;                     
 
             dataGridView1.DataSource = currentCompetitions.Select(x => new { Name = x.nazwa }).ToList();
             dataGridView1.ClearSelection();
@@ -67,7 +67,32 @@ namespace MultiligaApp
             dataGridView3.ClearSelection();
             dataGridView3.CurrentCell = null;
 
-            dataGridView5.DataSource = achievements.Select(x => new { Zawody = x.competitionName, Miejsce = x.place }).ToList();
+            dataGridView5.DataSource = achievements.Select(x => new { Zawody = x.competitionName + x.raceName, Miejsce = x.place }).ToList();
+            dataGridView5.ClearSelection();
+            dataGridView5.CurrentCell = null;
+
+            this.textBox1.Text = aboutMe;
+        }
+
+        public void FillProfileDataTeam(string name, string captain, List<string> disciplines, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe)
+        {
+            this.label8.Text = name;
+            this.label9.Text = captain;
+
+            dataGridView1.DataSource = currentCompetitions.Select(x => new { Name = x.nazwa }).ToList();
+            dataGridView1.ClearSelection();
+            dataGridView1.CurrentCell = null;
+
+            dataGridView2.DataSource = pastCompetitions.Select(x => new { Name = x.nazwa }).ToList();
+            dataGridView2.ClearSelection();
+            dataGridView2.CurrentCell = null;
+
+
+            dataGridView3.DataSource = disciplines.Select(x => new { Name = x }).ToList();
+            dataGridView3.ClearSelection();
+            dataGridView3.CurrentCell = null;
+
+            dataGridView5.DataSource = achievements.Select(x => new { Zawody = (x.competitionName + x.raceName), Miejsce = x.place }).ToList();
             dataGridView5.ClearSelection();
             dataGridView5.CurrentCell = null;
 

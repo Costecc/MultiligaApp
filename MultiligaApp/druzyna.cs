@@ -17,14 +17,18 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public druzyna()
         {
+            this.druzyna_zawody = new HashSet<druzyna_zawody>();
             this.zawodnik_druzyna = new HashSet<zawodnik_druzyna>();
         }
     
         public int id_druzyna { get; set; }
         public int id_kapitan { get; set; }
         public string nazwa { get; set; }
+        public string informacja { get; set; }
     
         public virtual zawodnik zawodnik { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<druzyna_zawody> druzyna_zawody { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik_druzyna> zawodnik_druzyna { get; set; }
     }
