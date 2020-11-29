@@ -4,7 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+public struct result
+{
+    public string competitionName, raceName;
+    public int place, points, contestantId;
+    public List<int> teamIds;
+};
 namespace MultiligaApp
 {
     class ContestantDataUtility
@@ -42,7 +47,7 @@ namespace MultiligaApp
             }
         }
 
-        static public void showContestantProfile(ProfileForm profileForm, int userPermissions, int id)
+        static public void showContestantProfile(ProfileForm profileForm, int id)
         {
             zawodnik selectedContestant;
             uzytkownik selectedUser;
@@ -164,7 +169,7 @@ namespace MultiligaApp
                                              select _zawodnik_zawody.id_zawodnik).ToList();
 
                         checkContestantRaceResults(id, races, ref contestantsAchievements);
-                        competitionResults = getCompetitionStandings(races, ref contestantsAchievements, contestantsId);
+                        competitionResults = CompetitionDataUtility.getCompetitionStandings(races, ref contestantsAchievements, contestantsId);
                         checkContestantsPlaceInCompetition(id, competitionResults, ref contestantsAchievements);
                     }
                 }            
@@ -182,11 +187,13 @@ namespace MultiligaApp
                                  select _wynik.czas).Count();
                 var competitionName = db.zawody.Where(z => z.id_zawody == race.id_zawody).SingleOrDefault().nazwa;
 
+                var teamIds = getContestantTeamIds(id);
                 result r;                
                 r.competitionName = competitionName;
                 r.points = 0;
-                r.id = id;
+                r.contestantId = id;
                 r.raceName = ", wyścig numer " + raceNumber.ToString();
+                r.teamIds = teamIds;
                 if (time != null)
                 {
                     r.place = racePlace + 1;
@@ -215,45 +222,11 @@ namespace MultiligaApp
                 }
                 ++raceNumber;
             }
-        }
-
-        static public void addToCompetitionStandings(List<result> raceResults, ref List<result> competitionResults)
-        {            
-            foreach (var raceResult in raceResults)  // dodaję punkty do klasyfikacji generalnej
-            {
-                if (!competitionResults.Any(c => c.id == raceResult.id))
-                {
-                    competitionResults.Add(raceResult);
-                }
-                else
-                {
-                    var index = competitionResults.FindIndex(c => c.id == raceResult.id);
-                    competitionResults[index] = new result { id = competitionResults[index].id, points = competitionResults[index].points + raceResult.points, competitionName = raceResult.competitionName, place = 0 };
-                }
-            }
-        }
-
-        static public List<result> getCompetitionStandings(IQueryable<wyscig> races, ref List<result> contestantsAchievements, List<int> contestantsId)
-        {
-            int raceNumber = 1;
-            var competitionResults = new List<result>();
-            foreach (var race in races)
-            {
-                var raceResults = new List<result>();
-                foreach (var contestantId in contestantsId)
-                {
-                    result r = getContestantsRaceResult(contestantId, race, raceNumber);
-                    raceResults.Add(r);
-                }
-                addToCompetitionStandings(raceResults, ref competitionResults);
-                ++raceNumber;
-            }
-            return competitionResults;
-        }
+        }        
 
         static public void checkContestantsPlaceInCompetition(int id, List<result> competitionResults, ref List<result> contestantsAchievements)
         {
-            var contestantsCompetitionResult = competitionResults.FirstOrDefault(c => c.id == id);
+            var contestantsCompetitionResult = competitionResults.FirstOrDefault(c => c.contestantId == id);
 
             var contestantsPlace = competitionResults.Count(c => c.points > contestantsCompetitionResult.points);
             if (contestantsPlace <= 3)
@@ -262,6 +235,26 @@ namespace MultiligaApp
                 contestantsCompetitionResult.raceName = "";
                 contestantsCompetitionResult.place = contestantsPlace + 1;
                 contestantsAchievements.Add(contestantsCompetitionResult);
+            }
+        }
+
+        static public List<int> getContestantTeamIds(int id)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var teamIds = (from _zawodnik_druzyna in db.zawodnik_druzyna
+                              where (_zawodnik_druzyna.id_zawodnik == id)
+                              select _zawodnik_druzyna.id_druzyna).ToList();
+
+                return teamIds;
+            }
+        }
+
+        static public bool checkIfCaptain(int contestantId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                return db.druzyna.Any(d => d.id_kapitan == contestantId);
             }
         }
         

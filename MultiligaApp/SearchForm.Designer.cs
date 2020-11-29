@@ -22,9 +22,9 @@ namespace MultiligaApp
             base.Dispose(disposing);
         }
 
-        private int _user;
+        private LoggedUserUtility.userType _user;
 
-        public void SetSearchingMenu(int user, string groupBox, string label1, string label2, string label3, string label4, string label5)
+        internal void SetSearchingMenu(LoggedUserUtility.userType user, string groupBox, string label1, string label2, string label3, string label4, string label5)
         {
             _user = user;
             this.SearchMenu.Text = groupBox;
@@ -48,11 +48,7 @@ namespace MultiligaApp
             {
                 this.label5.Visible = false;
                 this.textBox5.Visible = false;
-            }
-
-            //ResultView.Rows.Add("Motocross Lublin");
-            //ResultView.Rows.Add("Janusz Kamiński");
-            //ResultView.Rows.Add("Janusz Nowak");
+            }          
         }
 
         #region Windows Form Designer generated code
@@ -277,23 +273,15 @@ namespace MultiligaApp
             ProfileForm profileForm = new ProfileForm();
 
             if(SearchMenu.Text == "Wyszukiwanie gracza")
-            {
-                //TODO               
+            {             
                 profileForm.SetProfile(_user, "Profil zawodnika", "Zaproś do drużyny", "Imię i nazwisko", "Email", "Drużyna", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "O sobie");
-                ContestantDataUtility.showContestantProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
+                ContestantDataUtility.showContestantProfile(profileForm, Convert.ToInt32(IDcell.Value));
             }
             else if(SearchMenu.Text == "Wyszukiwanie drużyny")
             {
-                TeamDataUtility.showTeamsProfile(profileForm, _user, Convert.ToInt32(IDcell.Value));
+                TeamDataUtility.showTeamsProfile(profileForm, Convert.ToInt32(IDcell.Value));
                 profileForm.SetProfile(_user, "Profil drużyny", "Zaproś do zawodów", "Nazwa", "Kapitan", "Dyscypliny", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "Informacja");
-            }
-
-            //TODO
-            //Tutaj uzupełnić pozostałe pola - z bazy danych. Na razie tylko imie i nazwisko
-            //profileForm.FillProfileData(cell.Value.ToString(), "j.kaminski9508@wp.pl", "Motocross Lublin", "I Liga Motocross", "II Liga, I Liga", "Puchar Polski (2016)", "Fan szybkiej jazdy");
-            //profileForm.FillProfileData(IDcell.Value.ToString(), "Motocross", "Andrzej Nowak", "I Liga", "II Liga", "Puchar Polski (2016)", "");
-
-            
+            }       
             profileForm.Show();
         }
     }

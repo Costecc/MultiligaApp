@@ -28,9 +28,6 @@ namespace MultiligaApp
                 {
                     this.Hide();
                     MainForm mf = new MainForm();
-                    //TODO - sprawdzić w bazie co to za typ użytkownika, czy np. kapitan/opiekun zawodów etc.
-                    //na tej podstawie włączyć na enable odpowiednie funkcje w menu
-                    //na razie dałem na podstawie zmiennej user
                     // 0 - mozliwosc wyszukiwania
                     // 1 - organizator
                     // 2 - kapitan
@@ -41,11 +38,15 @@ namespace MultiligaApp
 
                     var currentUser = LoggedUserUtility.getLoggedUser();
 
-                    int user = 0;
+                    var user = LoggedUserUtility.userType.lurker;
                     if (currentUser.rola == "zawodnik")
                     {
-                        user = 4;
+                        user = LoggedUserUtility.userType.contestant;
                         //TODO kapitan, sprawdzic czy w tabeli druzyna jest jako kapitan
+                        if(ContestantDataUtility.checkIfCaptain(LoggedUserUtility.getLoggedContestant().id_zawodnik))
+                        {
+                            user = LoggedUserUtility.userType.captain;
+                        }
                     }
                     else
                     {                       
@@ -53,11 +54,11 @@ namespace MultiligaApp
 
                         if(currentEmployee.stanowisko == "organizator")
                         {
-                            user = 1;
+                            user = LoggedUserUtility.userType.organiser;
                         }
                         else if(currentEmployee.stanowisko == "opiekun")
                         {
-                            user = 3;
+                            user = LoggedUserUtility.userType.supervisor;
                         }
                     }                    
                     // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania

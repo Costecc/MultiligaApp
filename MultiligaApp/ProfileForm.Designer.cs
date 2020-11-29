@@ -23,7 +23,7 @@ namespace MultiligaApp
             base.Dispose(disposing);
         }
 
-        public void SetProfile(int user, string groupBox, string inviteMessage, string label1, string label2, string label3, string label4, string label5, string label6, string label7)
+        internal void SetProfile(LoggedUserUtility.userType user, string groupBox, string inviteMessage, string label1, string label2, string label3, string label4, string label5, string label6, string label7)
         {
             this.ProfileView.Text = groupBox;
             this.label1.Text = label1;
@@ -37,12 +37,12 @@ namespace MultiligaApp
 
             if (inviteMessage == "Zaproś do zawodów")
             {
-                if (user == 3)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
+                if (user == LoggedUserUtility.userType.supervisor)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
                     InviteButton.Visible = true;
             }
             else
             {
-                if(user == 2)   //tylko kapitan (user = 2) może dodać zawodnika do drużyny
+                if(user == LoggedUserUtility.userType.captain)   //tylko kapitan (user = 2) może dodać zawodnika do drużyny
                     InviteButton.Visible = true;
             }
 
@@ -74,7 +74,7 @@ namespace MultiligaApp
             this.textBox1.Text = aboutMe;
         }
 
-        public void FillProfileDataTeam(string name, string captain, List<string> disciplines, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe)
+        public void FillProfileDataTeam(string name, string captain, List<string> disciplines, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<teamResult> achievements, string aboutMe)
         {
             this.label8.Text = name;
             this.label9.Text = captain;

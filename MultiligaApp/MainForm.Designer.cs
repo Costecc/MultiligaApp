@@ -21,25 +21,25 @@ namespace MultiligaApp
             base.Dispose(disposing);
         }
 
-        private int _user;
+        private LoggedUserUtility.userType _user;
 
-        public void SetMenu(int user)
+        internal void SetMenu(LoggedUserUtility.userType user)
         {
             _user = user;
             //jeśli użytkownik ma tylko możliwość logowania, nie może wyszukiwać
-            if (_user > 4)
-            {
-                wyszukajToolStripMenuItem.Visible = false; 
-            }
+            //if (_user > 4)
+            //{
+            //    wyszukajToolStripMenuItem.Visible = false; 
+            //}
 
             //organizator ma prawo do zarządzania zawodami - ustawienie przycisku jako widocznego
-            if (_user == 1)
+            if (_user == LoggedUserUtility.userType.organiser)
             {
                 zarzadzajZawodamiToolStripMenuItem.Visible = true;
             }
 
             //zawodnik ma prawo do zakłądania drużyny
-            if (_user == 4)
+            if (_user == LoggedUserUtility.userType.contestant)
             {
                 załóżNowaDrużynęToolStripMenuItem.Visible = true;
                 drużynyToolStripMenuItem.Visible = true;
