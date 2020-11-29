@@ -55,7 +55,7 @@ namespace MultiligaApp
         private void drużynaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchForm searchForm = new SearchForm();
-            searchForm.SetSearchingMenu(_user, "Wyszukiwanie drużyny", "Nazwa", "Zawody", "Miasto", "Poziom ligi", "Dyscyplina");
+            searchForm.SetSearchingMenu(_user, "Wyszukiwanie drużyny", "Nazwa", "Zawody", "Miasto", "Dyscyplina", "");
             searchForm.Show();
         }
 

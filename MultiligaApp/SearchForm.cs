@@ -46,7 +46,7 @@ namespace MultiligaApp
             }
             if(SearchMenu.Text == "Wyszukiwanie drużyny")
             {
-                var teams = TeamDataUtility.selectTeams(textBox1.Text, textBox2.Text, textBox3.Text, textBox5.Text);
+                var teams = TeamDataUtility.selectTeams(textBox1.Text, textBox2.Text, textBox3.Text, textBox4.Text);
                 ResultView.DataSource = teams.Select(x => new { ID = x.FirstOrDefault().id_druzyna, Name = x.FirstOrDefault().nazwa }).ToList();
                 ResultView.Columns["ID"].Visible = false;
                 ResultView.ClearSelection();

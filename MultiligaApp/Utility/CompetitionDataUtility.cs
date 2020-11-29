@@ -230,6 +230,76 @@ namespace MultiligaApp
             return dates;
         }
 
+        static public void addToCompetitionStandings(List<result> raceResults, ref List<result> competitionResults)
+        {
+            foreach (var raceResult in raceResults)  // dodaję punkty do klasyfikacji generalnej
+            {
+                if (!competitionResults.Any(c => c.contestantId == raceResult.contestantId))
+                {
+                    competitionResults.Add(raceResult);
+                }
+                else
+                {
+                    var index = competitionResults.FindIndex(c => c.contestantId == raceResult.contestantId);
+                    competitionResults[index] = new result { contestantId = competitionResults[index].contestantId, points = competitionResults[index].points + raceResult.points, competitionName = raceResult.competitionName, place = 0 };
+                }
+            }
+        }
+
+        static public List<result> getCompetitionStandings(IQueryable<wyscig> races, ref List<result> contestantsAchievements, List<int> contestantsId)
+        {
+            int raceNumber = 1;
+            var competitionResults = new List<result>();
+            foreach (var race in races)
+            {
+                var raceResults = getRaceStandings(contestantsId, race, raceNumber);
+                addToCompetitionStandings(raceResults, ref competitionResults);
+                ++raceNumber;
+            }
+            return competitionResults;
+        }
+
+        static public void addToCompetitionTeamStandings(List<teamResult> raceResults, ref List<teamResult> competitionResults) 
+        {
+            foreach (var raceResult in raceResults)  // dodaję punkty do klasyfikacji generalnej
+            {
+                if (!competitionResults.Any(c => c.teamId == raceResult.teamId))
+                {
+                    competitionResults.Add(raceResult);
+                }
+                else
+                {
+                    var index = competitionResults.FindIndex(c => c.teamId == raceResult.teamId);
+                    competitionResults[index] = new teamResult { teamId = competitionResults[index].teamId, points = competitionResults[index].points + raceResult.points, competitionName = raceResult.competitionName, place = 0 };
+                }
+            }
+        }
+
+        static public List<teamResult> getCompetitionTeamStandings(IQueryable<wyscig> races, ref List<teamResult> contestantsAchievements, List<int> contestantsId)  
+        {
+            int raceNumber = 1;
+            var competitionResults = new List<teamResult>();
+            foreach (var race in races)
+            {
+                var raceResults = getRaceStandings(contestantsId, race, raceNumber);
+                var aggregatedPoints = TeamDataUtility.sumTeamsPoints(raceResults);
+                addToCompetitionTeamStandings(aggregatedPoints, ref competitionResults);
+                ++raceNumber;
+            }
+            return competitionResults;
+        }
+
+        static public List<result> getRaceStandings(List<int> contestantsId, wyscig race, int raceNumber)
+        {
+            var raceResults = new List<result>();
+            foreach (var contestantId in contestantsId)
+            {
+                result r = ContestantDataUtility.getContestantsRaceResult(contestantId, race, raceNumber);
+                raceResults.Add(r);
+            }
+            return raceResults;
+        }
+
         static public bool checkQualifiersPossibility(int numberOfRaces, string info)
         {
             return (numberOfRaces > 1 && info == "kwalifikacje");

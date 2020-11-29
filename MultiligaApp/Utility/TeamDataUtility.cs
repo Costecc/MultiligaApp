@@ -5,6 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+public struct teamResult
+{
+    public string competitionName, raceName;
+    public int place, points, teamId;
+};
 namespace MultiligaApp
 {
     class TeamDataUtility
@@ -58,7 +63,7 @@ namespace MultiligaApp
                 }
             }
 
-        static public void showTeamsProfile(ProfileForm profileForm, int userPermissions, int id)
+        static public void showTeamsProfile(ProfileForm profileForm, int id)
         {
             druzyna selectedTeam;
             using (var db = new multiligaEntities())
@@ -71,7 +76,7 @@ namespace MultiligaApp
                 getTeamsDisciplines(id),
                 getTeamsCurrentCompetitions(id),
                 getTeamsPastCompetitions(id),
-                getTeamsAchievements(id, getRacesInMultipleCompetitions(getTeamsPastCompetitions(id))), // jesli zawodnik nie ma past comp to nic
+                getTeamsAchievements(id, getTeamsPastCompetitions(id)), // jesli zawodnik nie ma past comp to nic
                 selectedTeam.informacja
                 );
         }
@@ -177,153 +182,114 @@ namespace MultiligaApp
             }
         }
 
-        static public List<result> getTeamsAchievements(int id, List<wyscig> races)
+        static public List<teamResult> getTeamsAchievements(int id, List<zawody> competitions)
         {
-            var teamsAchievements = new List<result>();
+            var teamsAchievements = new List<teamResult>();
+
             if (getTeamsPastCompetitions(id).Count > 0)
             {
-                result overallResult;
                 using (var db = new multiligaEntities())
                 {
-                    int previousCompetitionId = 0, raceNumber = 1;
-                    foreach (var r in races)
+                    foreach (var competition in competitions)
                     {
-                        if (previousCompetitionId == r.id_zawody)
-                        {
-                            ++raceNumber;
-                        }
-                        else if (previousCompetitionId != 0)
-                        {
-                            overallResult = getTeamsPlaceInCompetition(id, previousCompetitionId, sumTeamsTimeInCompetition(id, previousCompetitionId));
-                            if (overallResult.place <= 3)
-                            {
-                                teamsAchievements.Add(overallResult);
-                            }
-                            raceNumber = 1;
-                        }
+                        var competitionResults = new List<teamResult>();
 
-                        var result = getTeamsRaceResult(id, r, raceNumber);
-                        if (result.place <= 3)
-                        {
-                            teamsAchievements.Add(result);
-                        }
-                        previousCompetitionId = r.id_zawody;
-                    }
-                    overallResult = getTeamsPlaceInCompetition(id, previousCompetitionId, sumTeamsTimeInCompetition(id, previousCompetitionId));
-                    if (overallResult.place <= 3)
-                    {
-                        teamsAchievements.Add(overallResult);
+                        var races = (from _wyscig in db.wyscig
+                                     where _wyscig.id_zawody == competition.id_zawody
+                                     select _wyscig);
+
+                        var contestantsIds = (from _zawodnik_zawody in db.zawodnik_zawody
+                                             where _zawodnik_zawody.id_zawody == competition.id_zawody
+                                             select _zawodnik_zawody.id_zawodnik).ToList();
+
+                        checkTeamsRaceResults(id, races, ref teamsAchievements, contestantsIds);
+                        competitionResults = CompetitionDataUtility.getCompetitionTeamStandings(races, ref teamsAchievements, contestantsIds);
+                        checkTeamsPlaceInCompetition(id, competitionResults, ref teamsAchievements);
                     }
                 }
             }
             return teamsAchievements;
         }
+
         
-        static public result getTeamsRaceResult(int id, wyscig race, int raceNumber)
+
+        static public teamResult getTeamsRaceResult(int teamId, wyscig race, int raceNumber, List<int> contestantsId)
         {
+            //skorzystac z competitionDataUtility.getRaceStandings(), znalezc tam beda wyniki w wyscigu + id druzyn
             using (var db = new multiligaEntities())
             {
-                var time = (from _wynik in db.wynik
-                            join _zawodnik in db.zawodnik on _wynik.id_zawodnik equals _zawodnik.id_zawodnik into _zaw
-                            from _zawodnik in _zaw.DefaultIfEmpty()
-
-                            join _zawodnik_druzyna in db.zawodnik_druzyna on _zawodnik.id_zawodnik equals _zawodnik_druzyna.id_zawodnik into _zaw_dr
-                            from _zawodnik_druzyna in _zaw_dr.DefaultIfEmpty()
-
-                            where (_zawodnik_druzyna.id_druzyna == id && _wynik.id_wyscig == race.id_wyscig)
-                            select _wynik).AsEnumerable().Sum(w => w.czas.Value.Ticks);
-
-                var calculatedTime = TimeSpan.FromTicks(time);
-                var racePlace = (from _wynik in db.wynik
-                                 where (_wynik.czas < calculatedTime && _wynik.czas != TimeSpan.Zero && _wynik.id_wyscig == race.id_wyscig)
-                                 select _wynik.czas).Count();
+                var raceStandings = CompetitionDataUtility.getRaceStandings(contestantsId, race, raceNumber);
                 var competitionName = db.zawody.Where(z => z.id_zawody == race.id_zawody).SingleOrDefault().nazwa;
 
-                result r;
-                r.place = racePlace + 1;
+                var aggregatedPoints = sumTeamsPoints(raceStandings);
+                var place = getTeamsPlaceInRace(aggregatedPoints, teamId);
+                teamResult r;
+                r.place = place + 1;
                 r.competitionName = competitionName;
                 r.points = 0;
-                r.id = id;
+                r.teamId = teamId;
                 r.raceName = ", wyścig numer " + raceNumber.ToString();
                 return r;
             }
         }
 
-        static public long sumTeamsTimeInCompetition(int id, int competitionId)
+        static public List<teamResult> sumTeamsPoints(List<result> allResults)
         {
-            using (var db = new multiligaEntities())
+            var aggregatedPoints = new List<teamResult>();
+            foreach(var result in allResults)
             {
-                return (from _wynik in db.wynik
-                        join _wyscig in db.wyscig on _wynik.id_wyscig equals _wyscig.id_wyscig     
-
-                        join _zawodnik in db.zawodnik on _wynik.id_zawodnik equals _zawodnik.id_zawodnik into _zaw
-                        from _zawodnik in _zaw.DefaultIfEmpty()
-
-                        join _zawodnik_druzyna in db.zawodnik_druzyna on _zawodnik.id_zawodnik equals _zawodnik_druzyna.id_zawodnik into _zaw_dr
-                        from _zawodnik_druzyna in _zaw_dr.DefaultIfEmpty()
-
-                        where (_wyscig.id_zawody == competitionId && _zawodnik_druzyna.id_druzyna == id)
-                        select _wynik).AsEnumerable().Sum(w => w.czas.Value.Ticks);
-            }
-        }
-        //todo
-        static public result getTeamsPlaceInCompetition(int id, int competitionId, long time)
-        {
-            using (var db = new multiligaEntities())
-            {
-                var aggregatedTimes = new List<long>();
-                var joinedTables = (from _wynik in db.wynik
-                                    join _wyscig in db.wyscig on _wynik.id_wyscig equals _wyscig.id_wyscig
-                                    where _wyscig.id_zawody == competitionId
-                                    select _wynik);
-
-                var contestants = (from _zawodnik_zawody in db.zawodnik_zawody
-                                   where _zawodnik_zawody.id_zawody == competitionId
-                                   select _zawodnik_zawody.id_zawodnik);
-
-                foreach (var c in contestants)
+                foreach(var id in result.teamIds)
                 {
-                    var aggregatedTime = (from _joinedTables in joinedTables
-                                          where _joinedTables.id_zawodnik == c
-                                          select _joinedTables).AsEnumerable().Sum(s => s.czas.Value.Ticks);
-                    //MessageBox.Show(TimeSpan.FromTicks(aggregatedTime).ToString(), "zawodnik" + c.ToString());
-                    aggregatedTimes.Add(aggregatedTime);
-                }
-                var competitionName = db.zawody.Where(z => z.id_zawody == competitionId).SingleOrDefault().nazwa;
-                var place = (from _aggregatedTime in aggregatedTimes
-                             where time > _aggregatedTime
-                             select _aggregatedTime).Count() + 1; // +1 bo wcześniej sprawdzam tylko ilu zawodników miało krótszy czas -> jeśli 0, to mamy 1 miejsce     
-                result r;
-
-                r.competitionName = competitionName + " KLASYFIKACJA GENERALNA";
-                r.place = place;
-                r.points = 0;
-                r.id = id;
-                r.raceName = "";
-                return r;
+                    if (!aggregatedPoints.Any(c => c.teamId == id))
+                    {
+                        aggregatedPoints.Add(new teamResult { teamId = id, points = result.points,
+                            competitionName = result.competitionName, place = 0, raceName = result.raceName });
+                    }
+                    else
+                    {
+                        var index = aggregatedPoints.FindIndex(c => c.teamId == id);
+                        aggregatedPoints[index] = new teamResult { teamId = id, points = aggregatedPoints[index].points + result.points,
+                            competitionName = result.competitionName, place = 0, raceName = result.raceName };
+                    }
+                }                
             }
+            return aggregatedPoints;
         }
 
-
-
-        //nie wiem czy potrzebne
-        static public bool checkIfCompetitionCompleted(int id, int competitionId)   //sprawdzam czy zawodnik brał udział we wszystkich wyścigach składających się na zawody
+        static public int getTeamsPlaceInRace(List<teamResult> results, int teamId)
         {
-            using (var db = new multiligaEntities())
-            {
-                var raceCount = (from _wynik in db.wynik
-                                 join _wyscig in db.wyscig on _wynik.id_wyscig equals _wyscig.id_wyscig
-                                 where _wyscig.id_zawody == competitionId
-                                 select _wynik).Count();
-
-                var resultCount = (from _wynik in db.wynik
-                                   join _wyscig in db.wyscig on _wynik.id_wyscig equals _wyscig.id_wyscig
-                                   where _wyscig.id_zawody == competitionId && _wynik.id_zawodnik == id && _wynik.czas != null
-                                   select _wynik).Count();
-
-                return raceCount == resultCount;
-            }
+            var teamsResult = results.Where(r => r.teamId == teamId).SingleOrDefault();
+            var place = results.Count(r => r.points > teamsResult.points);
+            return place;
         }
 
+        static public void checkTeamsRaceResults(int id, IQueryable<wyscig> races, ref List<teamResult> contestantsAchievements, List<int> contestantsIds)
+        {
+            int raceNumber = 1;
+            var competitionResults = new List<result>();
+            foreach (var race in races)
+            {
+                var r = getTeamsRaceResult(id, race, raceNumber, contestantsIds);
+                if (r.place <= 3 && r.place != 0)
+                {
+                    contestantsAchievements.Add(r);
+                }
+                ++raceNumber;
+            }
+        }
+        static public void checkTeamsPlaceInCompetition(int teamId, List<teamResult> results, ref List<teamResult> teamsAchievements)
+        {
+            //skorzystac z competitionDataUtility.getCompStandings(), znalezc tam beda wyniki w calych zawodach + id druzyn
+            var teamsCompetitionResult = results.Where(r => r.teamId == teamId).SingleOrDefault();
+            var place = results.Count(r => r.points > teamsCompetitionResult.points);
+
+            if(place <= 3)
+            {
+                teamsCompetitionResult.competitionName += " " + teamsCompetitionResult.points.ToString() + " punktów";
+                teamsCompetitionResult.raceName = "";
+                teamsCompetitionResult.place = place + 1;
+                teamsAchievements.Add(teamsCompetitionResult);
+            }
+        }
     }
 }

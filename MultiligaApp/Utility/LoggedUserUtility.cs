@@ -7,21 +7,17 @@ using System.Windows.Forms;
 using System.Data.Entity;
 using System.Net.Mail;
 using System.Net;
-public struct result
-{
-    public string competitionName;
-    public string raceName;
-    public int place;
-    public int points;
-    public int id;
-};
+
 namespace MultiligaApp
 {
    
     class LoggedUserUtility
     {
         static private string currentEmail;
-
+        public enum userType
+        {
+            lurker, organiser, captain, supervisor, contestant
+        }
         static public string getCurrentEmail()
         {
             return currentEmail;
