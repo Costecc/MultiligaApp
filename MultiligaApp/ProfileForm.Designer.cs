@@ -38,7 +38,7 @@ namespace MultiligaApp
 
             if (inviteMessage == "Zaproś do zawodów")
             {
-                if (user == LoggedUserUtility.userType.supervisor || user == LoggedUserUtility.userType.organiser)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
+                if (user == LoggedUserUtility.userType.supervisor)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
                 {
                     InviteButton.Visible = true;
                     comboBox1.Visible = true;
@@ -46,14 +46,13 @@ namespace MultiligaApp
                     {
                         //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam jest w comboBox1
                         var invitingUser = LoggedUserUtility.getLoggedEmployee();
-                        var usersCompetitions = db.zawody.Where(z => z.id_organizator== invitingUser.id_pracownik || z.id_opiekun_zawodow == invitingUser.id_pracownik).ToList();
+                        var usersCompetitions = LoggedUserUtility.getEmployeesCompetitions(invitingUser.id_pracownik);
 
                         comboBox1.ValueMember = "id_zawody";
                         comboBox1.DisplayMember = "nazwa";
                         comboBox1.DataSource = usersCompetitions;
                     }
-                }
-                    
+                }                    
             }
             else
             {
@@ -74,8 +73,8 @@ namespace MultiligaApp
                 }
             }
 
-            MatchesView.Rows.Add("Motocross Lublin 1:0 Olsztyn");
-            MatchesView.Rows.Add("XYZ 0:1 Motocross Lublin");
+            //MatchesView.Rows.Add("Motocross Lublin 1:0 Olsztyn");
+            //MatchesView.Rows.Add("XYZ 0:1 Motocross Lublin");
         }
 
         public void FillProfileDataContestant(string name, string email, List<string> teams, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe )

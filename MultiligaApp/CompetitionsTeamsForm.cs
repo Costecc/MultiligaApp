@@ -12,6 +12,7 @@ namespace MultiligaApp
 {
     public partial class CompetitionsTeamsForm : Form
     {
+        private int competitionId;
         public CompetitionsTeamsForm()
         {
             InitializeComponent();

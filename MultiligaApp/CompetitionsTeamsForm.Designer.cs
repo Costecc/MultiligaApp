@@ -1,5 +1,7 @@
 ﻿using System.Windows.Forms;
-
+using System.Collections.Generic;
+using System.Linq;
+using System;
 namespace MultiligaApp
 {
     partial class CompetitionsTeamsForm
@@ -22,36 +24,57 @@ namespace MultiligaApp
             base.Dispose(disposing);
         }
 
-        public void SetWindow(string kind)
+        internal void SetWindow(string kind, int competitionId = 0)
         {
+            var type = LoggedUserUtility.getCurrentUserType();
+            
             if(kind == "zawody")
             {
                 CompetitionBox.Text = "Lista zawodów";
-                //wywolac funkcje wypelniajaca gridbox zawodami na ktore zawodnik jest zapisany i zaproszony jesli zalogowany jest zawodnik
-
-                //wywolac funkcje wypelniajaca gridbox zawodami ktorymi zarzadza organizator lub opiekun
                 ConfirmButton.Visible = false;
+                if (type == LoggedUserUtility.userType.contestant || type == LoggedUserUtility.userType.captain)
+                {   //wyswietlanie zawodow na które zaproszony jest zawodnik
+                    List<zawody> competitions = ContestantDataUtility.getContestantsCurrentCompetitions(LoggedUserUtility.getLoggedContestant().id_zawodnik, true);
+                    CompetitionView.DataSource = competitions.Select(x => new { Nazwa = x.nazwa, competitionId = x.id_zawody }).ToList();
+                    CompetitionView.Columns["competitionId"].Visible = false;                   
+                }
+                else if(type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser)
+                {   //wyswietlanie zawodow zarzadzanych przez organizatora/opiekuna                    
+                    List<zawody> competitions = LoggedUserUtility.getEmployeesCompetitions(LoggedUserUtility.getLoggedEmployee().id_pracownik);
+                    var competitionsAccept = competitions.Select(x => new { Nazwa = x.nazwa, Akcja = "Akceptuj" }).ToList();
+                    CompetitionView.DataSource = competitions.Select(x => new { Nazwa = x.nazwa, competitionId = x.id_zawody }).ToList();
+                }
             }
-            else if(kind == "druzyny")
+            else if(kind == "druzyny")  //done
             {
-                //wywolac funkcje wypelniajaca gridbox druzynami na ktore zawodnik jest zapisany i zaproszony 
                 CompetitionBox.Text = "Lista drużyn";
                 ConfirmButton.Visible = false;
+
+                fillWithInvitations(CompetitionView, LoggedUserUtility.getLoggedContestant().id_zawodnik);
             }
             else
-            {
+            {                
                 CompetitionBox.Text = "Lista wyścigów";
+
                 ConfirmButton.Visible = false;
+                if (type == LoggedUserUtility.userType.contestant || type == LoggedUserUtility.userType.captain)  //wyswietlanie wyscigow w ktorych bierze udzial/jest zaproszony zawodnik
+                {
+                    
+                    //TODO filtrowanie zaproszen, ktore jeszcze nie sa zaakceptowane
+                    var races = CompetitionDataUtility.getRacesInCompetition(competitionId);
+
+                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), competitionId = x.id_zawody, Akcja = "Akceptuj"  }).ToList();
+                    //TODO po kliknieciu zaakceptowane update _zawodnik_wyscig
+                }
+                else if (type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser) // wyscigi ktorymi zarzadzaja organizator/opiekun
+                {
+                    var races = CompetitionDataUtility.getRacesInCompetition(competitionId);
+                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), competitionId = x.id_zawody }).ToList();
+                    //po kliknieciu przejscie do edycji trasy wyscigu
+                }
             }
-
-            //TODO testowe dane zamienić na prawdziwe z bazy
-            //CompetitionView.Rows.Add("Zawody 1", "Lista wyścigów");
-            //CompetitionView.Rows.Add("Zawody 2", "Lista wyścigów");
-
-
-            
-            CompetitionView.Rows.Add("Liga szachowa Puławy", "Akceptuj");
-            CompetitionView.Rows.Add("Klub tenisowy Lublin", "");
+            CompetitionView.ClearSelection();
+            CompetitionView.CurrentCell = null;
         }
 
         #region Windows Form Designer generated code
@@ -64,11 +87,13 @@ namespace MultiligaApp
         {
             this.CompetitionBox = new System.Windows.Forms.GroupBox();
             this.CompetitionView = new System.Windows.Forms.DataGridView();
-            this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InviteColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ConfirmButton = new System.Windows.Forms.Button();
             this.ReturnButton = new System.Windows.Forms.Button();
+            this.Nazwa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teamId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InviteColumn = new System.Windows.Forms.DataGridViewLinkColumn();
             this.CompetitionBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompetitionView)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -94,7 +119,9 @@ namespace MultiligaApp
             this.CompetitionView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CompetitionView.ColumnHeadersVisible = false;
             this.CompetitionView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MatchColumn,
+            this.Nazwa,
+            this.teamId,
+            this.Id,
             this.InviteColumn});
             this.CompetitionView.Location = new System.Drawing.Point(7, 31);
             this.CompetitionView.Name = "CompetitionView";
@@ -104,26 +131,6 @@ namespace MultiligaApp
             this.CompetitionView.Size = new System.Drawing.Size(288, 273);
             this.CompetitionView.TabIndex = 1;
             this.CompetitionView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ResultView_CellClick);
-            // 
-            // MatchColumn
-            // 
-            this.MatchColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.MatchColumn.HeaderText = "Mecze";
-            this.MatchColumn.MinimumWidth = 6;
-            this.MatchColumn.Name = "MatchColumn";
-            this.MatchColumn.ReadOnly = true;
-            this.MatchColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MatchColumn.Width = 120;
-            // 
-            // InviteColumn
-            // 
-            this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.InviteColumn.HeaderText = "Zaproszenia";
-            this.InviteColumn.MinimumWidth = 6;
-            this.InviteColumn.Name = "InviteColumn";
-            this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.InviteColumn.Width = 115;
             // 
             // groupBox2
             // 
@@ -155,6 +162,46 @@ namespace MultiligaApp
             this.ReturnButton.UseVisualStyleBackColor = true;
             this.ReturnButton.Click += new System.EventHandler(this.ReturnButton_Click);
             // 
+            // Nazwa
+            // 
+            this.Nazwa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Nazwa.DataPropertyName = "Nazwa";
+            this.Nazwa.HeaderText = "Nazwa";
+            this.Nazwa.MinimumWidth = 6;
+            this.Nazwa.Name = "Nazwa";
+            this.Nazwa.ReadOnly = true;
+            this.Nazwa.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Nazwa.Width = 120;
+            // 
+            // teamId
+            // 
+            this.teamId.DataPropertyName = "teamId";
+            this.teamId.HeaderText = "teamId";
+            this.teamId.MinimumWidth = 6;
+            this.teamId.Name = "teamId";
+            this.teamId.Visible = false;
+            this.teamId.Width = 125;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "competitionId";
+            this.Id.HeaderText = "competitionId";
+            this.Id.MinimumWidth = 6;
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
+            this.Id.Width = 125;
+            // 
+            // InviteColumn
+            // 
+            this.InviteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.InviteColumn.DataPropertyName = "Akcja";
+            this.InviteColumn.HeaderText = "Zaproszenia";
+            this.InviteColumn.MinimumWidth = 6;
+            this.InviteColumn.Name = "InviteColumn";
+            this.InviteColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.InviteColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.InviteColumn.Width = 115;
+            // 
             // CompetitionsTeamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,35 +226,56 @@ namespace MultiligaApp
         private System.Windows.Forms.Button ConfirmButton;
         private System.Windows.Forms.Button ReturnButton;
         private System.Windows.Forms.DataGridView CompetitionView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MatchColumn;
-        private System.Windows.Forms.DataGridViewLinkColumn InviteColumn;
 
         private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)       //kiedy klikam komorke w gridview moich zawodow/druzyn
         {
-            DataGridViewCell cell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
-
-            if(CompetitionBox.Text == "Lista zawodów")
+            var loggedUserType = LoggedUserUtility.getCurrentUserType();
+            var loggedContestant = LoggedUserUtility.getLoggedContestant();
+            if (CompetitionBox.Text == "Lista zawodów")
             {
+                DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[2];      //cells[2] -> bierzemy dane z kolumny ID
+                competitionId = Convert.ToInt32(IDcell.Value);
+
+                
                 CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
-                competitionsTeamsForm.SetWindow("wyścigi");
-                competitionsTeamsForm.CompetitionView.Rows.Clear();
-                competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 1", "Dodaj trasę");
-                competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 2", "Dodaj trasę");
-                //competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 1", "");
-                //competitionsTeamsForm.CompetitionView.Rows.Add("Wyścigi nr 2", "");
+                competitionsTeamsForm.SetWindow("wyścigi", competitionId);
+
                 competitionsTeamsForm.ConfirmButton.Visible = false;
                 competitionsTeamsForm.Show();
             }
             else if(CompetitionBox.Text == "Lista wyścigów")
             {
-                CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
-                createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
-                createDeleteEditForm.Show();
+                //na podstawie competitionId otworz wyscigi     
+                if (loggedUserType == LoggedUserUtility.userType.organiser || loggedUserType == LoggedUserUtility.userType.supervisor)
+                {
+                    CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
+                    createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
+                    createDeleteEditForm.Show();
+                }
             }
             else if (CompetitionBox.Text == "Lista drużyn")
             {
-                MessageBox.Show("Zaakceptowano zaproszenie", "Akceptacja zaproszenia");
+                DataGridViewCell clickedCell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewTextBoxCell teamIdCell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[3];   //teamId w 3 kolumnie
+                if (clickedCell.Value == "Akceptuj")
+                {
+                    ContestantDataUtility.acceptTeamInvitation(loggedContestant.id_zawodnik, Convert.ToInt32(teamIdCell.Value));
+                    fillWithInvitations(CompetitionView, loggedContestant.id_zawodnik);
+                }
+                
             }
         }
+
+
+        private void fillWithInvitations(DataGridView gridView, int contestantId)
+        {
+            var invitations = ContestantDataUtility.getContestantsTeamInvitations(contestantId);
+            gridView.DataSource = invitations.Select(x => new { Nazwa = x.Item1.nazwa, Akcja = x.Item2, teamId = x.Item1.id_druzyna }).ToList();
+        }
+
+        private DataGridViewTextBoxColumn Nazwa;
+        private DataGridViewTextBoxColumn teamId;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewLinkColumn InviteColumn;
     }
 }

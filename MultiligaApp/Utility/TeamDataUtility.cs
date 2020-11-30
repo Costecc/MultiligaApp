@@ -210,13 +210,10 @@ namespace MultiligaApp
                 }
             }
             return teamsAchievements;
-        }
-
-        
+        }      
 
         static public teamResult getTeamsRaceResult(int teamId, wyscig race, int raceNumber, List<int> contestantsId)
         {
-            //skorzystac z competitionDataUtility.getRaceStandings(), znalezc tam beda wyniki w wyscigu + id druzyn
             using (var db = new multiligaEntities())
             {
                 var raceStandings = CompetitionDataUtility.getRaceStandings(contestantsId, race, raceNumber);
@@ -280,15 +277,14 @@ namespace MultiligaApp
         }
         static public void checkTeamsPlaceInCompetition(int teamId, List<teamResult> results, ref List<teamResult> teamsAchievements)
         {
-            //skorzystac z competitionDataUtility.getCompStandings(), znalezc tam beda wyniki w calych zawodach + id druzyn
             var teamsCompetitionResult = results.Where(r => r.teamId == teamId).SingleOrDefault();
-            var place = results.Count(r => r.points > teamsCompetitionResult.points);
+            var place = results.Count(r => r.points > teamsCompetitionResult.points) + 1;
 
-            if(place <= 3)
+            if(place <= 3 && teamsCompetitionResult.points != 0)
             {
                 teamsCompetitionResult.competitionName += " " + teamsCompetitionResult.points.ToString() + " punktów";
                 teamsCompetitionResult.raceName = "";
-                teamsCompetitionResult.place = place + 1;
+                teamsCompetitionResult.place = place;
                 teamsAchievements.Add(teamsCompetitionResult);
             }
         }        

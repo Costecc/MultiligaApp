@@ -39,7 +39,7 @@ namespace MultiligaApp
             {
                 if (!TeamDataUtility.isTeamAlreadyInCompetition(profileId, Convert.ToInt32(comboBox1.SelectedValue)))
                 {
-                    CompetitionDataUtility.createCompetitionInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
+                    CompetitionDataUtility.createCompetitionTeamInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
                     MessageBox.Show("Zaproszono do zawodów", "Zaproszenie wysłane");
                 }                    
                 else
