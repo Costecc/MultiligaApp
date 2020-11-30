@@ -27,10 +27,14 @@ namespace MultiligaApp
             if(kind == "zawody")
             {
                 CompetitionBox.Text = "Lista zawodów";
+                //wywolac funkcje wypelniajaca gridbox zawodami na ktore zawodnik jest zapisany i zaproszony jesli zalogowany jest zawodnik
+
+                //wywolac funkcje wypelniajaca gridbox zawodami ktorymi zarzadza organizator lub opiekun
                 ConfirmButton.Visible = false;
             }
             else if(kind == "druzyny")
             {
+                //wywolac funkcje wypelniajaca gridbox druzynami na ktore zawodnik jest zapisany i zaproszony 
                 CompetitionBox.Text = "Lista drużyn";
                 ConfirmButton.Visible = false;
             }
@@ -44,6 +48,8 @@ namespace MultiligaApp
             //CompetitionView.Rows.Add("Zawody 1", "Lista wyścigów");
             //CompetitionView.Rows.Add("Zawody 2", "Lista wyścigów");
 
+
+            
             CompetitionView.Rows.Add("Liga szachowa Puławy", "Akceptuj");
             CompetitionView.Rows.Add("Klub tenisowy Lublin", "");
         }
@@ -176,7 +182,7 @@ namespace MultiligaApp
         private System.Windows.Forms.DataGridViewTextBoxColumn MatchColumn;
         private System.Windows.Forms.DataGridViewLinkColumn InviteColumn;
 
-        private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)       //kiedy klikam komorke w gridview moich zawodow/druzyn
         {
             DataGridViewCell cell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
 

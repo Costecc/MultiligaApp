@@ -65,6 +65,7 @@ namespace MultiligaApp
 
         static public void showTeamsProfile(ProfileForm profileForm, int id)
         {
+            profileForm.setProfileId(id);
             druzyna selectedTeam;
             using (var db = new multiligaEntities())
             {
@@ -289,6 +290,24 @@ namespace MultiligaApp
                 teamsCompetitionResult.raceName = "";
                 teamsCompetitionResult.place = place + 1;
                 teamsAchievements.Add(teamsCompetitionResult);
+            }
+        }        
+
+        static public void createTeamInvitation(int contestantId, int teamId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var invite = new zawodnik_druzyna { id_druzyna = teamId, id_zawodnik = contestantId, zaakceptowane = false};
+                db.zawodnik_druzyna.Add(invite);
+                db.SaveChanges();
+            }
+        }
+        
+        static public bool isTeamAlreadyInCompetition(int teamId, int competitionId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                return db.druzyna_zawody.Any(z => z.id_druzyna == teamId && z.id_zawody == competitionId);
             }
         }
     }

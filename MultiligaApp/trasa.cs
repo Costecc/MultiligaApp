@@ -21,11 +21,9 @@ namespace MultiligaApp
         }
     
         public int id_trasa { get; set; }
-        public int id_opiekun_zawodow { get; set; }
-        public int id_organizator { get; set; }
+        public string miasto { get; set; }
+        public string dane { get; set; }
     
-        public virtual pracownik pracownik { get; set; }
-        public virtual pracownik pracownik1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wyscig> wyscig { get; set; }
     }

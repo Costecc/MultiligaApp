@@ -11,6 +11,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="druzyna_zawody">
+      <EntityTypeMapping TypeName="multiligaModel.druzyna_zawody">
+        <MappingFragment StoreEntitySet="druzyna_zawody">
+          <ScalarProperty Name="id_druzyna_zawody" ColumnName="id_druzyna_zawody" />
+          <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
+          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
+          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="dyscyplina">
       <EntityTypeMapping TypeName="multiligaModel.dyscyplina">
         <MappingFragment StoreEntitySet="dyscyplina">
@@ -64,8 +74,8 @@
       <EntityTypeMapping TypeName="multiligaModel.trasa">
         <MappingFragment StoreEntitySet="trasa">
           <ScalarProperty Name="id_trasa" ColumnName="id_trasa" />
-          <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
-          <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
+          <ScalarProperty Name="miasto" ColumnName="miasto" />
+          <ScalarProperty Name="dane" ColumnName="dane" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -155,16 +165,6 @@
           <ScalarProperty Name="data_poczatek" ColumnName="data_poczatek" />
           <ScalarProperty Name="data_koniec" ColumnName="data_koniec" />
           <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="druzyna_zawody">
-      <EntityTypeMapping TypeName="multiligaModel.druzyna_zawody">
-        <MappingFragment StoreEntitySet="druzyna_zawody">
-          <ScalarProperty Name="id_druzyna_zawody" ColumnName="id_druzyna_zawody" />
-          <ScalarProperty Name="id_druzyna" ColumnName="id_druzyna" />
-          <ScalarProperty Name="id_zawody" ColumnName="id_zawody" />
-          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

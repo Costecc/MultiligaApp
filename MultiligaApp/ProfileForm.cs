@@ -12,6 +12,7 @@ namespace MultiligaApp
 {
     public partial class ProfileForm : Form
     {
+        private int profileId;
         public ProfileForm()
         {
             InitializeComponent();
@@ -26,22 +27,23 @@ namespace MultiligaApp
         {
             if(InviteButton.Text == "Zaproś do drużyny")
             {
-                //TODO - w miejsce if(true) zrobic ifa sprawdzajacego czy dany gracz juz jest w 
-                //przynajmniej jednej druzynie. Jesli jest to nie mozna zaprosic do druzyny
-                if(true)
+                if (!ContestantDataUtility.isContestantAlreadyInTeam(profileId, Convert.ToInt32(comboBox1.SelectedValue))) //jeśli zaproszenie nie było wysyłane już wcześniej
+                {                    
+                    TeamDataUtility.createTeamInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
                     MessageBox.Show("Zaproszono do drużyny", "Zaproszenie wysłane");
+                }
                 else
-                    MessageBox.Show("Nie można zaprosić do drużyny! Zawodnik jest już w innej drużynie", "Informacja");
+                    MessageBox.Show("Zaproszenie zostało już wysłane wcześniej", "Informacja");
             }
             else
             {
-                //TODO - w miejsce if(true) zrobic ifa sprawdzajacego czy dana drużyna juz jest w 
-                //przynajmniej jednych zawodach. Jesli jest to nie mozna zaprosic do zawodów
-
-                if(true)
+                if (!TeamDataUtility.isTeamAlreadyInCompetition(profileId, Convert.ToInt32(comboBox1.SelectedValue)))
+                {
+                    CompetitionDataUtility.createCompetitionInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
                     MessageBox.Show("Zaproszono do zawodów", "Zaproszenie wysłane");
+                }                    
                 else
-                    MessageBox.Show("Nie można zaprosić do zawodów! Drużyna jest już w innych zawodach", "Informacja");
+                    MessageBox.Show("Zaproszenie zostało już wysłane wcześniej", "Informacja");
             }
         }
 
@@ -66,6 +68,10 @@ namespace MultiligaApp
                     Application.Exit();
                 }
             }
+        }
+        public void setProfileId(int id)
+        {
+            profileId = id;
         }
     }
 }

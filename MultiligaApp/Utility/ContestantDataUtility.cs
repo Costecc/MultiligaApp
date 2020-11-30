@@ -49,6 +49,7 @@ namespace MultiligaApp
 
         static public void showContestantProfile(ProfileForm profileForm, int id)
         {
+            profileForm.setProfileId(id);
             zawodnik selectedContestant;
             uzytkownik selectedUser;
             using (var db = new multiligaEntities())
@@ -77,7 +78,7 @@ namespace MultiligaApp
                          join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
                          from _druzyna in _dr.DefaultIfEmpty()
 
-                         where (_zawodnik_druzyna.id_zawodnik == id)
+                         where (_zawodnik_druzyna.id_zawodnik == id && _zawodnik_druzyna.zaakceptowane == true)
                          select _druzyna.nazwa
                          ).ToList();
 
@@ -257,6 +258,12 @@ namespace MultiligaApp
                 return db.druzyna.Any(d => d.id_kapitan == contestantId);
             }
         }
-        
+        static public bool isContestantAlreadyInTeam(int contestantId, int teamId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                return db.zawodnik_druzyna.Any(z => z.id_druzyna == teamId && z.id_zawodnik == contestantId);
+            }
+        }
     }
 }

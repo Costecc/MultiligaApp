@@ -312,5 +312,14 @@ namespace MultiligaApp
                 return (db.zawody.Any(z => z.nazwa == name));
             }
         }
+        static public void createCompetitionInvitation(int teamId, int competitionId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var invite = new druzyna_zawody { id_druzyna = teamId, id_zawody = competitionId, zaakceptowane = false };
+                db.druzyna_zawody.Add(invite);
+                db.SaveChanges();
+            }
+        }
     }
 }
