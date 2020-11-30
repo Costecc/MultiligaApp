@@ -27,10 +27,11 @@ namespace MultiligaApp
         {
             _user = user;
             //jeśli użytkownik ma tylko możliwość logowania, nie może wyszukiwać
-            //if (_user > 4)
-            //{
-            //    wyszukajToolStripMenuItem.Visible = false; 
-            //}
+            if (_user == LoggedUserUtility.userType.lurker)
+            {
+                mojeKontoToolStripMenuItem.Visible = false;
+                zawodyToolStripMenuItem.Visible = false;
+            }
 
             //organizator ma prawo do zarządzania zawodami - ustawienie przycisku jako widocznego
             if (_user == LoggedUserUtility.userType.organiser)
@@ -116,28 +117,28 @@ namespace MultiligaApp
             // zmieńHasłoToolStripMenuItem
             // 
             this.zmieńHasłoToolStripMenuItem.Name = "zmieńHasłoToolStripMenuItem";
-            this.zmieńHasłoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.zmieńHasłoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.zmieńHasłoToolStripMenuItem.Text = "Zmień hasło";
             this.zmieńHasłoToolStripMenuItem.Click += new System.EventHandler(this.zmieńHasłoToolStripMenuItem_Click);
             // 
             // przypomnijHasłoToolStripMenuItem
             // 
             this.przypomnijHasłoToolStripMenuItem.Name = "przypomnijHasłoToolStripMenuItem";
-            this.przypomnijHasłoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.przypomnijHasłoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.przypomnijHasłoToolStripMenuItem.Text = "Przypomnij hasło";
             this.przypomnijHasłoToolStripMenuItem.Click += new System.EventHandler(this.przypomnijHasłoToolStripMenuItem_Click);
             // 
             // edytujKontoToolStripMenuItem
             // 
             this.edytujKontoToolStripMenuItem.Name = "edytujKontoToolStripMenuItem";
-            this.edytujKontoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.edytujKontoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.edytujKontoToolStripMenuItem.Text = "Edytuj konto";
             this.edytujKontoToolStripMenuItem.Click += new System.EventHandler(this.edytujKontoToolStripMenuItem_Click);
             // 
             // usuńKontoToolStripMenuItem
             // 
             this.usuńKontoToolStripMenuItem.Name = "usuńKontoToolStripMenuItem";
-            this.usuńKontoToolStripMenuItem.Size = new System.Drawing.Size(205, 26);
+            this.usuńKontoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.usuńKontoToolStripMenuItem.Text = "Usuń konto";
             this.usuńKontoToolStripMenuItem.Click += new System.EventHandler(this.usuńKontoToolStripMenuItem_Click);
             // 

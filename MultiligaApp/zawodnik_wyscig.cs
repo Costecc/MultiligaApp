@@ -14,9 +14,10 @@ namespace MultiligaApp
     
     public partial class zawodnik_wyscig
     {
+        public int id_zawodnik_wyscig { get; set; }
         public int id_zawodnik { get; set; }
         public int id_wyscig { get; set; }
-        public bool zaakceptowane { get; set; }
+        public Nullable<bool> zaakceptowane { get; set; }
     
         public virtual wyscig wyscig { get; set; }
         public virtual zawodnik zawodnik { get; set; }

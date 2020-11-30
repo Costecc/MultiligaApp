@@ -87,9 +87,10 @@
     <Key>
       <PropertyRef Name="id_trasa" />
     </Key>
-    <Property Name="id_trasa" Type="Int32" Nullable="false" />
+    <Property Name="id_trasa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="miasto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="dane" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="wyscig" Relationship="Self.wyscig_fk_id_trasa1" FromRole="trasa" ToRole="wyscig" />
   </EntityType>
   <EntityType Name="uzytkownik">
@@ -171,6 +172,17 @@
     <NavigationProperty Name="druzyna" Relationship="Self.FK_zawodnik_druzyna_id_druzyna" FromRole="zawodnik_druzyna" ToRole="druzyna" />
     <NavigationProperty Name="zawodnik" Relationship="Self.FK_zawodnik_druzyna_id_zawodnik" FromRole="zawodnik_druzyna" ToRole="zawodnik" />
   </EntityType>
+  <EntityType Name="zawodnik_wyscig">
+    <Key>
+      <PropertyRef Name="id_zawodnik_wyscig" />
+    </Key>
+    <Property Name="id_zawodnik_wyscig" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
+    <Property Name="id_wyscig" Type="Int32" Nullable="false" />
+    <Property Name="zaakceptowane" Type="Boolean" />
+    <NavigationProperty Name="wyscig" Relationship="Self.zawodnik_wyscig_fk_id_wyscig3" FromRole="zawodnik_wyscig" ToRole="wyscig" />
+    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_wyscig_fk_id_zawodnik4" FromRole="zawodnik_wyscig" ToRole="zawodnik" />
+  </EntityType>
   <EntityType Name="zawodnik_zawody">
     <Key>
       <PropertyRef Name="id_zawodnik_zawody" />
@@ -201,18 +213,6 @@
     <NavigationProperty Name="wyscig" Relationship="Self.FK_zawody_id_zawody3" FromRole="zawody" ToRole="wyscig" />
     <NavigationProperty Name="wyscig1" Relationship="Self.zawody_fk_id_kwalifikacje" FromRole="zawody" ToRole="wyscig" />
     <NavigationProperty Name="zawodnik_zawody" Relationship="Self.zawodnik_zawody_fk_id_zawody" FromRole="zawody" ToRole="zawodnik_zawody" />
-  </EntityType>
-  <EntityType Name="zawodnik_wyscig">
-    <Key>
-      <PropertyRef Name="id_zawodnik" />
-      <PropertyRef Name="id_wyscig" />
-      <PropertyRef Name="zaakceptowane" />
-    </Key>
-    <Property Name="id_zawodnik" Type="Int32" Nullable="false" />
-    <Property Name="id_wyscig" Type="Int32" Nullable="false" />
-    <Property Name="zaakceptowane" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="wyscig" Relationship="Self.zawodnik_wyscig_fk_id_wyscig3" FromRole="zawodnik_wyscig" ToRole="wyscig" />
-    <NavigationProperty Name="zawodnik" Relationship="Self.zawodnik_wyscig_fk_id_zawodnik4" FromRole="zawodnik_wyscig" ToRole="zawodnik" />
   </EntityType>
   <Association Name="druzyna_fk_id_kapitan">
     <End Role="zawodnik" Type="Self.zawodnik" Multiplicity="1" />
@@ -543,9 +543,9 @@
     <EntitySet Name="wyscig" EntityType="Self.wyscig" />
     <EntitySet Name="zawodnik" EntityType="Self.zawodnik" />
     <EntitySet Name="zawodnik_druzyna" EntityType="Self.zawodnik_druzyna" />
+    <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" />
     <EntitySet Name="zawodnik_zawody" EntityType="Self.zawodnik_zawody" />
     <EntitySet Name="zawody" EntityType="Self.zawody" />
-    <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" />
     <AssociationSet Name="druzyna_fk_id_kapitan" Association="Self.druzyna_fk_id_kapitan">
       <End Role="zawodnik" EntitySet="zawodnik" />
       <End Role="druzyna" EntitySet="druzyna" />

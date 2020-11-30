@@ -190,6 +190,7 @@ namespace MultiligaApp
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(132, 24);
             this.comboBox7.TabIndex = 44;
+            this.comboBox7.SelectedIndex = 1;
             // 
             // comboBox4
             // 

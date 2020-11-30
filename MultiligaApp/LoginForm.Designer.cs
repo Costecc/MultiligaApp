@@ -38,6 +38,7 @@
             this.Password = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.LoginLabel = new System.Windows.Forms.Label();
+            this.NoLoginButton = new System.Windows.Forms.Button();
             this.LoginBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             // 
             // LoginBox
             // 
+            this.LoginBox.Controls.Add(this.NoLoginButton);
             this.LoginBox.Controls.Add(this.label1);
             this.LoginBox.Controls.Add(this.ForgetPassword);
             this.LoginBox.Controls.Add(this.IncorrectLoginLabel);
@@ -61,7 +63,7 @@
             this.LoginBox.Controls.Add(this.Login);
             this.LoginBox.Location = new System.Drawing.Point(22, 15);
             this.LoginBox.Name = "LoginBox";
-            this.LoginBox.Size = new System.Drawing.Size(332, 200);
+            this.LoginBox.Size = new System.Drawing.Size(332, 240);
             this.LoginBox.TabIndex = 1;
             this.LoginBox.TabStop = false;
             this.LoginBox.Text = "Zaloguj";
@@ -148,11 +150,22 @@
             this.LoginLabel.TabIndex = 1;
             this.LoginLabel.Text = "Email";
             // 
+            // NoLoginButton
+            // 
+            this.NoLoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.NoLoginButton.Location = new System.Drawing.Point(74, 199);
+            this.NoLoginButton.Name = "NoLoginButton";
+            this.NoLoginButton.Size = new System.Drawing.Size(187, 29);
+            this.NoLoginButton.TabIndex = 9;
+            this.NoLoginButton.Text = "Przeglądaj bez logowania";
+            this.NoLoginButton.UseVisualStyleBackColor = true;
+            this.NoLoginButton.Click += new System.EventHandler(this.NoLoginButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(377, 229);
+            this.ClientSize = new System.Drawing.Size(377, 267);
             this.Controls.Add(this.LoginBox);
             this.Name = "LoginForm";
             this.Text = "Logowanie";
@@ -176,5 +189,6 @@
         private System.Windows.Forms.Label IncorrectLoginLabel;
         private System.Windows.Forms.Label ForgetPassword;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button NoLoginButton;
     }
 }

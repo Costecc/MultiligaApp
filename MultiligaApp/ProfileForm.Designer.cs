@@ -44,7 +44,7 @@ namespace MultiligaApp
                     comboBox1.Visible = true;
                     using (var db = new multiligaEntities())
                     {
-                        //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam jest w comboBox1
+                        //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam je w comboBox1
                         var invitingUser = LoggedUserUtility.getLoggedEmployee();
                         var usersCompetitions = LoggedUserUtility.getEmployeesCompetitions(invitingUser.id_pracownik);
 
@@ -134,7 +134,6 @@ namespace MultiligaApp
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -430,12 +429,12 @@ namespace MultiligaApp
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(71, 22);
+            this.comboBox1.Location = new System.Drawing.Point(16, 22);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(116, 24);
+            this.comboBox1.Size = new System.Drawing.Size(226, 24);
             this.comboBox1.TabIndex = 2;
             this.comboBox1.Visible = false;
-            //             
+            // 
             // CancelButton
             // 
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;

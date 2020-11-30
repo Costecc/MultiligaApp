@@ -69,31 +69,19 @@ namespace MultiligaApp
                 );
         }
 
-        static public List<druzyna> getContestantsTeams(int id, bool checkInvitations = false)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id
+        static public List<druzyna> getContestantsTeams(int id)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id
         {
             List<druzyna> teams;
             using (var db = new multiligaEntities())
             {
-                if (checkInvitations == false)
-                {
-                    teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
-                             join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
-                             from _druzyna in _dr.DefaultIfEmpty()
 
-                             where (_zawodnik_druzyna.id_zawodnik == id && _zawodnik_druzyna.zaakceptowane == true)
-                             select _druzyna
-                         ).ToList();
-                }
-                else
-                {
-                    teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
-                             join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
-                             from _druzyna in _dr.DefaultIfEmpty()
+                teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
+                         join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
+                         from _druzyna in _dr.DefaultIfEmpty()
 
-                             where (_zawodnik_druzyna.id_zawodnik == id)
-                             select _druzyna
+                         where (_zawodnik_druzyna.id_zawodnik == id && _zawodnik_druzyna.zaakceptowane == true)
+                         select _druzyna
                          ).ToList();
-                }
             }
             return teams;
         }
@@ -128,7 +116,8 @@ namespace MultiligaApp
                 return invitationWithAction;
             }           
 
-        }
+        }        
+
 
         static public List<zawody> getContestantsCurrentCompetitions(int id, bool checkInvitations = false)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id, parametr onlyPastDates - czy podać jedynie ukończone zawody
         {
@@ -236,9 +225,14 @@ namespace MultiligaApp
         {
             using (var db = new multiligaEntities())
             {
-                var time = db.wynik.Where(w => w.id_wyscig == race.id_wyscig && w.id_zawodnik == id).SingleOrDefault().czas;
+                var raceResult = db.wynik.Where(w => w.id_wyscig == race.id_wyscig && w.id_zawodnik == id).SingleOrDefault();
+                var time = TimeSpan.Zero;
+                if (raceResult != null)
+                {
+                    time = raceResult.czas.Value;
+                }
                 var racePlace = (from _wynik in db.wynik
-                                 where (_wynik.czas < time && _wynik.id_wyscig == race.id_wyscig && _wynik.czas != null)
+                                 where (_wynik.czas < time && _wynik.id_wyscig == race.id_wyscig && _wynik.czas != null && time != null)
                                  select _wynik.czas).Count();
                 var competitionName = db.zawody.Where(z => z.id_zawody == race.id_zawody).SingleOrDefault().nazwa;
 
@@ -293,18 +287,6 @@ namespace MultiligaApp
             }
         }
 
-        //static public List<int> getContestantTeamIds(int id)
-        //{
-        //    using (var db = new multiligaEntities())
-        //    {
-        //        var teamIds = (from _zawodnik_druzyna in db.zawodnik_druzyna
-        //                      where (_zawodnik_druzyna.id_zawodnik == id)
-        //                      select _zawodnik_druzyna.id_druzyna).ToList();
-
-        //        return teamIds;
-        //    }
-        //}
-
         static public bool checkIfCaptain(int contestantId)
         {
             using (var db = new multiligaEntities())
@@ -328,6 +310,41 @@ namespace MultiligaApp
                 invitation.zaakceptowane = true;
                 db.SaveChanges();
                 MessageBox.Show("Zaakceptowano zaproszenie");
+            }
+        }
+        static public void acceptRaceInvitation(int contestantId, int raceId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var raceInvitation = db.zawodnik_wyscig.Where(z => z.id_zawodnik == contestantId && z.id_wyscig == raceId).SingleOrDefault();
+                raceInvitation.zaakceptowane = true;
+                db.SaveChanges();
+
+                var competition = db.wyscig.Where(w => w.id_wyscig == raceInvitation.id_wyscig).SingleOrDefault();
+
+                acceptCompetitionInvitation(competition.id_zawody, contestantId);
+                MessageBox.Show("Zaakceptowano zaproszenie");
+            }
+        }
+
+        static public void acceptCompetitionInvitation(int competitionId, int contestantId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                if(!checkIfCompetitionInvitationAccepted(competitionId, contestantId))
+                {
+                    var competitionInvitation = db.zawodnik_zawody.Where(z => z.id_zawodnik == contestantId && z.id_zawody == competitionId).SingleOrDefault();
+                    competitionInvitation.zaakceptowane = true;
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        static public bool checkIfCompetitionInvitationAccepted(int competitionId, int contestantId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                return db.zawodnik_zawody.Any(z => z.id_zawody == competitionId && z.id_zawodnik == contestantId && z.zaakceptowane == true);
             }
         }
     }

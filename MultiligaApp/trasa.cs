@@ -23,6 +23,7 @@ namespace MultiligaApp
         public int id_trasa { get; set; }
         public string miasto { get; set; }
         public string dane { get; set; }
+        public string nazwa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wyscig> wyscig { get; set; }
