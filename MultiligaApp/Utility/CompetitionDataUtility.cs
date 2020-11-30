@@ -340,5 +340,62 @@ namespace MultiligaApp
                 return races;
             }
         }
+        static public List<Tuple<wyscig, string>> getContestantsCompetitionRaces(int contestantsId, int competitionId)   //sprawdzam czy zaproszenia wymagają jeszcze akceptacji
+        {
+            using (var db = new multiligaEntities())
+            {
+                var invitations = (from _zawodnik_wyscig in db.zawodnik_wyscig
+                                   join _wyscig in db.wyscig on _zawodnik_wyscig.id_wyscig equals _wyscig.id_wyscig into _w
+                                   from _wyscig in _w.DefaultIfEmpty()
+
+                                   where (_zawodnik_wyscig.id_zawodnik == contestantsId && _wyscig.id_zawody == competitionId)
+                                   select new
+                                   {
+                                       _wyscig,
+                                       _zawodnik_wyscig.zaakceptowane
+                                   }
+                          ).ToList();
+
+                var invitationWithAction = new List<Tuple<wyscig, string>>();
+
+                foreach (var invitation in invitations)
+                {
+                    var action = "";
+                    if (invitation.zaakceptowane == false)
+                    {
+                        action = "Akceptuj";
+                    }
+                    invitationWithAction.Add(new Tuple<wyscig, string>(invitation._wyscig, action));
+                }
+                return invitationWithAction;
+            }
+        }
+
+        static public void addRaceTrack(int trackId, int raceId, ref bool successfulOperation)
+        {
+            if (trackId != 0)
+            {
+                using (var db = new multiligaEntities())
+                {
+                    var race = db.wyscig.Where(w => w.id_wyscig == raceId).SingleOrDefault();
+                    race.id_trasa = trackId;
+                    db.SaveChanges();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Zaznacz jakąś trasę", "Niepowodzenie");
+                successfulOperation = false;
+            }
+        }
+        static public List<trasa> getAvailableTracks(int raceId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var race = db.wyscig.Where(w => w.id_wyscig == raceId).SingleOrDefault();
+                var availableTracks = db.trasa.Where(t => t.miasto == race.miasto).ToList();
+                return availableTracks;
+            }
+        }
     }
 }

@@ -124,5 +124,16 @@ namespace MultiligaApp
                 }
             }
         }
+
+        private void NoLoginButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MainForm mf = new MainForm();
+            var user = LoggedUserUtility.userType.lurker;
+            LoggedUserUtility.setCurrentUserType(user);
+            LoggedUserUtility.setCurrentEmail("");
+            mf.SetMenu(user);
+            mf.Show();
+        }
     }
 }

@@ -13,6 +13,12 @@ namespace MultiligaApp
     public partial class CreateDeleteEditForm : Form
     {
         bool successfulOperation;
+        private int modifiedRaceId;
+        public int ModifiedRaceId
+        {
+            get { return modifiedRaceId; }
+            set { modifiedRaceId = value; }
+        }
         public CreateDeleteEditForm()
         {
             InitializeComponent();
@@ -54,6 +60,12 @@ namespace MultiligaApp
                     {
                         _operation = " założona drużyna!";
                         TeamDataUtility.createTeam(textBox3.Text);
+                        break;
+                    }
+                case "Podaj trasę wyścigów":
+                    {
+                        _operation = " dodana trasa!";
+                        CompetitionDataUtility.addRaceTrack(Convert.ToInt32(comboBox4.SelectedValue), ModifiedRaceId, ref successfulOperation);                 
                         break;
                     }
                 default:
@@ -150,6 +162,15 @@ namespace MultiligaApp
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
-        }           
+        } 
+        
+        public void dropDownTracks()
+        {
+            var tracks = CompetitionDataUtility.getAvailableTracks(ModifiedRaceId);
+            comboBox4.DataSource = tracks;
+            comboBox4.ValueMember = "id_trasa";
+            comboBox4.DisplayMember = "nazwa";
+            
+        }
     }
 }

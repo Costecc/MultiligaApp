@@ -27,16 +27,13 @@ namespace MultiligaApp
         internal void SetWindow(string kind, int competitionId = 0)
         {
             var type = LoggedUserUtility.getCurrentUserType();
-            
             if(kind == "zawody")
             {
                 CompetitionBox.Text = "Lista zawodów";
                 ConfirmButton.Visible = false;
                 if (type == LoggedUserUtility.userType.contestant || type == LoggedUserUtility.userType.captain)
-                {   //wyswietlanie zawodow na które zaproszony jest zawodnik
-                    List<zawody> competitions = ContestantDataUtility.getContestantsCurrentCompetitions(LoggedUserUtility.getLoggedContestant().id_zawodnik, true);
-                    CompetitionView.DataSource = competitions.Select(x => new { Nazwa = x.nazwa, competitionId = x.id_zawody }).ToList();
-                    CompetitionView.Columns["competitionId"].Visible = false;                   
+                {            
+                    fillWithAttendedCompetitions(CompetitionView, LoggedUserUtility.getLoggedContestant().id_zawodnik);
                 }
                 else if(type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser)
                 {   //wyswietlanie zawodow zarzadzanych przez organizatora/opiekuna                    
@@ -59,17 +56,13 @@ namespace MultiligaApp
                 ConfirmButton.Visible = false;
                 if (type == LoggedUserUtility.userType.contestant || type == LoggedUserUtility.userType.captain)  //wyswietlanie wyscigow w ktorych bierze udzial/jest zaproszony zawodnik
                 {
-                    
-                    //TODO filtrowanie zaproszen, ktore jeszcze nie sa zaakceptowane
-                    var races = CompetitionDataUtility.getRacesInCompetition(competitionId);
-
-                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), competitionId = x.id_zawody, Akcja = "Akceptuj"  }).ToList();
+                    fillWithRaces(CompetitionView, LoggedUserUtility.getLoggedContestant().id_zawodnik, competitionId);
                     //TODO po kliknieciu zaakceptowane update _zawodnik_wyscig
                 }
                 else if (type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser) // wyscigi ktorymi zarzadzaja organizator/opiekun
                 {
                     var races = CompetitionDataUtility.getRacesInCompetition(competitionId);
-                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), competitionId = x.id_zawody }).ToList();
+                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), Akcja = "Dodaj trasę",competitionId = x.id_wyscig }).ToList();  //idwyscig czy dobrze
                     //po kliknieciu przejscie do edycji trasy wyscigu
                 }
             }
@@ -233,7 +226,7 @@ namespace MultiligaApp
             var loggedContestant = LoggedUserUtility.getLoggedContestant();
             if (CompetitionBox.Text == "Lista zawodów")
             {
-                DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[2];      //cells[2] -> bierzemy dane z kolumny ID
+                DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[3];      //cells[3] -> bierzemy dane z kolumny ID
                 competitionId = Convert.ToInt32(IDcell.Value);
 
                 
@@ -245,12 +238,27 @@ namespace MultiligaApp
             }
             else if(CompetitionBox.Text == "Lista wyścigów")
             {
+                DataGridViewCell clickedCell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewTextBoxCell raceIdCell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[3];   //teamId w 3 kolumnie
                 //na podstawie competitionId otworz wyscigi     
                 if (loggedUserType == LoggedUserUtility.userType.organiser || loggedUserType == LoggedUserUtility.userType.supervisor)
                 {
                     CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
-                    createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
-                    createDeleteEditForm.Show();
+                    if (clickedCell.Value == "Dodaj trasę")
+                    {
+                        createDeleteEditForm.ModifiedRaceId = Convert.ToInt32(raceIdCell.Value);
+                        createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
+                        createDeleteEditForm.dropDownTracks();
+                        createDeleteEditForm.Show();
+                    }                    
+                }
+                else if(loggedUserType == LoggedUserUtility.userType.captain || loggedUserType == LoggedUserUtility.userType.contestant)
+                {
+                    if (clickedCell.Value == "Akceptuj")
+                    {
+                        ContestantDataUtility.acceptRaceInvitation(loggedContestant.id_zawodnik, Convert.ToInt32(raceIdCell.Value));
+                        fillWithRaces(CompetitionView, loggedContestant.id_zawodnik, competitionId);
+                    }
                 }
             }
             else if (CompetitionBox.Text == "Lista drużyn")
@@ -271,6 +279,23 @@ namespace MultiligaApp
         {
             var invitations = ContestantDataUtility.getContestantsTeamInvitations(contestantId);
             gridView.DataSource = invitations.Select(x => new { Nazwa = x.Item1.nazwa, Akcja = x.Item2, teamId = x.Item1.id_druzyna }).ToList();
+        }
+
+        private void fillWithManagedCompetitions()
+        {
+
+        }
+
+        private void fillWithAttendedCompetitions(DataGridView gridView, int contestantId)
+        {
+            List<zawody> competitions = ContestantDataUtility.getContestantsCurrentCompetitions(contestantId, true);
+            gridView.DataSource = competitions.Select(x => new { Nazwa = x.nazwa, competitionId = x.id_zawody }).ToList();
+        }
+
+        private void fillWithRaces(DataGridView gridView, int contestantId, int compId)
+        {
+            var races = CompetitionDataUtility.getContestantsCompetitionRaces(contestantId, compId);
+            gridView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), Akcja = x.Item2, competitionId = x.Item1.id_wyscig }).ToList();
         }
 
         private DataGridViewTextBoxColumn Nazwa;

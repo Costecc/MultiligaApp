@@ -66,9 +66,10 @@
     <Key>
       <PropertyRef Name="id_trasa" />
     </Key>
-    <Property Name="id_trasa" Type="int" Nullable="false" />
+    <Property Name="id_trasa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="miasto" Type="nvarchar(max)" Nullable="false" />
     <Property Name="dane" Type="nvarchar(max)" />
+    <Property Name="nazwa" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="uzytkownik">
     <Key>
@@ -130,17 +131,14 @@
     <Property Name="id_druzyna" Type="int" Nullable="false" />
     <Property Name="zaakceptowane" Type="bit" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="zawodnik_wyscig">
     <Key>
-      <PropertyRef Name="id_zawodnik" />
-      <PropertyRef Name="id_wyscig" />
-      <PropertyRef Name="zaakceptowane" />
+      <PropertyRef Name="id_zawodnik_wyscig" />
     </Key>
+    <Property Name="id_zawodnik_wyscig" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="id_zawodnik" Type="int" Nullable="false" />
     <Property Name="id_wyscig" Type="int" Nullable="false" />
-    <Property Name="zaakceptowane" Type="bit" Nullable="false" />
+    <Property Name="zaakceptowane" Type="bit" />
   </EntityType>
   <EntityType Name="zawodnik_zawody">
     <Key>
@@ -493,15 +491,9 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <EntitySet Name="wyscig" EntityType="Self.wyscig" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik" EntityType="Self.zawodnik" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik_druzyna" EntityType="Self.zawodnik_druzyna" Schema="multiliga" store:Type="Tables" />
+    <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawodnik_zawody" EntityType="Self.zawodnik_zawody" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="zawody" EntityType="Self.zawody" Schema="multiliga" store:Type="Tables" />
-    <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" store:Type="Tables" store:Schema="multiliga">
-      <DefiningQuery>SELECT 
-    [zawodnik_wyscig].[id_zawodnik] AS [id_zawodnik], 
-    [zawodnik_wyscig].[id_wyscig] AS [id_wyscig], 
-    [zawodnik_wyscig].[zaakceptowane] AS [zaakceptowane]
-    FROM [multiliga].[zawodnik_wyscig] AS [zawodnik_wyscig]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="druzyna$fk_id_kapitan" Association="Self.druzyna$fk_id_kapitan">
       <End Role="zawodnik" EntitySet="zawodnik" />
       <End Role="druzyna" EntitySet="druzyna" />

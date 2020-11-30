@@ -76,6 +76,7 @@
           <ScalarProperty Name="id_trasa" ColumnName="id_trasa" />
           <ScalarProperty Name="miasto" ColumnName="miasto" />
           <ScalarProperty Name="dane" ColumnName="dane" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -145,6 +146,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="zawodnik_wyscig">
+      <EntityTypeMapping TypeName="multiligaModel.zawodnik_wyscig">
+        <MappingFragment StoreEntitySet="zawodnik_wyscig">
+          <ScalarProperty Name="id_zawodnik_wyscig" ColumnName="id_zawodnik_wyscig" />
+          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
+          <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
+          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="zawodnik_zawody">
       <EntityTypeMapping TypeName="multiligaModel.zawodnik_zawody">
         <MappingFragment StoreEntitySet="zawodnik_zawody">
@@ -166,15 +177,6 @@
           <ScalarProperty Name="data_poczatek" ColumnName="data_poczatek" />
           <ScalarProperty Name="data_koniec" ColumnName="data_koniec" />
           <ScalarProperty Name="id_opiekun_zawodow" ColumnName="id_opiekun_zawodow" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="zawodnik_wyscig">
-      <EntityTypeMapping TypeName="multiligaModel.zawodnik_wyscig">
-        <MappingFragment StoreEntitySet="zawodnik_wyscig">
-          <ScalarProperty Name="id_zawodnik" ColumnName="id_zawodnik" />
-          <ScalarProperty Name="id_wyscig" ColumnName="id_wyscig" />
-          <ScalarProperty Name="zaakceptowane" ColumnName="zaakceptowane" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
