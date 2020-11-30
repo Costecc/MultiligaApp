@@ -241,7 +241,8 @@ namespace MultiligaApp
                 else
                 {
                     var index = competitionResults.FindIndex(c => c.contestantId == raceResult.contestantId);
-                    competitionResults[index] = new result { contestantId = competitionResults[index].contestantId, points = competitionResults[index].points + raceResult.points, competitionName = raceResult.competitionName, place = 0 };
+                    competitionResults[index] = new result { contestantId = competitionResults[index].contestantId, points = competitionResults[index].points + raceResult.points,
+                        competitionName = raceResult.competitionName, place = 0 };
                 }
             }
         }
@@ -270,7 +271,8 @@ namespace MultiligaApp
                 else
                 {
                     var index = competitionResults.FindIndex(c => c.teamId == raceResult.teamId);
-                    competitionResults[index] = new teamResult { teamId = competitionResults[index].teamId, points = competitionResults[index].points + raceResult.points, competitionName = raceResult.competitionName, place = 0 };
+                    competitionResults[index] = new teamResult { teamId = competitionResults[index].teamId, points = competitionResults[index].points + raceResult.points,
+                        competitionName = raceResult.competitionName, place = 0 };
                 }
             }
         }
@@ -312,13 +314,30 @@ namespace MultiligaApp
                 return (db.zawody.Any(z => z.nazwa == name));
             }
         }
-        static public void createCompetitionInvitation(int teamId, int competitionId)
+        static public void createCompetitionTeamInvitation(int teamId, int competitionId)
         {
             using (var db = new multiligaEntities())
             {
-                var invite = new druzyna_zawody { id_druzyna = teamId, id_zawody = competitionId, zaakceptowane = false };
-                db.druzyna_zawody.Add(invite);
+                var teamMembers = db.zawodnik_druzyna.Where(z => z.id_druzyna == teamId).ToList();
+
+                var teamInvite = new druzyna_zawody { id_druzyna = teamId, id_zawody = competitionId, zaakceptowane = false };
+                db.druzyna_zawody.Add(teamInvite);
                 db.SaveChanges();
+                foreach (var member in teamMembers)
+                {
+                    var individualInvite = new zawodnik_zawody { id_zawodnik = member.id_zawodnik, id_zawody = competitionId, zaakceptowane = false };
+                    db.zawodnik_zawody.Add(individualInvite);
+                    db.SaveChanges();
+                }                
+            }
+        }
+
+        static public List<wyscig> getRacesInCompetition(int competitionId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var races = db.wyscig.Where(w => w.id_zawody == competitionId).ToList();
+                return races;
             }
         }
     }

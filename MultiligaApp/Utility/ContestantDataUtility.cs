@@ -61,7 +61,7 @@ namespace MultiligaApp
 
             profileForm.FillProfileDataContestant(selectedContestant.imie_nazwisko,
                 selectedUser.login,
-                getContestantsTeamsNames(id),
+                getContestantsTeams(id).Select(t => t.nazwa).ToList(),
                 getContestantsCurrentCompetitions(id),
                 getContestantsPastCompetitions(id),
                 getContestantsAchievements(id, getContestantsPastCompetitions(id)), // jesli zawodnik nie ma past comp to nic
@@ -69,37 +69,91 @@ namespace MultiligaApp
                 );
         }
 
-        static public List<string> getContestantsTeamsNames(int id)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id
+        static public List<druzyna> getContestantsTeams(int id, bool checkInvitations = false)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id
         {
-            List<string> teams;
+            List<druzyna> teams;
             using (var db = new multiligaEntities())
             {
-                teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
-                         join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
-                         from _druzyna in _dr.DefaultIfEmpty()
+                if (checkInvitations == false)
+                {
+                    teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
+                             join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
+                             from _druzyna in _dr.DefaultIfEmpty()
 
-                         where (_zawodnik_druzyna.id_zawodnik == id && _zawodnik_druzyna.zaakceptowane == true)
-                         select _druzyna.nazwa
+                             where (_zawodnik_druzyna.id_zawodnik == id && _zawodnik_druzyna.zaakceptowane == true)
+                             select _druzyna
                          ).ToList();
+                }
+                else
+                {
+                    teams = (from _zawodnik_druzyna in db.zawodnik_druzyna
+                             join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
+                             from _druzyna in _dr.DefaultIfEmpty()
 
+                             where (_zawodnik_druzyna.id_zawodnik == id)
+                             select _druzyna
+                         ).ToList();
+                }
             }
             return teams;
         }
 
-        static public List<zawody> getContestantsCurrentCompetitions(int id)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id, parametr onlyPastDates - czy podać jedynie ukończone zawody
+        static public List<Tuple<druzyna, string>> getContestantsTeamInvitations(int id)   //sprawdzam czy zaproszenia wymagają jeszcze akceptacji
+        {
+            using (var db = new multiligaEntities())
+            {
+                var invitations = (from _zawodnik_druzyna in db.zawodnik_druzyna
+                         join _dr in db.druzyna on _zawodnik_druzyna.id_druzyna equals _dr.id_druzyna into _dr
+                         from _druzyna in _dr.DefaultIfEmpty()
+
+                         where (_zawodnik_druzyna.id_zawodnik == id)
+                         select new
+                         {
+                             _druzyna,
+                             _zawodnik_druzyna.zaakceptowane
+                         }
+                          ).ToList();
+
+                var invitationWithAction = new List<Tuple<druzyna, string>>();
+
+                foreach(var invitation in invitations)
+                {
+                    var action = "";
+                    if(invitation.zaakceptowane == false)
+                    {
+                        action = "Akceptuj";
+                    }
+                    invitationWithAction.Add(new Tuple<druzyna, string>(invitation._druzyna, action));
+                }
+                return invitationWithAction;
+            }           
+
+        }
+
+        static public List<zawody> getContestantsCurrentCompetitions(int id, bool checkInvitations = false)  //zwraca listę nazw drużyn, do których należy zawodnik o podanym id, parametr onlyPastDates - czy podać jedynie ukończone zawody
         {
             List<zawody> competitions;
 
             using (var db = new multiligaEntities())
             {
-                competitions = (from _zawodnik_zawody in db.zawodnik_zawody
-                                join _zaw in db.zawody on _zawodnik_zawody.id_zawody equals _zaw.id_zawody into _zaw
-                                from _zawody in _zaw.DefaultIfEmpty()
+                if (checkInvitations == false)
+                {
+                    competitions = (from _zawodnik_zawody in db.zawodnik_zawody
+                                    join _zaw in db.zawody on _zawodnik_zawody.id_zawody equals _zaw.id_zawody into _zaw
+                                    from _zawody in _zaw.DefaultIfEmpty()
 
-                                where (_zawodnik_zawody.id_zawodnik == id && _zawody.data_koniec >= DateTime.Now)
-                                select _zawody
-                         ).ToList();
+                                    where (_zawodnik_zawody.id_zawodnik == id && _zawody.data_koniec >= DateTime.Now && _zawodnik_zawody.zaakceptowane == true)
+                                    select _zawody).ToList();
+                }
+                else
+                {
+                    competitions = (from _zawodnik_zawody in db.zawodnik_zawody
+                                    join _zaw in db.zawody on _zawodnik_zawody.id_zawody equals _zaw.id_zawody into _zaw
+                                    from _zawody in _zaw.DefaultIfEmpty()
 
+                                    where (_zawodnik_zawody.id_zawodnik == id && _zawody.data_koniec >= DateTime.Now)
+                                    select _zawody).ToList();
+                }
             }
             return competitions;
         }
@@ -188,7 +242,7 @@ namespace MultiligaApp
                                  select _wynik.czas).Count();
                 var competitionName = db.zawody.Where(z => z.id_zawody == race.id_zawody).SingleOrDefault().nazwa;
 
-                var teamIds = getContestantTeamIds(id);
+                var teamIds = getContestantsTeams(id).Select(t => t.id_druzyna).ToList();
                 result r;                
                 r.competitionName = competitionName;
                 r.points = 0;
@@ -239,17 +293,17 @@ namespace MultiligaApp
             }
         }
 
-        static public List<int> getContestantTeamIds(int id)
-        {
-            using (var db = new multiligaEntities())
-            {
-                var teamIds = (from _zawodnik_druzyna in db.zawodnik_druzyna
-                              where (_zawodnik_druzyna.id_zawodnik == id)
-                              select _zawodnik_druzyna.id_druzyna).ToList();
+        //static public List<int> getContestantTeamIds(int id)
+        //{
+        //    using (var db = new multiligaEntities())
+        //    {
+        //        var teamIds = (from _zawodnik_druzyna in db.zawodnik_druzyna
+        //                      where (_zawodnik_druzyna.id_zawodnik == id)
+        //                      select _zawodnik_druzyna.id_druzyna).ToList();
 
-                return teamIds;
-            }
-        }
+        //        return teamIds;
+        //    }
+        //}
 
         static public bool checkIfCaptain(int contestantId)
         {
@@ -263,6 +317,17 @@ namespace MultiligaApp
             using (var db = new multiligaEntities())
             {
                 return db.zawodnik_druzyna.Any(z => z.id_druzyna == teamId && z.id_zawodnik == contestantId);
+            }
+        }
+
+        static public void acceptTeamInvitation(int contestantId, int teamId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var invitation = db.zawodnik_druzyna.Where(z => z.id_zawodnik == contestantId && z.id_druzyna == teamId).SingleOrDefault();
+                invitation.zaakceptowane = true;
+                db.SaveChanges();
+                MessageBox.Show("Zaakceptowano zaproszenie");
             }
         }
     }

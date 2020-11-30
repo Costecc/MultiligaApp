@@ -12,7 +12,6 @@ namespace MultiligaApp
 {
     public partial class LoginForm : Form
     {
-        //static private string currentEmail;
         public LoginForm()
         {
             InitializeComponent();
@@ -34,7 +33,8 @@ namespace MultiligaApp
                     // 3 - opiekun
                     // 4 - zawodnik
                     // default - mozliwosc logowania
-                    LoggedUserUtility.setCurrentEmail(Login.Text.ToString());                  
+                    LoggedUserUtility.setCurrentEmail(Login.Text.ToString());           
+                    
 
                     var currentUser = LoggedUserUtility.getLoggedUser();
 
@@ -60,8 +60,9 @@ namespace MultiligaApp
                         {
                             user = LoggedUserUtility.userType.supervisor;
                         }
-                    }                    
+                    }
                     // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
+                    LoggedUserUtility.setCurrentUserType(user);
                     mf.SetMenu(user);
                     mf.Show();                    
                 }

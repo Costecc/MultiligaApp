@@ -182,6 +182,9 @@
     <Compile Include="zawodnik_druzyna.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="zawodnik_wyscig.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="zawodnik_zawody.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

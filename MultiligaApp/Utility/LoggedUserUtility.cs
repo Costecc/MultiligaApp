@@ -14,6 +14,7 @@ namespace MultiligaApp
     class LoggedUserUtility
     {
         static private string currentEmail;
+        static private userType currentType;
         public enum userType
         {
             lurker, organiser, captain, supervisor, contestant
@@ -26,7 +27,7 @@ namespace MultiligaApp
         {
             currentEmail = email;
         }
-
+        
         static public uzytkownik getLoggedUser()
         {
             using (var db = new multiligaEntities())
@@ -37,6 +38,16 @@ namespace MultiligaApp
                 return currentUser;
             }
         }
+        static public void setCurrentUserType(userType type)
+        {
+            currentType = type;
+        }
+
+        static public userType getCurrentUserType()
+        {
+            return currentType;
+        }
+
 
         static public zawodnik getLoggedContestant()
         {
@@ -282,7 +293,14 @@ namespace MultiligaApp
             }
         }
 
-        //static public List<>
+        static public List<zawody> getEmployeesCompetitions(int employeeId)
+        {
+            using (var db = new multiligaEntities())
+            {
+                var usersCompetitions = db.zawody.Where(z => z.id_organizator == employeeId|| z.id_opiekun_zawodow == employeeId).ToList();
+                return usersCompetitions;
+            }
+        }
 
     }
 }

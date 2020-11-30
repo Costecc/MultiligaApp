@@ -136,9 +136,11 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <Key>
       <PropertyRef Name="id_zawodnik" />
       <PropertyRef Name="id_wyscig" />
+      <PropertyRef Name="zaakceptowane" />
     </Key>
     <Property Name="id_zawodnik" Type="int" Nullable="false" />
     <Property Name="id_wyscig" Type="int" Nullable="false" />
+    <Property Name="zaakceptowane" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="zawodnik_zawody">
     <Key>
@@ -147,6 +149,7 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <Property Name="id_zawodnik" Type="int" Nullable="false" />
     <Property Name="id_zawody" Type="int" Nullable="false" />
     <Property Name="id_zawodnik_zawody" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="zaakceptowane" Type="bit" />
   </EntityType>
   <EntityType Name="zawody">
     <Key>
@@ -495,7 +498,8 @@ warning 6002: The table/view 'multiliga.multiliga.zawodnik_wyscig' does not have
     <EntitySet Name="zawodnik_wyscig" EntityType="Self.zawodnik_wyscig" store:Type="Tables" store:Schema="multiliga">
       <DefiningQuery>SELECT 
     [zawodnik_wyscig].[id_zawodnik] AS [id_zawodnik], 
-    [zawodnik_wyscig].[id_wyscig] AS [id_wyscig]
+    [zawodnik_wyscig].[id_wyscig] AS [id_wyscig], 
+    [zawodnik_wyscig].[zaakceptowane] AS [zaakceptowane]
     FROM [multiliga].[zawodnik_wyscig] AS [zawodnik_wyscig]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="druzyna$fk_id_kapitan" Association="Self.druzyna$fk_id_kapitan">
