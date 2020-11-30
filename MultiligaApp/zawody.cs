@@ -17,9 +17,9 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zawody()
         {
+            this.druzyna_zawody = new HashSet<druzyna_zawody>();
             this.wyscig = new HashSet<wyscig>();
             this.zawodnik_zawody = new HashSet<zawodnik_zawody>();
-            this.druzyna_zawody = new HashSet<druzyna_zawody>();
         }
     
         public int id_zawody { get; set; }
@@ -31,6 +31,8 @@ namespace MultiligaApp
         public Nullable<System.DateTime> data_koniec { get; set; }
         public int id_opiekun_zawodow { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<druzyna_zawody> druzyna_zawody { get; set; }
         public virtual dyscyplina dyscyplina { get; set; }
         public virtual pracownik pracownik { get; set; }
         public virtual pracownik pracownik1 { get; set; }
@@ -39,7 +41,5 @@ namespace MultiligaApp
         public virtual wyscig wyscig1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawodnik_zawody> zawodnik_zawody { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<druzyna_zawody> druzyna_zawody { get; set; }
     }
 }

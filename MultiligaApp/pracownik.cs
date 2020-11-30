@@ -23,8 +23,6 @@ namespace MultiligaApp
             this.pakiet_startowy = new HashSet<pakiet_startowy>();
             this.zawody = new HashSet<zawody>();
             this.zawody1 = new HashSet<zawody>();
-            this.trasa = new HashSet<trasa>();
-            this.trasa1 = new HashSet<trasa>();
             this.wplata = new HashSet<wplata>();
             this.wplata1 = new HashSet<wplata>();
         }
@@ -49,10 +47,6 @@ namespace MultiligaApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<zawody> zawody1 { get; set; }
         public virtual uzytkownik uzytkownik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<trasa> trasa { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<trasa> trasa1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<wplata> wplata { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

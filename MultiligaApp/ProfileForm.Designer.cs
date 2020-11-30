@@ -14,6 +14,7 @@ namespace MultiligaApp
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// 
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -37,13 +38,40 @@ namespace MultiligaApp
 
             if (inviteMessage == "Zaproś do zawodów")
             {
-                if (user == LoggedUserUtility.userType.supervisor)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
+                if (user == LoggedUserUtility.userType.supervisor || user == LoggedUserUtility.userType.organiser)  //tylko opiekun (user = 3) może dodać druzyne do zawodów
+                {
                     InviteButton.Visible = true;
+                    comboBox1.Visible = true;
+                    using (var db = new multiligaEntities())
+                    {
+                        //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam jest w comboBox1
+                        var invitingUser = LoggedUserUtility.getLoggedEmployee();
+                        var usersCompetitions = db.zawody.Where(z => z.id_organizator== invitingUser.id_pracownik || z.id_opiekun_zawodow == invitingUser.id_pracownik).ToList();
+
+                        comboBox1.ValueMember = "id_zawody";
+                        comboBox1.DisplayMember = "nazwa";
+                        comboBox1.DataSource = usersCompetitions;
+                    }
+                }
+                    
             }
             else
             {
-                if(user == LoggedUserUtility.userType.captain)   //tylko kapitan (user = 2) może dodać zawodnika do drużyny
+                if (user == LoggedUserUtility.userType.captain)   //tylko kapitan (user = 2) może dodać zawodnika do drużyny
+                {
                     InviteButton.Visible = true;
+                    comboBox1.Visible = true;
+                    using (var db = new multiligaEntities())
+                    {
+                        //znajduje drużyny obecnie zalogowanego kapitana i wyświetlam jest w comboBox1
+                        var captain = LoggedUserUtility.getLoggedContestant();
+                        var captainsTeams = db.druzyna.Where(d => d.id_kapitan == captain.id_zawodnik).ToList();
+
+                        comboBox1.ValueMember = "id_druzyna";
+                        comboBox1.DisplayMember = "nazwa";
+                        comboBox1.DataSource = captainsTeams;
+                    }
+                }
             }
 
             MatchesView.Rows.Add("Motocross Lublin 1:0 Olsztyn");
@@ -107,6 +135,7 @@ namespace MultiligaApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -131,8 +160,11 @@ namespace MultiligaApp
             this.MatchesView = new System.Windows.Forms.DataGridView();
             this.MatchColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.InviteButton = new System.Windows.Forms.Button();
+            this.fillByToolStrip = new System.Windows.Forms.ToolStrip();
+            this.fillByToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.ProfileView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -142,6 +174,7 @@ namespace MultiligaApp
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MatchesView)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.fillByToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // ProfileView
@@ -385,14 +418,25 @@ namespace MultiligaApp
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.comboBox1);
             this.groupBox2.Controls.Add(this.CancelButton);
             this.groupBox2.Controls.Add(this.InviteButton);
             this.groupBox2.Location = new System.Drawing.Point(270, 647);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(257, 146);
+            this.groupBox2.Size = new System.Drawing.Size(262, 151);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(71, 22);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(116, 24);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.Visible = false;
+            //             
             // CancelButton
             // 
             this.CancelButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -416,11 +460,30 @@ namespace MultiligaApp
             this.InviteButton.Visible = false;
             this.InviteButton.Click += new System.EventHandler(this.InviteButton_Click);
             // 
+            // fillByToolStrip
+            // 
+            this.fillByToolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.fillByToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fillByToolStripButton});
+            this.fillByToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.fillByToolStrip.Name = "fillByToolStrip";
+            this.fillByToolStrip.Size = new System.Drawing.Size(607, 27);
+            this.fillByToolStrip.TabIndex = 3;
+            this.fillByToolStrip.Text = "fillByToolStrip";
+            // 
+            // fillByToolStripButton
+            // 
+            this.fillByToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillByToolStripButton.Name = "fillByToolStripButton";
+            this.fillByToolStripButton.Size = new System.Drawing.Size(48, 24);
+            this.fillByToolStripButton.Text = "FillBy";
+            // 
             // ProfileForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 805);
+            this.Controls.Add(this.fillByToolStrip);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.ProfileView);
@@ -437,7 +500,10 @@ namespace MultiligaApp
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MatchesView)).EndInit();
             this.groupBox2.ResumeLayout(false);
+            this.fillByToolStrip.ResumeLayout(false);
+            this.fillByToolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -465,5 +531,8 @@ namespace MultiligaApp
         private DataGridView dataGridView3;
         private DataGridView dataGridView5;
         private TextBox textBox1;
+        private ComboBox comboBox1;
+        private ToolStrip fillByToolStrip;
+        private ToolStripButton fillByToolStripButton;
     }
 }

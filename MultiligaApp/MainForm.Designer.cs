@@ -39,7 +39,7 @@ namespace MultiligaApp
             }
 
             //zawodnik ma prawo do zakłądania drużyny
-            if (_user == LoggedUserUtility.userType.contestant)
+            if (_user == LoggedUserUtility.userType.contestant || _user == LoggedUserUtility.userType.captain)
             {
                 załóżNowaDrużynęToolStripMenuItem.Visible = true;
                 drużynyToolStripMenuItem.Visible = true;
