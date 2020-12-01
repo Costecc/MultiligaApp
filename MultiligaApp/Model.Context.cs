@@ -28,7 +28,6 @@ namespace MultiligaApp
         public virtual DbSet<druzyna> druzyna { get; set; }
         public virtual DbSet<druzyna_zawody> druzyna_zawody { get; set; }
         public virtual DbSet<dyscyplina> dyscyplina { get; set; }
-        public virtual DbSet<kwalifikacje> kwalifikacje { get; set; }
         public virtual DbSet<organizator> organizator { get; set; }
         public virtual DbSet<pakiet_startowy> pakiet_startowy { get; set; }
         public virtual DbSet<pracownik> pracownik { get; set; }

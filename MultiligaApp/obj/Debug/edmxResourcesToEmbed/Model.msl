@@ -29,16 +29,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="kwalifikacje">
-      <EntityTypeMapping TypeName="multiligaModel.kwalifikacje">
-        <MappingFragment StoreEntitySet="kwalifikacje">
-          <ScalarProperty Name="id_kwalifikacji" ColumnName="id_kwalifikacji" />
-          <ScalarProperty Name="miasto" ColumnName="miasto" />
-          <ScalarProperty Name="liczba_osob" ColumnName="liczba_osob" />
-          <ScalarProperty Name="id_organizator" ColumnName="id_organizator" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="organizator">
       <EntityTypeMapping TypeName="multiligaModel.organizator">
         <MappingFragment StoreEntitySet="organizator">

@@ -166,9 +166,16 @@ namespace MultiligaApp
 
                 if (IsValidEmail(email))
                 {
-                    user.login = email;
-                    LoggedUserUtility.setCurrentEmail(email);
-                    _operation += "\n- email";
+                    if (!IsEmailTaken(email))
+                    {
+                        user.login = email;
+                        LoggedUserUtility.setCurrentEmail(email);
+                        _operation += "\n- email";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podany email jest już zajęty", "Niepowodzenie");
+                    }
                 }
                 else if (email.Length > 0)
                 {
