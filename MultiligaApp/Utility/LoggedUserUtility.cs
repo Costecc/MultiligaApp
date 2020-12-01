@@ -132,14 +132,21 @@ namespace MultiligaApp
         {
             if (IsValidEmail(email))
             {
-                //TODO sprawdzic czy juz nie ma konta dla podanego maila
-                using (var db = new multiligaEntities())
+                if (!IsEmailTaken(email))
                 {
-                    var user = new uzytkownik { login = email, haslo = password, rola = "zawodnik" }; //konto z poziomu gui mogą zakładać tylko zawodnicy
-                    db.uzytkownik.Add(user);
-                    db.SaveChanges();
-                    db.zawodnik.Add(new zawodnik { id_uzytkownik = user.id_uzytkownik, publiczne = 0, imie_nazwisko = name });
-                    db.SaveChanges();
+                    using (var db = new multiligaEntities())
+                    {
+                        var user = new uzytkownik { login = email, haslo = password, rola = "zawodnik" }; //konto z poziomu gui mogą zakładać tylko zawodnicy
+                        db.uzytkownik.Add(user);
+                        db.SaveChanges();
+                        db.zawodnik.Add(new zawodnik { id_uzytkownik = user.id_uzytkownik, publiczne = 0, imie_nazwisko = name });
+                        db.SaveChanges();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Podany email jest już zajęty", "Niepowodzenie");
+                    successfulOperation = false;
                 }
             }
             else
@@ -159,9 +166,16 @@ namespace MultiligaApp
 
                 if (IsValidEmail(email))
                 {
-                    user.login = email;
-                    LoggedUserUtility.setCurrentEmail(email);
-                    _operation += "\n- email";
+                    if (!IsEmailTaken(email))
+                    {
+                        user.login = email;
+                        LoggedUserUtility.setCurrentEmail(email);
+                        _operation += "\n- email";
+                    }
+                    else
+                    {
+                        MessageBox.Show("Podany email jest już zajęty", "Niepowodzenie");
+                    }
                 }
                 else if (email.Length > 0)
                 {
@@ -227,6 +241,14 @@ namespace MultiligaApp
             }
         }
 
+        static public bool IsEmailTaken(string email)
+        {
+            using (var db = new multiligaEntities())
+            {
+                return db.uzytkownik.Any(u => u.login == email);
+            }
+        }
+
         static public bool isNumber(string numString)
         {
             int number = 0;
@@ -285,6 +307,7 @@ namespace MultiligaApp
                             smtp.Send(message);
                         }
                     }
+                    MessageBox.Show("Email został wysłany na wskazany adres", "Powodzenie");
                 }
             }
             catch

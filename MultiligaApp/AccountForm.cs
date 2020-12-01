@@ -27,6 +27,7 @@ namespace MultiligaApp
         {
             if (this.groupBox1.Text == "Przypomnienie hasła")
             {
+                SaveButton.Text = "Wyślij";
                 LoggedUserUtility.remindPassword(textBox2.Text);
             }
             else if(this.groupBox1.Text == "Zmiana hasła")

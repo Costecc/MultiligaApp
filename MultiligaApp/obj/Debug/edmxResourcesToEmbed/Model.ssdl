@@ -25,15 +25,6 @@
     <Property Name="id_dyscyplina" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nazwa" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="kwalifikacje">
-    <Key>
-      <PropertyRef Name="id_kwalifikacji" />
-    </Key>
-    <Property Name="id_kwalifikacji" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="miasto" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="liczba_osob" Type="int" Nullable="false" />
-    <Property Name="id_organizator" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="organizator">
     <Key>
       <PropertyRef Name="id_organizator" />
@@ -344,18 +335,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="kwalifikacje$fk_id_organizator1">
-    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
-    <End Role="kwalifikacje" Type="Self.kwalifikacje" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="pracownik">
-        <PropertyRef Name="id_pracownik" />
-      </Principal>
-      <Dependent Role="kwalifikacje">
-        <PropertyRef Name="id_organizator" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="organizator$fk_id_pracownik1">
     <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
     <End Role="organizator" Type="Self.organizator" Multiplicity="0..1" />
@@ -480,7 +459,6 @@
     <EntitySet Name="druzyna" EntityType="Self.druzyna" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="druzyna_zawody" EntityType="Self.druzyna_zawody" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="dyscyplina" EntityType="Self.dyscyplina" Schema="multiliga" store:Type="Tables" />
-    <EntitySet Name="kwalifikacje" EntityType="Self.kwalifikacje" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="organizator" EntityType="Self.organizator" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="pakiet_startowy" EntityType="Self.pakiet_startowy" Schema="multiliga" store:Type="Tables" />
     <EntitySet Name="pracownik" EntityType="Self.pracownik" Schema="multiliga" store:Type="Tables" />
@@ -553,10 +531,6 @@
     <AssociationSet Name="FK_zawody_id_zawody3" Association="Self.FK_zawody_id_zawody3">
       <End Role="zawody" EntitySet="zawody" />
       <End Role="wyscig" EntitySet="wyscig" />
-    </AssociationSet>
-    <AssociationSet Name="kwalifikacje$fk_id_organizator1" Association="Self.kwalifikacje$fk_id_organizator1">
-      <End Role="pracownik" EntitySet="pracownik" />
-      <End Role="kwalifikacje" EntitySet="kwalifikacje" />
     </AssociationSet>
     <AssociationSet Name="organizator$fk_id_pracownik1" Association="Self.organizator$fk_id_pracownik1">
       <End Role="pracownik" EntitySet="pracownik" />

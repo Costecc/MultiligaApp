@@ -31,16 +31,6 @@
     <Property Name="nazwa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="zawody" Relationship="Self.FK_organizator_id_organizator" FromRole="dyscyplina" ToRole="zawody" />
   </EntityType>
-  <EntityType Name="kwalifikacje">
-    <Key>
-      <PropertyRef Name="id_kwalifikacji" />
-    </Key>
-    <Property Name="id_kwalifikacji" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="miasto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="liczba_osob" Type="Int32" Nullable="false" />
-    <Property Name="id_organizator" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="pracownik" Relationship="Self.kwalifikacje_fk_id_organizator1" FromRole="kwalifikacje" ToRole="pracownik" />
-  </EntityType>
   <EntityType Name="organizator">
     <Key>
       <PropertyRef Name="id_organizator" />
@@ -72,7 +62,6 @@
     <Property Name="id_uzytkownik" Type="Int32" Nullable="false" />
     <Property Name="imie" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="nazwisko" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="kwalifikacje" Relationship="Self.kwalifikacje_fk_id_organizator1" FromRole="pracownik" ToRole="kwalifikacje" />
     <NavigationProperty Name="organizator" Relationship="Self.FK_pracownik_id_pracownik1" FromRole="pracownik" ToRole="organizator" />
     <NavigationProperty Name="organizator1" Relationship="Self.FK_pracownik_id_pracownik2" FromRole="pracownik" ToRole="organizator" />
     <NavigationProperty Name="organizator2" Relationship="Self.organizator_fk_id_pracownik1" FromRole="pracownik" ToRole="organizator" />
@@ -271,18 +260,6 @@
       </Principal>
       <Dependent Role="zawody">
         <PropertyRef Name="id_dyscyplina" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="kwalifikacje_fk_id_organizator1">
-    <End Role="pracownik" Type="Self.pracownik" Multiplicity="1" />
-    <End Role="kwalifikacje" Type="Self.kwalifikacje" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="pracownik">
-        <PropertyRef Name="id_pracownik" />
-      </Principal>
-      <Dependent Role="kwalifikacje">
-        <PropertyRef Name="id_organizator" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -532,7 +509,6 @@
     <EntitySet Name="druzyna" EntityType="Self.druzyna" />
     <EntitySet Name="druzyna_zawody" EntityType="Self.druzyna_zawody" />
     <EntitySet Name="dyscyplina" EntityType="Self.dyscyplina" />
-    <EntitySet Name="kwalifikacje" EntityType="Self.kwalifikacje" />
     <EntitySet Name="organizator" EntityType="Self.organizator" />
     <EntitySet Name="pakiet_startowy" EntityType="Self.pakiet_startowy" />
     <EntitySet Name="pracownik" EntityType="Self.pracownik" />
@@ -565,10 +541,6 @@
     <AssociationSet Name="FK_organizator_id_organizator" Association="Self.FK_organizator_id_organizator">
       <End Role="dyscyplina" EntitySet="dyscyplina" />
       <End Role="zawody" EntitySet="zawody" />
-    </AssociationSet>
-    <AssociationSet Name="kwalifikacje_fk_id_organizator1" Association="Self.kwalifikacje_fk_id_organizator1">
-      <End Role="pracownik" EntitySet="pracownik" />
-      <End Role="kwalifikacje" EntitySet="kwalifikacje" />
     </AssociationSet>
     <AssociationSet Name="FK_pracownik_id_pracownik1" Association="Self.FK_pracownik_id_pracownik1">
       <End Role="pracownik" EntitySet="pracownik" />

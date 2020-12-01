@@ -34,9 +34,10 @@ namespace MultiligaApp
             }
 
             //organizator ma prawo do zarządzania zawodami - ustawienie przycisku jako widocznego
-            if (_user == LoggedUserUtility.userType.organiser)
+            if (_user == LoggedUserUtility.userType.organiser || _user == LoggedUserUtility.userType.supervisor)
             {
                 zarzadzajZawodamiToolStripMenuItem.Visible = true;
+                mojeKontoToolStripMenuItem.Visible = false;
             }
 
             //zawodnik ma prawo do zakłądania drużyny
