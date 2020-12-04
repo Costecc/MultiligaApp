@@ -26,8 +26,7 @@ namespace MultiligaApp
         private void SaveButton_Click(object sender, EventArgs e)
         {
             if (this.groupBox1.Text == "Przypomnienie hasła")
-            {
-                SaveButton.Text = "Wyślij";
+            {                
                 LoggedUserUtility.remindPassword(textBox2.Text);
             }
             else if(this.groupBox1.Text == "Zmiana hasła")
@@ -61,6 +60,11 @@ namespace MultiligaApp
                     Application.Exit();
                 }
             }
+        }
+
+        public void setSaveButtonText(string text)
+        {
+            SaveButton.Text = text;
         }
     }
 }

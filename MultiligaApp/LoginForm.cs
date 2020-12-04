@@ -19,63 +19,13 @@ namespace MultiligaApp
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            IncorrectLoginLabel.Visible = false;
-   
-            using (var db = new multiligaEntities())
-            {
-                if (db.uzytkownik.Any(u => u.login == Login.Text.ToString() && u.haslo == Password.Text.ToString()))         //sprawdzam czy podany login i podane hasło są w bazie danych
-                {
-                    this.Hide();
-                    MainForm mf = new MainForm();
-                    // 0 - mozliwosc wyszukiwania
-                    // 1 - organizator
-                    // 2 - kapitan
-                    // 3 - opiekun
-                    // 4 - zawodnik
-                    // default - mozliwosc logowania
-                    LoggedUserUtility.setCurrentEmail(Login.Text.ToString());           
-                    
-
-                    var currentUser = LoggedUserUtility.getLoggedUser();
-
-                    var user = LoggedUserUtility.userType.lurker;
-                    if (currentUser.rola == "zawodnik")
-                    {
-                        user = LoggedUserUtility.userType.contestant;
-                        //TODO kapitan, sprawdzic czy w tabeli druzyna jest jako kapitan
-                        if(ContestantDataUtility.checkIfCaptain(LoggedUserUtility.getLoggedContestant().id_zawodnik))
-                        {
-                            user = LoggedUserUtility.userType.captain;
-                        }
-                    }
-                    else
-                    {                       
-                        var currentEmployee = LoggedUserUtility.getLoggedEmployee();
-
-                        if(currentEmployee.stanowisko == "organizator")
-                        {
-                            user = LoggedUserUtility.userType.organiser;
-                        }
-                        else if(currentEmployee.stanowisko == "opiekun")
-                        {
-                            user = LoggedUserUtility.userType.supervisor;
-                        }
-                    }
-                    // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
-                    LoggedUserUtility.setCurrentUserType(user);
-                    mf.SetMenu(user);
-                    mf.Show();                    
-                }
-                else
-                {
-                    IncorrectLoginLabel.Visible = true;
-                }
-            }
+            LoggedUserUtility.logIn(this, Login.Text, Password.Text);
         }
 
         private void ForgetPassword_Click(object sender, EventArgs e)
         {
             AccountForm accountEditionForm = new AccountForm();
+            accountEditionForm.setSaveButtonText("Wyślij");
             accountEditionForm.SetMenu("Przypomnienie hasła", "", "Adres email", "");
             accountEditionForm.Show();            
         }
@@ -91,16 +41,6 @@ namespace MultiligaApp
             createDeleteEditForm.SetCreateForm("Załóż konto", "", "", "Imię i nazwisko", "", "Email", "\nHasło", "");
             createDeleteEditForm.Show();
         }
-
-        //static public string getCurrentEmail()
-        //{
-        //    return currentEmail;
-        //}
-
-        //static public void setCurrentEmail(string email)
-        //{
-        //    currentEmail = email;
-        //}
 
         private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -135,5 +75,12 @@ namespace MultiligaApp
             mf.SetMenu(user);
             mf.Show();
         }
+
+        public void setIncorrectLoginLabel(bool value)
+        {
+            IncorrectLoginLabel.Visible = value;
+        }
+
+
     }
 }
