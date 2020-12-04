@@ -119,6 +119,60 @@ namespace MultiligaApp
 
         static public void changePassword(AccountForm form, string oldPassword, string newPassword, string newPasswordConfirm)
         {
+            //form.IncorrectLoginLabel.Visible = false;
+            form.setIncorrectLoginLabel(false);
+
+            if (db.uzytkownik.Any(u => u.login == login.ToString() && u.haslo == password.ToString()))         //sprawdzam czy podany login i podane hasło są w bazie danych
+            {
+                form.Hide();
+                MainForm mf = new MainForm(form);
+                // 0 - mozliwosc wyszukiwania
+                // 1 - organizator
+                // 2 - kapitan
+                // 3 - opiekun
+                // 4 - zawodnik
+                // default - mozliwosc logowania
+                LoggedUserUtility.setCurrentEmail(login.ToString());
+
+
+                var currentUser = LoggedUserUtility.getLoggedUser();
+
+                var user = LoggedUserUtility.userType.lurker;
+                if (currentUser.rola == "zawodnik")
+                {
+                    user = LoggedUserUtility.userType.contestant;
+                    //TODO kapitan, sprawdzic czy w tabeli druzyna jest jako kapitan
+                    if (ContestantDataUtility.checkIfCaptain(LoggedUserUtility.getLoggedContestant().id_zawodnik))
+                    {
+                        user = LoggedUserUtility.userType.captain;
+                    }
+                }
+                else
+                {
+                    var currentEmployee = LoggedUserUtility.getLoggedEmployee();
+
+                    if (currentEmployee.stanowisko == "organizator")
+                    {
+                        user = LoggedUserUtility.userType.organiser;
+                    }
+                    else if (currentEmployee.stanowisko == "opiekun")
+                    {
+                        user = LoggedUserUtility.userType.supervisor;
+                    }
+                }
+                // jesli do set menu podany user > 4 to nie ma mozliwosci wyszukiwania
+                LoggedUserUtility.setCurrentUserType(user);
+                mf.SetMenu(user);
+                mf.Show();
+            }
+            else
+            {
+                form.setIncorrectLoginLabel(true);
+            }
+        }
+
+        static public void changePassword(AccountForm form, string oldPassword, string newPassword, string newPasswordConfirm)
+        {
             string currEmail = getCurrentEmail();
 
             var user = db.uzytkownik.FirstOrDefault(uz => uz.login == currEmail && uz.haslo == oldPassword);
