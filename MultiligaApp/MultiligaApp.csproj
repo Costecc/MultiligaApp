@@ -112,6 +112,15 @@
     <Compile Include="pracownik.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagrams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TemplateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TemplateForm.Designer.cs">
+      <DependentUpon>TemplateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="trasa.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -161,6 +170,7 @@
     </Compile>
     <Compile Include="Utility\TeamDataUtility.cs" />
     <Compile Include="Utility\LoggedUserUtility.cs" />
+    <Compile Include="Utility\Utility.cs" />
     <Compile Include="uzytkownik.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -224,6 +234,9 @@
     </Compile>
     <EmbeddedResource Include="SearchForm.resx">
       <DependentUpon>SearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TemplateForm.resx">
+      <DependentUpon>TemplateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

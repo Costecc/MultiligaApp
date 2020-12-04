@@ -10,25 +10,23 @@ using System.Windows.Forms;
 
 namespace MultiligaApp
 {
-    public partial class ProfileForm : Form
+    public partial class ProfileForm : TemplateForm
     {
         private int profileId;
-        public ProfileForm()
+        public ProfileForm(TemplateForm form) : base(form)
         {
             InitializeComponent();
         }
-
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void InviteButton_Click(object sender, EventArgs e)
         {
-            if(InviteButton.Text == "Zaproś do drużyny")
+            if (InviteButton.Text == "Zaproś do drużyny")
             {
                 if (!ContestantDataUtility.isContestantAlreadyInTeam(profileId, Convert.ToInt32(comboBox1.SelectedValue))) //jeśli zaproszenie nie było wysyłane już wcześniej
-                {                    
+                {
                     TeamDataUtility.createTeamInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
                     MessageBox.Show("Zaproszono do drużyny", "Zaproszenie wysłane");
                 }
@@ -41,34 +39,11 @@ namespace MultiligaApp
                 {
                     CompetitionDataUtility.createCompetitionTeamInvitation(profileId, Convert.ToInt32(comboBox1.SelectedValue));
                     MessageBox.Show("Zaproszono do zawodów", "Zaproszenie wysłane");
-                }                    
+                }
                 else
                     MessageBox.Show("Zaproszenie zostało już wysłane wcześniej", "Informacja");
             }
-        }
-
-        private void ProfileForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                int visibleForms = 0;
-                for (int i = 0; i < Application.OpenForms.Count; ++i)
-                {
-                    if (Application.OpenForms[i].Visible == true)
-                    {
-                        ++visibleForms;
-                    }
-                }
-                if (visibleForms == 0)
-                {
-                    Application.Exit();
-                }
-            }
-        }
+        }        
         public void setProfileId(int id)
         {
             profileId = id;

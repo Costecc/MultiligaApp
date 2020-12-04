@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace MultiligaApp
 {
-    public partial class AccountForm : Form
+    public partial class AccountForm : TemplateForm
     {
-        public AccountForm()
+        public AccountForm(TemplateForm form) : base(form)
         {
             InitializeComponent();
         }
@@ -27,11 +27,10 @@ namespace MultiligaApp
         {
             if (this.groupBox1.Text == "Przypomnienie hasła")
             {
-                SaveButton.Text = "Wyślij";
                 LoggedUserUtility.remindPassword(textBox2.Text);
             }
-            else if(this.groupBox1.Text == "Zmiana hasła")
-            { 
+            else if (this.groupBox1.Text == "Zmiana hasła")
+            {
                 LoggedUserUtility.changePassword(this, textBox1.Text, textBox2.Text, textBox3.Text);
             }
             else if (this.groupBox1.Text == "Usuwanie konta")
@@ -39,28 +38,9 @@ namespace MultiligaApp
                 LoggedUserUtility.deleteAccount(this, textBox2.Text);
             }
         }
-
-        private void AccountForm_FormClosed(object sender, FormClosedEventArgs e)
+        public void setSaveButtonText(string text)
         {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                int visibleForms = 0;
-                for (int i = 0; i < Application.OpenForms.Count; ++i)
-                {
-                    if (Application.OpenForms[i].Visible == true)
-                    {
-                        ++visibleForms;
-                    }
-                }
-                if (visibleForms == 0)
-                {
-                    Application.Exit();
-                }
-            }
+            SaveButton.Text = text;
         }
     }
 }

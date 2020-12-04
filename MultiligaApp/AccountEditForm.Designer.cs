@@ -227,7 +227,6 @@
             this.Controls.Add(this.EditBox);
             this.Name = "AccountEditForm";
             this.Text = "Edycja konta";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountEditForm_FormClosed);
             this.EditBox.ResumeLayout(false);
             this.EditBox.PerformLayout();
             this.ResumeLayout(false);

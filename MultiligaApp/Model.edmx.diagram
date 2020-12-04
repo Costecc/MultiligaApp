@@ -4,7 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ad273a3a162441cdad28f6641d1aba58" Name="Diagram1">
+      <Diagram DiagramId="2b0e1331a99541baa771ab429ac4fc6f" Name="Diagram1">
+        <EntityTypeShape EntityType="multiligaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="multiligaModel.druzyna" Width="1.5" PointX="8.25" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="multiligaModel.druzyna_zawody" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="multiligaModel.dyscyplina" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />

@@ -42,17 +42,15 @@ namespace MultiligaApp
                 {
                     InviteButton.Visible = true;
                     comboBox1.Visible = true;
-                    using (var db = new multiligaEntities())
-                    {
-                        //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam je w comboBox1
-                        var invitingUser = LoggedUserUtility.getLoggedEmployee();
-                        var usersCompetitions = LoggedUserUtility.getEmployeesCompetitions(invitingUser.id_pracownik);
+                    //znajduje zawody obecnie zalogowanego organizatora/opiekuna i wyświetlam je w comboBox1
+                    var invitingUser = LoggedUserUtility.getLoggedEmployee();
+                    var usersCompetitions = LoggedUserUtility.getEmployeesCompetitions(invitingUser.id_pracownik);
 
-                        comboBox1.ValueMember = "id_zawody";
-                        comboBox1.DisplayMember = "nazwa";
-                        comboBox1.DataSource = usersCompetitions;
-                    }
-                }                    
+                    comboBox1.ValueMember = "id_zawody";
+                    comboBox1.DisplayMember = "nazwa";
+                    comboBox1.DataSource = usersCompetitions;
+
+                }
             }
             else
             {
@@ -60,16 +58,15 @@ namespace MultiligaApp
                 {
                     InviteButton.Visible = true;
                     comboBox1.Visible = true;
-                    using (var db = new multiligaEntities())
-                    {
-                        //znajduje drużyny obecnie zalogowanego kapitana i wyświetlam jest w comboBox1
-                        var captain = LoggedUserUtility.getLoggedContestant();
-                        var captainsTeams = db.druzyna.Where(d => d.id_kapitan == captain.id_zawodnik).ToList();
 
-                        comboBox1.ValueMember = "id_druzyna";
-                        comboBox1.DisplayMember = "nazwa";
-                        comboBox1.DataSource = captainsTeams;
-                    }
+                    //znajduje drużyny obecnie zalogowanego kapitana i wyświetlam jest w comboBox1
+                    var captain = LoggedUserUtility.getLoggedContestant();
+                    var captainsTeams = db.druzyna.Where(d => d.id_kapitan == captain.id_zawodnik).ToList();
+
+                    comboBox1.ValueMember = "id_druzyna";
+                    comboBox1.DisplayMember = "nazwa";
+                    comboBox1.DataSource = captainsTeams;
+
                 }
             }
 
@@ -77,10 +74,10 @@ namespace MultiligaApp
             //MatchesView.Rows.Add("XYZ 0:1 Motocross Lublin");
         }
 
-        public void FillProfileDataContestant(string name, string email, List<string> teams, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe )
+        public void FillProfileDataContestant(string name, string email, List<string> teams, List<zawody> currentCompetitions, List<zawody> pastCompetitions, List<result> achievements, string aboutMe)
         {
             this.label8.Text = name;
-            this.label9.Text = email;                     
+            this.label9.Text = email;
 
             dataGridView1.DataSource = currentCompetitions.Select(x => new { Name = x.nazwa }).ToList();
             dataGridView1.ClearSelection();
@@ -487,7 +484,6 @@ namespace MultiligaApp
             this.Controls.Add(this.ProfileView);
             this.Name = "ProfileForm";
             this.Text = "Profil";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ProfileForm_FormClosed);
             this.ProfileView.ResumeLayout(false);
             this.ProfileView.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).EndInit();

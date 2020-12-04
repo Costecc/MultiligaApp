@@ -30,7 +30,8 @@
         {
             this.Login = new System.Windows.Forms.TextBox();
             this.LoginBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.NoLoginButton = new System.Windows.Forms.Button();
+            this.CreateAccountLabel = new System.Windows.Forms.Label();
             this.ForgetPassword = new System.Windows.Forms.Label();
             this.IncorrectLoginLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,7 +39,6 @@
             this.Password = new System.Windows.Forms.TextBox();
             this.PasswordLabel = new System.Windows.Forms.Label();
             this.LoginLabel = new System.Windows.Forms.Label();
-            this.NoLoginButton = new System.Windows.Forms.Button();
             this.LoginBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             // LoginBox
             // 
             this.LoginBox.Controls.Add(this.NoLoginButton);
-            this.LoginBox.Controls.Add(this.label1);
+            this.LoginBox.Controls.Add(this.CreateAccountLabel);
             this.LoginBox.Controls.Add(this.ForgetPassword);
             this.LoginBox.Controls.Add(this.IncorrectLoginLabel);
             this.LoginBox.Controls.Add(this.label3);
@@ -68,18 +68,29 @@
             this.LoginBox.TabStop = false;
             this.LoginBox.Text = "Zaloguj";
             // 
-            // label1
+            // NoLoginButton
             // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(201, 144);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Załóż konto";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.NoLoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.NoLoginButton.Location = new System.Drawing.Point(74, 199);
+            this.NoLoginButton.Name = "NoLoginButton";
+            this.NoLoginButton.Size = new System.Drawing.Size(187, 29);
+            this.NoLoginButton.TabIndex = 9;
+            this.NoLoginButton.Text = "Przeglądaj bez logowania";
+            this.NoLoginButton.UseVisualStyleBackColor = true;
+            this.NoLoginButton.Click += new System.EventHandler(this.NoLoginButton_Click);
+            // 
+            // CreateAccountLabel
+            // 
+            this.CreateAccountLabel.AutoSize = true;
+            this.CreateAccountLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CreateAccountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.CreateAccountLabel.ForeColor = System.Drawing.Color.Black;
+            this.CreateAccountLabel.Location = new System.Drawing.Point(201, 144);
+            this.CreateAccountLabel.Name = "CreateAccountLabel";
+            this.CreateAccountLabel.Size = new System.Drawing.Size(82, 17);
+            this.CreateAccountLabel.TabIndex = 8;
+            this.CreateAccountLabel.Text = "Załóż konto";
+            this.CreateAccountLabel.Click += new System.EventHandler(this.label1_Click);
             // 
             // ForgetPassword
             // 
@@ -150,17 +161,6 @@
             this.LoginLabel.TabIndex = 1;
             this.LoginLabel.Text = "Email";
             // 
-            // NoLoginButton
-            // 
-            this.NoLoginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.NoLoginButton.Location = new System.Drawing.Point(74, 199);
-            this.NoLoginButton.Name = "NoLoginButton";
-            this.NoLoginButton.Size = new System.Drawing.Size(187, 29);
-            this.NoLoginButton.TabIndex = 9;
-            this.NoLoginButton.Text = "Przeglądaj bez logowania";
-            this.NoLoginButton.UseVisualStyleBackColor = true;
-            this.NoLoginButton.Click += new System.EventHandler(this.NoLoginButton_Click);
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -169,8 +169,6 @@
             this.Controls.Add(this.LoginBox);
             this.Name = "LoginForm";
             this.Text = "Logowanie";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
-            this.Load += new System.EventHandler(this.LoginForm_Load);
             this.LoginBox.ResumeLayout(false);
             this.LoginBox.PerformLayout();
             this.ResumeLayout(false);
@@ -188,7 +186,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label IncorrectLoginLabel;
         private System.Windows.Forms.Label ForgetPassword;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label CreateAccountLabel;
         private System.Windows.Forms.Button NoLoginButton;
     }
 }

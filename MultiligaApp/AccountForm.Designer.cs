@@ -167,7 +167,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "AccountForm";
             this.Text = "Moje Konto";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AccountForm_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
