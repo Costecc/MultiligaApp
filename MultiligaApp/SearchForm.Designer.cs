@@ -48,7 +48,7 @@ namespace MultiligaApp
             {
                 this.label5.Visible = false;
                 this.textBox5.Visible = false;
-            }          
+            }
         }
 
         #region Windows Form Designer generated code
@@ -239,8 +239,6 @@ namespace MultiligaApp
             this.Controls.Add(this.SearchMenu);
             this.Name = "SearchForm";
             this.Text = "Wyszukiwanie";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SearchForm_FormClosed);
-            this.Load += new System.EventHandler(this.SearchingForm_Load);
             this.SearchMenu.ResumeLayout(false);
             this.SearchMenu.PerformLayout();
             this.SearchResults.ResumeLayout(false);
@@ -270,18 +268,18 @@ namespace MultiligaApp
         private void ResultView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)ResultView.Rows[e.RowIndex].Cells[0];      //cells[0] -> bierzemy dane z kolumny ID
-            ProfileForm profileForm = new ProfileForm();
+            ProfileForm profileForm = new ProfileForm(this);
 
-            if(SearchMenu.Text == "Wyszukiwanie gracza")
-            {             
+            if (SearchMenu.Text == "Wyszukiwanie gracza")
+            {
                 profileForm.SetProfile(_user, "Profil zawodnika", "Zaproś do drużyny", "Imię i nazwisko", "Email", "Drużyna", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "O sobie");
                 ContestantDataUtility.showContestantProfile(profileForm, Convert.ToInt32(IDcell.Value));
             }
-            else if(SearchMenu.Text == "Wyszukiwanie drużyny")
+            else if (SearchMenu.Text == "Wyszukiwanie drużyny")
             {
                 TeamDataUtility.showTeamsProfile(profileForm, Convert.ToInt32(IDcell.Value));
                 profileForm.SetProfile(_user, "Profil drużyny", "Zaproś do zawodów", "Nazwa", "Kapitan", "Dyscypliny", "Aktualne zawody", "Ukończone zawody", "Osiągnięcia", "Informacja");
-            }       
+            }
             profileForm.Show();
         }
     }

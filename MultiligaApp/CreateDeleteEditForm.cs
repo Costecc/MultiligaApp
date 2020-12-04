@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace MultiligaApp
 {
-    public partial class CreateDeleteEditForm : Form
+    public partial class CreateDeleteEditForm : TemplateForm
     {
         bool successfulOperation;
         private int modifiedRaceId;
@@ -19,39 +19,38 @@ namespace MultiligaApp
             get { return modifiedRaceId; }
             set { modifiedRaceId = value; }
         }
-        public CreateDeleteEditForm()
+        public CreateDeleteEditForm(TemplateForm form) : base(form)
         {
             InitializeComponent();
         }
-
         private void SaveButton_Click(object sender, EventArgs e)
         {
             string _operation = "";
             successfulOperation = true;
-            switch(groupBox1.Text)
+            switch (groupBox1.Text)
             {
                 case "Usuń zawody":
                     {
                         _operation = "usunięto zawody!";
-                        CompetitionDataUtility.deleteCompetition(textBox5.Text, ref successfulOperation);
+                        CompetitionDataUtility.deleteCompetition(textBox5.Text, ref successfulOperation, this);
                         break;
                     }
                 case "Utwórz nowe zawody":
                     {
                         _operation = " utworzono zawody!";
-                        CompetitionDataUtility.createCompetition(int.Parse(comboBox1.SelectedValue.ToString()), Convert.ToInt32(numberOfRaces.Value), 
-                            textBox3.Text, int.Parse(comboBox4.SelectedValue.ToString()), textBox5.Text, textBox6.Text, comboBox7.Text, ref successfulOperation);
+                        CompetitionDataUtility.createCompetition(int.Parse(comboBox1.SelectedValue.ToString()), Convert.ToInt32(numberOfRaces.Value),
+                            textBox3.Text, int.Parse(comboBox4.SelectedValue.ToString()), textBox5.Text, textBox6.Text, comboBox7.Text, ref successfulOperation, this);
                         break;
                     }
                 case "Edytuj zawody":
                     {
                         _operation = " edytowano zawody!";
                         CompetitionDataUtility.updateCompetition(int.Parse(comboBox1.SelectedValue.ToString()), Convert.ToInt32(numberOfRaces.Value),
-                            textBox3.Text, int.Parse(comboBox4.SelectedValue.ToString()), textBox5.Text, textBox6.Text, comboBox7.Text, ref successfulOperation);
+                            textBox3.Text, int.Parse(comboBox4.SelectedValue.ToString()), textBox5.Text, textBox6.Text, comboBox7.Text, ref successfulOperation, this);
                         break;
                     }
                 case "Załóż konto":
-                    {                     
+                    {
                         _operation = " założone konto!";
                         LoggedUserUtility.createAccount(textBox5.Text, textBox6.Text, textBox3.Text, ref successfulOperation);
                         break;
@@ -59,13 +58,13 @@ namespace MultiligaApp
                 case "Załóż drużynę":
                     {
                         _operation = " założona drużyna!";
-                        TeamDataUtility.createTeam(textBox3.Text);
+                        TeamDataUtility.createTeam(textBox3.Text, this);
                         break;
                     }
                 case "Podaj trasę wyścigów":
                     {
                         _operation = " dodana trasa!";
-                        CompetitionDataUtility.addRaceTrack(Convert.ToInt32(comboBox4.SelectedValue), ModifiedRaceId, ref successfulOperation);                 
+                        CompetitionDataUtility.addRaceTrack(Convert.ToInt32(comboBox4.SelectedValue), ModifiedRaceId, ref successfulOperation);
                         break;
                     }
                 default:
@@ -82,7 +81,6 @@ namespace MultiligaApp
                 successfulOperation = true;
             }
         }
-
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -99,36 +97,11 @@ namespace MultiligaApp
             {
                 return false;
             }
-        }
-
-        private void CreateDeleteEditForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                int visibleForms = 0;
-                for (int i = 0; i < Application.OpenForms.Count; ++i)
-                {
-                    if (Application.OpenForms[i].Visible == true)
-                    {
-                        ++visibleForms;
-                    }
-                }
-                if (visibleForms == 0)
-                {
-                    Application.Exit();
-                }
-            }
-        }        
-
+        }      
         private void ComboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void CreateDeleteEditForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'multiligaDataSet1.pracownik' table. You can move, or remove it, as needed.
@@ -137,7 +110,6 @@ namespace MultiligaApp
             this.dyscyplinaTableAdapter.Fill(this.multiligaDataSet.dyscyplina);
 
         }
-
         private void FillByToolStripButton_Click(object sender, EventArgs e)
         {
             try
@@ -150,7 +122,6 @@ namespace MultiligaApp
             }
 
         }
-
         private void FillBy1ToolStripButton_Click(object sender, EventArgs e)
         {
             try
@@ -162,15 +133,14 @@ namespace MultiligaApp
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
-        } 
-        
+        }
         public void dropDownTracks()
         {
             var tracks = CompetitionDataUtility.getAvailableTracks(ModifiedRaceId);
             comboBox4.DataSource = tracks;
             comboBox4.ValueMember = "id_trasa";
             comboBox4.DisplayMember = "nazwa";
-            
+
         }
     }
 }

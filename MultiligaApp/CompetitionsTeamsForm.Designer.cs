@@ -27,22 +27,22 @@ namespace MultiligaApp
         internal void SetWindow(string kind, int competitionId = 0)
         {
             var type = LoggedUserUtility.getCurrentUserType();
-            if(kind == "zawody")
+            if (kind == "zawody")
             {
                 CompetitionBox.Text = "Lista zawodów";
                 ConfirmButton.Visible = false;
                 if (type == LoggedUserUtility.userType.contestant || type == LoggedUserUtility.userType.captain)
-                {            
+                {
                     fillWithAttendedCompetitions(CompetitionView, LoggedUserUtility.getLoggedContestant().id_zawodnik);
                 }
-                else if(type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser)
+                else if (type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser)
                 {   //wyswietlanie zawodow zarzadzanych przez organizatora/opiekuna                    
                     List<zawody> competitions = LoggedUserUtility.getEmployeesCompetitions(LoggedUserUtility.getLoggedEmployee().id_pracownik);
                     var competitionsAccept = competitions.Select(x => new { Nazwa = x.nazwa, Akcja = "Akceptuj" }).ToList();
                     CompetitionView.DataSource = competitions.Select(x => new { Nazwa = x.nazwa, competitionId = x.id_zawody }).ToList();
                 }
             }
-            else if(kind == "druzyny")  //done
+            else if (kind == "druzyny")  //done
             {
                 CompetitionBox.Text = "Lista drużyn";
                 ConfirmButton.Visible = false;
@@ -50,7 +50,7 @@ namespace MultiligaApp
                 fillWithInvitations(CompetitionView, LoggedUserUtility.getLoggedContestant().id_zawodnik);
             }
             else
-            {                
+            {
                 CompetitionBox.Text = "Lista wyścigów";
 
                 ConfirmButton.Visible = false;
@@ -62,7 +62,7 @@ namespace MultiligaApp
                 else if (type == LoggedUserUtility.userType.supervisor || type == LoggedUserUtility.userType.organiser) // wyscigi ktorymi zarzadzaja organizator/opiekun
                 {
                     var races = CompetitionDataUtility.getRacesInCompetition(competitionId);
-                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), Akcja = "Dodaj trasę",competitionId = x.id_wyscig }).ToList();  //idwyscig czy dobrze
+                    CompetitionView.DataSource = races.AsEnumerable().Select((x, index) => new { Nazwa = "Wyścig nr. " + (index + 1), Akcja = "Dodaj trasę", competitionId = x.id_wyscig }).ToList();  //idwyscig czy dobrze
                     //po kliknieciu przejscie do edycji trasy wyscigu
                 }
             }
@@ -204,7 +204,6 @@ namespace MultiligaApp
             this.Controls.Add(this.CompetitionBox);
             this.Name = "CompetitionsTeamsForm";
             this.Text = "Multiliga";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CompetitionsTeamsForm_FormClosed);
             this.CompetitionBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CompetitionView)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -229,30 +228,30 @@ namespace MultiligaApp
                 DataGridViewTextBoxCell IDcell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[3];      //cells[3] -> bierzemy dane z kolumny ID
                 competitionId = Convert.ToInt32(IDcell.Value);
 
-                
-                CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm();
+
+                CompetitionsTeamsForm competitionsTeamsForm = new CompetitionsTeamsForm(this);
                 competitionsTeamsForm.SetWindow("wyścigi", competitionId);
 
                 competitionsTeamsForm.ConfirmButton.Visible = false;
                 competitionsTeamsForm.Show();
             }
-            else if(CompetitionBox.Text == "Lista wyścigów")
+            else if (CompetitionBox.Text == "Lista wyścigów")
             {
                 DataGridViewCell clickedCell = (DataGridViewCell)CompetitionView.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 DataGridViewTextBoxCell raceIdCell = (DataGridViewTextBoxCell)CompetitionView.Rows[e.RowIndex].Cells[3];   //teamId w 3 kolumnie
                 //na podstawie competitionId otworz wyscigi     
                 if (loggedUserType == LoggedUserUtility.userType.organiser || loggedUserType == LoggedUserUtility.userType.supervisor)
                 {
-                    CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm();
+                    CreateDeleteEditForm createDeleteEditForm = new CreateDeleteEditForm(this);
                     if (clickedCell.Value == "Dodaj trasę")
                     {
                         createDeleteEditForm.ModifiedRaceId = Convert.ToInt32(raceIdCell.Value);
                         createDeleteEditForm.SetCreateForm("Podaj trasę wyścigów", "", "", "", "Trasa", "", "", "");
                         createDeleteEditForm.dropDownTracks();
                         createDeleteEditForm.Show();
-                    }                    
+                    }
                 }
-                else if(loggedUserType == LoggedUserUtility.userType.captain || loggedUserType == LoggedUserUtility.userType.contestant)
+                else if (loggedUserType == LoggedUserUtility.userType.captain || loggedUserType == LoggedUserUtility.userType.contestant)
                 {
                     if (clickedCell.Value == "Akceptuj")
                     {
@@ -270,7 +269,7 @@ namespace MultiligaApp
                     ContestantDataUtility.acceptTeamInvitation(loggedContestant.id_zawodnik, Convert.ToInt32(teamIdCell.Value));
                     fillWithInvitations(CompetitionView, loggedContestant.id_zawodnik);
                 }
-                
+
             }
         }
 

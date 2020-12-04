@@ -10,34 +10,11 @@ using System.Windows.Forms;
 
 namespace MultiligaApp
 {
-    public partial class CompetitionsForm : Form
+    public partial class CompetitionsForm : TemplateForm
     {
-        public CompetitionsForm()
+        public CompetitionsForm(TemplateForm form) : base(form)
         {
             InitializeComponent();
-        }
-
-        private void CompetitionsForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (Application.OpenForms.Count == 0)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                int visibleForms = 0;
-                for (int i = 0; i < Application.OpenForms.Count; ++i)
-                {
-                    if (Application.OpenForms[i].Visible == true)
-                    {
-                        ++visibleForms;
-                    }
-                }
-                if (visibleForms == 0)
-                {
-                    Application.Exit();
-                }
-            }
-        }
+        }      
     }
 }

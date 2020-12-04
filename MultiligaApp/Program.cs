@@ -16,7 +16,7 @@ namespace MultiligaApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            Application.Run(new LoginForm(null)); //pierwsze okno nie ma poprzedniego
         }
     }
 }
