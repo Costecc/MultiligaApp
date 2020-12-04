@@ -12,15 +12,12 @@ namespace MultiligaApp
     using System;
     using System.Collections.Generic;
     
-    public partial class ranking_druzyny
+    public partial class sysdiagrams
     {
-        public int id_druzyna { get; set; }
-        public int punkty { get; set; }
-        public int id_wyscig { get; set; }
-        public int id_zawody { get; set; }
-    
-        public virtual druzyna druzyna { get; set; }
-        public virtual zawody zawody { get; set; }
-        public virtual zawody zawody1 { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

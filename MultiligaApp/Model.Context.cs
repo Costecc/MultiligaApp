@@ -25,6 +25,7 @@ namespace MultiligaApp
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<druzyna> druzyna { get; set; }
         public virtual DbSet<druzyna_zawody> druzyna_zawody { get; set; }
         public virtual DbSet<dyscyplina> dyscyplina { get; set; }
